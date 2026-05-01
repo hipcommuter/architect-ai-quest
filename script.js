@@ -154,6 +154,81 @@
     btn.addEventListener('click', () => setHero(btn.dataset.hero));
   });
 
+  /* ---------- 7a. Locked level reveal + level-up overlay ---------- */
+  const levelUpOverlay = document.getElementById('levelup-overlay');
+  const luBanner = levelUpOverlay?.querySelector('.lu-banner');
+  const luLevel = levelUpOverlay?.querySelector('.lu-level');
+  const luTier = levelUpOverlay?.querySelector('.lu-tier');
+  const luSkill = levelUpOverlay?.querySelector('.lu-skill');
+  const reachedLevels = new Set();
+  let userHasScrolled = false;
+  let levelUpQueue = [];
+  let levelUpPlaying = false;
+
+  // First scroll flag — used to suppress level-up animation on initial page load
+  window.addEventListener('scroll', () => { userHasScrolled = true; }, { once: true, passive: true });
+
+  function reachLevel(node, animated) {
+    const lvl = parseInt(node.dataset.level, 10);
+    if (reachedLevels.has(lvl)) return;
+    reachedLevels.add(lvl);
+    node.classList.add('is-reached');
+    if (animated) {
+      node.classList.add('just-reached');
+      setTimeout(() => node.classList.remove('just-reached'), 800);
+      // Queue the level-up overlay
+      const skill = node.querySelector('.level-skill')?.textContent || '';
+      const tierText = node.querySelector('.level-tier')?.textContent || 'NOVICE';
+      levelUpQueue.push({ lvl, skill, tier: tierText });
+      processLevelUpQueue();
+    }
+  }
+
+  function processLevelUpQueue() {
+    if (levelUpPlaying || levelUpQueue.length === 0 || !levelUpOverlay) return;
+    const next = levelUpQueue.shift();
+    levelUpPlaying = true;
+    if (luLevel)  luLevel.textContent  = 'LV.' + next.lvl;
+    if (luTier)   luTier.textContent   = next.tier + ' TIER';
+    if (luSkill)  luSkill.textContent  = next.skill;
+    levelUpOverlay.classList.remove('is-active');
+    void levelUpOverlay.offsetWidth;
+    levelUpOverlay.classList.add('is-active');
+    // Chime ladder per level
+    if (typeof chime === 'function' && audioReady) {
+      const f = 220 + Math.min(next.lvl, 999) * 0.5;
+      chime(f, 0.18);
+      setTimeout(() => chime(f * 1.5, 0.14), 180);
+    }
+    setTimeout(() => {
+      levelUpOverlay.classList.remove('is-active');
+      levelUpPlaying = false;
+      processLevelUpQueue();
+    }, 2500);
+  }
+
+  // Initial pass: mark already-visible nodes as reached without animation
+  function syncInitialReachState() {
+    const triggerY = window.innerHeight * 0.55;
+    document.querySelectorAll('.level-node[data-level]').forEach((node) => {
+      const r = node.getBoundingClientRect();
+      if (r.top < triggerY) reachLevel(node, false);
+    });
+  }
+  // Run after the page has had a chance to layout
+  setTimeout(syncInitialReachState, 50);
+
+  // Scroll-based reveal: when a node's top crosses the trigger line, reach it
+  function checkLevelReach() {
+    const triggerY = window.innerHeight * 0.45;
+    document.querySelectorAll('.level-node[data-level]').forEach((node) => {
+      if (reachedLevels.has(parseInt(node.dataset.level, 10))) return;
+      const r = node.getBoundingClientRect();
+      if (r.top < triggerY) reachLevel(node, userHasScrolled);
+    });
+  }
+  // Tied to existing throttled scroll handler below
+
   /* ---------- 7. Hero transformation by scroll position ---------- */
   const TIER_FOR_LEVEL = {
     1: 'novice', 5: 'novice', 10: 'novice',
@@ -222,12 +297,14 @@
     scrollPending = true;
     requestAnimationFrame(() => {
       updateHeroTier();
+      checkLevelReach();
       scrollPending = false;
     });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   // Initial sync
   updateHeroTier();
+  checkLevelReach();
 
   /* ---------- 8. "Open Project in VS Code" launcher per quest ---------- */
   // Path map is loaded from quest-paths.local.json (gitignored, local-only).

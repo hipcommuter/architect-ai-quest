@@ -457,6 +457,237 @@ section.screen {
 }
 
 /* ============================================================
+   LOCKED LEVEL CARDS — hide content until hero reaches them
+   ============================================================ */
+.level-node[data-level] .level-card,
+.level-node[data-level] .level-demo {
+  transition: opacity 0.5s steps(4), filter 0.5s;
+}
+.level-node:not(.is-reached) .level-card .level-skill,
+.level-node:not(.is-reached) .level-card .level-tool,
+.level-node:not(.is-reached) .level-card .level-example,
+.level-node:not(.is-reached) .level-card .level-anchor,
+.level-node:not(.is-reached) .level-card .level-try-today {
+  opacity: 0;
+  visibility: hidden;
+}
+.level-node:not(.is-reached) .level-card {
+  position: relative;
+  min-height: 120px;
+  background: var(--bg-deep) !important;
+  border-style: dashed !important;
+  border-color: var(--ink-dim) !important;
+}
+.level-node:not(.is-reached) .level-card::after {
+  content: "??? · LOCKED";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: var(--ink-dim);
+  letter-spacing: 0.2em;
+  animation: locked-pulse 2s steps(3) infinite;
+}
+@keyframes locked-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.9; }
+}
+.level-node:not(.is-reached) .level-demo {
+  opacity: 0;
+  filter: grayscale(1) brightness(0.3);
+}
+.level-node:not(.is-reached) .level-badge {
+  filter: grayscale(0.7) brightness(0.6);
+}
+.level-node:not(.is-reached) .level-badge::after {
+  content: " 🔒";
+  font-size: 11px;
+  margin-left: 4px;
+}
+.level-node.is-reached .level-card,
+.level-node.is-reached .level-demo,
+.level-node.is-reached .level-badge {
+  opacity: 1;
+  filter: none;
+}
+
+/* On-reach reveal animation: the card pops in with a flash */
+@keyframes card-reveal {
+  0%   { transform: scale(0.85); filter: brightness(2.5); }
+  50%  { transform: scale(1.05); filter: brightness(1.6); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+.level-node.just-reached .level-card {
+  animation: card-reveal 0.7s steps(8);
+}
+
+/* ============================================================
+   LEVEL-UP OVERLAY — fullscreen JRPG-style flash
+   ============================================================ */
+.levelup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.levelup-overlay.is-active {
+  visibility: visible;
+  animation: lu-show 2.5s steps(20);
+}
+@keyframes lu-show {
+  0%   { opacity: 0; }
+  6%   { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+.lu-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255,210,63,0.9) 0%, rgba(15,14,42,0.95) 70%);
+}
+.levelup-overlay.is-active .lu-flash {
+  animation: lu-flash-pulse 0.6s steps(4);
+}
+@keyframes lu-flash-pulse {
+  0%   { background: rgba(255,255,255,0); }
+  20%  { background: rgba(255,255,255,0.95); }
+  100% { background: radial-gradient(ellipse at center, rgba(255,210,63,0.6) 0%, rgba(15,14,42,0.92) 70%); }
+}
+
+.lu-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.lu-star {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  image-rendering: pixelated;
+  opacity: 0;
+}
+.levelup-overlay.is-active .lu-star {
+  animation: lu-star-fly 1.4s steps(8) infinite;
+}
+.lu-star-1 { top: 18%; left: 12%; animation-delay: 0s !important; }
+.lu-star-2 { top: 28%; right: 14%; animation-delay: 0.15s !important; width: 28px; height: 28px; }
+.lu-star-3 { top: 60%; left: 8%;  animation-delay: 0.3s !important; }
+.lu-star-4 { top: 70%; right: 10%; animation-delay: 0.45s !important; width: 32px; height: 32px; }
+.lu-star-5 { top: 35%; left: 22%; animation-delay: 0.6s !important; }
+.lu-star-6 { top: 22%; right: 26%; animation-delay: 0.75s !important; }
+.lu-star-7 { top: 75%; left: 28%; animation-delay: 0.9s !important; width: 20px; height: 20px; }
+.lu-star-8 { top: 50%; right: 30%; animation-delay: 1.05s !important; }
+@keyframes lu-star-fly {
+  0%   { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50%  { opacity: 1; transform: scale(1.4) rotate(180deg); }
+  100% { opacity: 0; transform: scale(0.6) rotate(360deg); }
+}
+
+.lu-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.lu-banner {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 38px;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  margin: 0 0 18px;
+  text-shadow:
+    4px 4px 0 var(--gold-dark),
+    8px 8px 0 var(--bg-deep);
+}
+.levelup-overlay.is-active .lu-banner {
+  animation: lu-banner-drop 0.6s steps(8);
+}
+@keyframes lu-banner-drop {
+  0%   { transform: translateY(-200px); opacity: 0; }
+  60%  { transform: translateY(20px); opacity: 1; }
+  100% { transform: translateY(0); }
+}
+
+.lu-level {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 88px;
+  color: var(--ink-white);
+  letter-spacing: 0.05em;
+  margin: 16px 0;
+  text-shadow:
+    6px 6px 0 var(--gold-dark),
+    12px 12px 0 var(--bg-deep);
+}
+.levelup-overlay.is-active .lu-level {
+  animation: lu-level-pop 0.7s steps(8);
+}
+@keyframes lu-level-pop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.4); opacity: 1; }
+  85%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.lu-tier {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: var(--magenta);
+  letter-spacing: 0.2em;
+  margin: 14px 0 28px;
+  text-shadow: 3px 3px 0 var(--bg-deep);
+}
+
+.lu-skill-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: var(--green);
+  letter-spacing: 0.15em;
+  margin: 24px 0 8px;
+}
+.levelup-overlay.is-active .lu-skill-label {
+  animation: lu-fade-in 0.5s steps(4) 0.5s both;
+}
+.lu-skill {
+  font-family: 'VT323', monospace;
+  font-size: 28px;
+  color: var(--ink-cream);
+  margin: 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}
+.levelup-overlay.is-active .lu-skill {
+  animation: lu-fade-in 0.6s steps(6) 0.7s both;
+}
+@keyframes lu-fade-in {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .lu-banner { font-size: 22px; }
+  .lu-level { font-size: 56px; }
+  .lu-tier { font-size: 13px; }
+  .lu-skill { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .levelup-overlay.is-active,
+  .levelup-overlay.is-active * { animation: none !important; }
+  .levelup-overlay.is-active { opacity: 1; }
+}
+
+/* ============================================================
    LEVEL-MAP DEMO PANELS — animated mini-illustrations
    per level showing how the skill looks in practice.
    Positioned in the empty space opposite each card.
