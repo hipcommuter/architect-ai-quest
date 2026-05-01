@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Architect's AI Quest · Lv.1 → Lv.999</title>
+  <meta name="description" content="A pixel-art guide showing how AI saves time and unlocks new tools for architects. Level up from novice to master." />
+
+  <!-- Press Start 2P pixel font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+
+  <!-- NES.css -->
+  <link rel="stylesheet" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" />
+
+  <!-- Local styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- SVG SPRITE LIBRARY (defs, never visible)     -->
+  <!-- ============================================ -->
+  <svg id="sprite-defs" width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- ============ 4 PARTY MEMBERS (12x16 each) ============ -->
+
+      <!-- DRAFTER: yellow hard hat, blue overalls, gold belt -->
+      <symbol id="spr-hero-drafter" viewBox="0 0 12 16">
+        <rect x="3" y="1" width="6" height="2" fill="#ffd23f"/>
+        <rect x="2" y="2" width="8" height="1" fill="#ffd23f"/>
+        <rect x="1" y="3" width="10" height="1" fill="#c9a227"/>
+        <rect x="3" y="4" width="6" height="3" fill="#ffccaa"/>
+        <rect x="4" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="5" y="6" width="2" height="1" fill="#e63946"/>
+        <rect x="3" y="7" width="6" height="1" fill="#ffccaa"/>
+        <rect x="2" y="8" width="8" height="4" fill="#29adff"/>
+        <rect x="3" y="9" width="6" height="1" fill="#ffd23f"/>
+        <rect x="1" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="10" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="3" y="12" width="2" height="3" fill="#1d2b53"/>
+        <rect x="7" y="12" width="2" height="3" fill="#1d2b53"/>
+        <rect x="2" y="15" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="15" width="3" height="1" fill="#0f0e2a"/>
+      </symbol>
+
+      <!-- DESIGNER: blue beret, paint apron, brush -->
+      <symbol id="spr-hero-designer" viewBox="0 0 12 16">
+        <rect x="2" y="1" width="6" height="1" fill="#29adff"/>
+        <rect x="1" y="2" width="8" height="2" fill="#29adff"/>
+        <rect x="0" y="3" width="2" height="1" fill="#1d2b53"/>
+        <rect x="9" y="3" width="2" height="1" fill="#5d3a1a"/>
+        <rect x="3" y="4" width="6" height="3" fill="#ffccaa"/>
+        <rect x="4" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="5" y="6" width="2" height="1" fill="#e63946"/>
+        <rect x="3" y="7" width="6" height="1" fill="#ffccaa"/>
+        <rect x="2" y="8" width="8" height="4" fill="#f4e4bc"/>
+        <rect x="4" y="10" width="1" height="1" fill="#e63946"/>
+        <rect x="6" y="9" width="1" height="1" fill="#29adff"/>
+        <rect x="7" y="11" width="1" height="1" fill="#51e898"/>
+        <rect x="1" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="10" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="11" y="11" width="1" height="2" fill="#5d3a1a"/>
+        <rect x="11" y="13" width="1" height="1" fill="#e63946"/>
+        <rect x="3" y="12" width="2" height="3" fill="#1d2b53"/>
+        <rect x="7" y="12" width="2" height="3" fill="#1d2b53"/>
+        <rect x="2" y="15" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="15" width="3" height="1" fill="#0f0e2a"/>
+      </symbol>
+
+      <!-- COMMUNICATOR: brown hair, glasses, red shirt + tie, envelope -->
+      <symbol id="spr-hero-communicator" viewBox="0 0 12 16">
+        <rect x="3" y="1" width="6" height="1" fill="#5d3a1a"/>
+        <rect x="2" y="2" width="8" height="2" fill="#5d3a1a"/>
+        <rect x="3" y="4" width="6" height="3" fill="#ffccaa"/>
+        <rect x="3" y="5" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="6" y="5" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="4" y="5" width="1" height="1" fill="#fff1e8"/>
+        <rect x="7" y="5" width="1" height="1" fill="#fff1e8"/>
+        <rect x="5" y="6" width="2" height="1" fill="#e63946"/>
+        <rect x="3" y="7" width="6" height="1" fill="#ffccaa"/>
+        <rect x="2" y="8" width="8" height="4" fill="#e63946"/>
+        <rect x="4" y="8" width="1" height="2" fill="#fff1e8"/>
+        <rect x="7" y="8" width="1" height="2" fill="#fff1e8"/>
+        <rect x="5" y="8" width="2" height="1" fill="#fff1e8"/>
+        <rect x="5" y="9" width="2" height="2" fill="#1d2b53"/>
+        <rect x="1" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="10" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="0" y="10" width="2" height="2" fill="#fff1e8"/>
+        <rect x="0" y="11" width="2" height="1" fill="#c9a227"/>
+        <rect x="3" y="12" width="2" height="3" fill="#0f0e2a"/>
+        <rect x="7" y="12" width="2" height="3" fill="#0f0e2a"/>
+        <rect x="2" y="15" width="3" height="1" fill="#5d3a1a"/>
+        <rect x="7" y="15" width="3" height="1" fill="#5d3a1a"/>
+      </symbol>
+
+      <!-- RESEARCHER: green beanie, lab coat, magnifying glass -->
+      <symbol id="spr-hero-researcher" viewBox="0 0 12 16">
+        <rect x="3" y="0" width="6" height="1" fill="#51e898"/>
+        <rect x="2" y="1" width="8" height="2" fill="#51e898"/>
+        <rect x="2" y="3" width="8" height="1" fill="#1d4a2a"/>
+        <rect x="3" y="4" width="6" height="3" fill="#ffccaa"/>
+        <rect x="4" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="5" y="6" width="2" height="1" fill="#e63946"/>
+        <rect x="3" y="7" width="6" height="1" fill="#ffccaa"/>
+        <rect x="2" y="8" width="8" height="4" fill="#fff1e8"/>
+        <rect x="3" y="9" width="2" height="2" fill="#51e898"/>
+        <rect x="3" y="10" width="2" height="1" fill="#1d4a2a"/>
+        <rect x="1" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="10" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="11" y="9" width="1" height="2" fill="#c9a227"/>
+        <rect x="10" y="11" width="1" height="1" fill="#c9a227"/>
+        <rect x="9" y="12" width="3" height="1" fill="#c9a227"/>
+        <rect x="9" y="13" width="3" height="1" fill="#c9a227"/>
+        <rect x="10" y="13" width="1" height="1" fill="#29adff"/>
+        <rect x="3" y="12" width="2" height="3" fill="#1d4a2a"/>
+        <rect x="7" y="12" width="2" height="3" fill="#1d4a2a"/>
+        <rect x="2" y="15" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="15" width="3" height="1" fill="#0f0e2a"/>
+      </symbol>
+
+      <!-- SLIME: little enemy / minion (8x8) -->
+      <symbol id="spr-slime" viewBox="0 0 8 8">
+        <rect x="2" y="1" width="4" height="1" fill="#51e898"/>
+        <rect x="1" y="2" width="6" height="2" fill="#51e898"/>
+        <rect x="0" y="4" width="8" height="3" fill="#51e898"/>
+        <rect x="2" y="3" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="5" y="3" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="3" y="5" width="2" height="1" fill="#0f0e2a"/>
+        <rect x="0" y="7" width="8" height="1" fill="#1d2b53"/>
+        <rect x="2" y="2" width="1" height="1" fill="#7fffb0"/>
+      </symbol>
+
+      <!-- COIN: gold coin (8x8) -->
+      <symbol id="spr-coin" viewBox="0 0 8 8">
+        <rect x="2" y="0" width="4" height="1" fill="#ffd23f"/>
+        <rect x="1" y="1" width="6" height="1" fill="#ffd23f"/>
+        <rect x="0" y="2" width="8" height="4" fill="#ffd23f"/>
+        <rect x="1" y="6" width="6" height="1" fill="#c9a227"/>
+        <rect x="2" y="7" width="4" height="1" fill="#c9a227"/>
+        <rect x="3" y="3" width="2" height="2" fill="#fff1e8"/>
+      </symbol>
+
+      <!-- SPARKLE: 4-point star (5x5) -->
+      <symbol id="spr-sparkle" viewBox="0 0 5 5">
+        <rect x="2" y="0" width="1" height="5" fill="#fff1e8"/>
+        <rect x="0" y="2" width="5" height="1" fill="#fff1e8"/>
+        <rect x="2" y="2" width="1" height="1" fill="#ffd23f"/>
+      </symbol>
+
+      <!-- SWORD: pixel sword (8x14) -->
+      <symbol id="spr-sword" viewBox="0 0 8 14">
+        <rect x="3" y="0" width="2" height="9" fill="#fff1e8"/>
+        <rect x="2" y="1" width="1" height="7" fill="#b9a380"/>
+        <rect x="2" y="9" width="4" height="1" fill="#fff1e8"/>
+        <rect x="1" y="10" width="6" height="1" fill="#c9a227"/>
+        <rect x="3" y="11" width="2" height="3" fill="#1d2b53"/>
+        <rect x="2" y="13" width="4" height="1" fill="#0f0e2a"/>
+      </symbol>
+
+      <!-- HEART: HP icon (8x7) -->
+      <symbol id="spr-heart" viewBox="0 0 8 7">
+        <rect x="1" y="0" width="2" height="1" fill="#e63946"/>
+        <rect x="5" y="0" width="2" height="1" fill="#e63946"/>
+        <rect x="0" y="1" width="8" height="2" fill="#e63946"/>
+        <rect x="1" y="3" width="6" height="1" fill="#e63946"/>
+        <rect x="2" y="4" width="4" height="1" fill="#e63946"/>
+        <rect x="3" y="5" width="2" height="1" fill="#e63946"/>
+        <rect x="1" y="1" width="1" height="1" fill="#ff8a8a"/>
+      </symbol>
+
+      <!-- SCROLL: parchment (10x10) -->
+      <symbol id="spr-scroll" viewBox="0 0 10 10">
+        <rect x="1" y="1" width="8" height="8" fill="#f4e4bc"/>
+        <rect x="0" y="2" width="2" height="6" fill="#c9a227"/>
+        <rect x="8" y="2" width="2" height="6" fill="#c9a227"/>
+        <rect x="3" y="3" width="4" height="1" fill="#1d2b53"/>
+        <rect x="3" y="5" width="4" height="1" fill="#1d2b53"/>
+        <rect x="3" y="7" width="3" height="1" fill="#1d2b53"/>
+      </symbol>
+
+      <!-- ============ 3 BOSS MONSTERS (16x16 each) ============ -->
+
+      <!-- PERMIT BOSS: paper stack monster -->
+      <symbol id="spr-monster-permit" viewBox="0 0 16 16">
+        <rect x="0" y="13" width="16" height="3" fill="#f4e4bc"/>
+        <rect x="1" y="11" width="14" height="2" fill="#fff1e8"/>
+        <rect x="2" y="9" width="12" height="2" fill="#f4e4bc"/>
+        <rect x="3" y="6" width="10" height="3" fill="#fff1e8"/>
+        <rect x="11" y="6" width="2" height="2" fill="#c9a227"/>
+        <rect x="3" y="13" width="6" height="1" fill="#1d2b53"/>
+        <rect x="3" y="11" width="4" height="1" fill="#1d2b53"/>
+        <rect x="9" y="11" width="3" height="1" fill="#1d2b53"/>
+        <rect x="4" y="2" width="3" height="3" fill="#f4e4bc"/>
+        <rect x="9" y="2" width="3" height="3" fill="#f4e4bc"/>
+        <rect x="4" y="0" width="3" height="2" fill="#fff1e8"/>
+        <rect x="9" y="0" width="3" height="2" fill="#fff1e8"/>
+        <rect x="5" y="3" width="1" height="1" fill="#e63946"/>
+        <rect x="10" y="3" width="1" height="1" fill="#e63946"/>
+        <rect x="6" y="7" width="1" height="1" fill="#1a0a2a"/>
+        <rect x="7" y="8" width="1" height="1" fill="#1a0a2a"/>
+        <rect x="8" y="7" width="1" height="1" fill="#1a0a2a"/>
+        <rect x="9" y="8" width="1" height="1" fill="#1a0a2a"/>
+      </symbol>
+
+      <!-- REVISION BOSS: loop demon -->
+      <symbol id="spr-monster-revision" viewBox="0 0 16 16">
+        <rect x="3" y="4" width="10" height="10" fill="#ab5fff"/>
+        <rect x="2" y="5" width="12" height="8" fill="#ab5fff"/>
+        <rect x="4" y="3" width="8" height="1" fill="#ab5fff"/>
+        <rect x="4" y="14" width="8" height="1" fill="#ab5fff"/>
+        <rect x="2" y="2" width="2" height="2" fill="#5d3a1a"/>
+        <rect x="12" y="2" width="2" height="2" fill="#5d3a1a"/>
+        <rect x="2" y="0" width="1" height="2" fill="#5d3a1a"/>
+        <rect x="13" y="0" width="1" height="2" fill="#5d3a1a"/>
+        <rect x="5" y="6" width="2" height="2" fill="#ffd23f"/>
+        <rect x="9" y="6" width="2" height="2" fill="#ffd23f"/>
+        <rect x="5" y="6" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="9" y="6" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="5" y="10" width="1" height="2" fill="#fff1e8"/>
+        <rect x="6" y="10" width="2" height="1" fill="#fff1e8"/>
+        <rect x="8" y="11" width="2" height="1" fill="#fff1e8"/>
+        <rect x="10" y="10" width="1" height="2" fill="#fff1e8"/>
+        <rect x="3" y="14" width="2" height="2" fill="#5d3a1a"/>
+        <rect x="11" y="14" width="2" height="2" fill="#5d3a1a"/>
+      </symbol>
+
+      <!-- MATERIAL BOSS: stone golem -->
+      <symbol id="spr-monster-material" viewBox="0 0 16 16">
+        <rect x="2" y="4" width="12" height="10" fill="#5d6a7a"/>
+        <rect x="1" y="5" width="14" height="8" fill="#5d6a7a"/>
+        <rect x="3" y="6" width="2" height="2" fill="#e63946"/>
+        <rect x="11" y="9" width="2" height="2" fill="#29adff"/>
+        <rect x="6" y="11" width="2" height="2" fill="#ffd23f"/>
+        <rect x="4" y="2" width="8" height="3" fill="#5d6a7a"/>
+        <rect x="3" y="3" width="10" height="2" fill="#5d6a7a"/>
+        <rect x="5" y="3" width="2" height="1" fill="#ffd23f"/>
+        <rect x="9" y="3" width="2" height="1" fill="#ffd23f"/>
+        <rect x="5" y="3" width="1" height="1" fill="#fff1e8"/>
+        <rect x="9" y="3" width="1" height="1" fill="#fff1e8"/>
+        <rect x="6" y="9" width="4" height="1" fill="#1a0a2a"/>
+        <rect x="6" y="9" width="1" height="1" fill="#fff1e8"/>
+        <rect x="9" y="9" width="1" height="1" fill="#fff1e8"/>
+        <rect x="0" y="7" width="2" height="3" fill="#5d6a7a"/>
+        <rect x="14" y="7" width="2" height="3" fill="#5d6a7a"/>
+        <rect x="0" y="6" width="3" height="1" fill="#1a0a2a"/>
+        <rect x="13" y="6" width="3" height="1" fill="#1a0a2a"/>
+        <rect x="3" y="14" width="3" height="2" fill="#3a4a5a"/>
+        <rect x="10" y="14" width="3" height="2" fill="#3a4a5a"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============================================ -->
+  <!-- SECTION 1: TITLE SCREEN                      -->
+  <!-- ============================================ -->
+  <section id="title-screen" class="screen">
+    <div class="title-stars" aria-hidden="true"></div>
+
+    <!-- Floating sparkles -->
+    <div class="sparkles" aria-hidden="true">
+      <svg class="sparkle-spr sparkle-1"><use href="#spr-sparkle"/></svg>
+      <svg class="sparkle-spr sparkle-2"><use href="#spr-sparkle"/></svg>
+      <svg class="sparkle-spr sparkle-3"><use href="#spr-sparkle"/></svg>
+      <svg class="sparkle-spr sparkle-4"><use href="#spr-sparkle"/></svg>
+      <svg class="sparkle-spr sparkle-5"><use href="#spr-sparkle"/></svg>
+      <svg class="sparkle-spr sparkle-6"><use href="#spr-sparkle"/></svg>
+    </div>
+
+    <div class="title-content">
+      <p class="title-subtitle">A guide for architects</p>
+      <h1 class="title-main">
+        <span class="title-line-1">FROM LV.1</span>
+        <span class="title-line-2">TO LV.999</span>
+      </h1>
+      <p class="title-tagline">THE ARCHITECT'S AI QUEST</p>
+      <div class="title-hook nes-balloon from-left">
+        <p>30 years ago, CAD changed everything.<br/>AI is the next tool. Here's the skill tree.</p>
+      </div>
+
+      <!-- Pixel-art hero (swaps with party choice) + slime sidekick -->
+      <div class="hero-stage" aria-hidden="true">
+        <svg class="hero-sprite hero-large hero-bob"><use class="swappable-hero" href="#spr-hero-drafter"/></svg>
+        <svg class="hero-sprite hero-tiny hero-bob hero-companion"><use href="#spr-slime"/></svg>
+      </div>
+
+      <p class="press-start blink">[ V ]&nbsp;&nbsp;PRESS START — SCROLL DOWN&nbsp;&nbsp;[ V ]</p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 2: TUTORIAL — WHY THIS GAME?         -->
+  <!-- ============================================ -->
+  <section id="tutorial" class="screen">
+    <div class="section-label">&gt; STAGE 1 — TUTORIAL</div>
+    <h2 class="section-title">Why This Game?</h2>
+
+    <div class="tutorial-panel nes-container is-dark with-title">
+      <p class="title">QUEST BRIEFING</p>
+      <div class="tutorial-grid">
+        <div class="tutorial-col">
+          <p class="col-heading">⚠ THE PROBLEM</p>
+          <ul class="nes-list is-disc">
+            <li>Endless revisions eat your evenings</li>
+            <li>Vendor research takes whole days</li>
+            <li>Spec writing copy-paste fatigue</li>
+            <li>Client emails pile up unanswered</li>
+          </ul>
+        </div>
+        <div class="tutorial-col">
+          <p class="col-heading">★ THE QUEST</p>
+          <ul class="nes-list is-disc">
+            <li>AI is not magic — it's a tool</li>
+            <li>Like CAD, BIM, render engines before it</li>
+            <li>You level up with practice</li>
+            <li>This page = your skill tree map</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-roster">
+      <p class="roster-label">★ RECRUIT YOUR PARTY — pick the hero who walks the skill tree with you</p>
+      <div class="class-cards">
+        <button class="class-card class-designer" data-hero="designer" type="button" aria-label="Recruit Designer">
+          <svg class="class-sprite"><use href="#spr-hero-designer"/></svg>
+          <span class="class-icon">◆</span>
+          <p class="class-name">DESIGNER</p>
+          <p class="class-desc">moodboards, concept, render</p>
+          <span class="class-status">CLICK TO RECRUIT</span>
+        </button>
+        <button class="class-card class-drafter" data-hero="drafter" type="button" aria-label="Recruit Drafter">
+          <svg class="class-sprite"><use href="#spr-hero-drafter"/></svg>
+          <span class="class-icon">▤</span>
+          <p class="class-name">DRAFTER</p>
+          <p class="class-desc">drawings, specs, docs</p>
+          <span class="class-status">CLICK TO RECRUIT</span>
+        </button>
+        <button class="class-card class-communicator" data-hero="communicator" type="button" aria-label="Recruit Communicator">
+          <svg class="class-sprite"><use href="#spr-hero-communicator"/></svg>
+          <span class="class-icon">✉</span>
+          <p class="class-name">COMMUNICATOR</p>
+          <p class="class-desc">client decks, emails, reports</p>
+          <span class="class-status">CLICK TO RECRUIT</span>
+        </button>
+        <button class="class-card class-researcher" data-hero="researcher" type="button" aria-label="Recruit Researcher">
+          <svg class="class-sprite"><use href="#spr-hero-researcher"/></svg>
+          <span class="class-icon">⌕</span>
+          <p class="class-name">RESEARCHER</p>
+          <p class="class-desc">vendors, materials, methods</p>
+          <span class="class-status">CLICK TO RECRUIT</span>
+        </button>
+      </div>
+      <p class="roster-hint" id="roster-hint">PARTY: <span class="roster-current">DRAFTER</span></p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 3: THE LEVEL MAP (the spine)         -->
+  <!-- ============================================ -->
+  <section id="level-map" class="screen">
+    <div class="section-label">&gt; STAGE 2 — THE LEVEL MAP</div>
+    <h2 class="section-title">The Skill Tree</h2>
+    <p class="section-intro">Where are you on this map? Scroll the path. Every level unlocks a new ability.</p>
+
+    <div class="level-track">
+
+      <!-- Sticky walking hero — transforms as you scroll past tiers -->
+      <div class="level-hero-wrap" aria-hidden="true">
+        <span class="tier-label">NOVICE</span>
+        <svg class="level-hero hero-walk" viewBox="0 0 24 30" data-tier="novice">
+
+          <!-- WINGS (master tier, behind body) -->
+          <g class="overlay overlay-wings">
+            <rect x="0" y="14" width="3" height="2" fill="#fff1e8"/>
+            <rect x="0" y="16" width="2" height="3" fill="#fff1e8"/>
+            <rect x="1" y="19" width="2" height="2" fill="#fff1e8"/>
+            <rect x="1" y="13" width="1" height="1" fill="#ffd23f"/>
+            <rect x="21" y="14" width="3" height="2" fill="#fff1e8"/>
+            <rect x="22" y="16" width="2" height="3" fill="#fff1e8"/>
+            <rect x="21" y="19" width="2" height="2" fill="#fff1e8"/>
+            <rect x="22" y="13" width="1" height="1" fill="#ffd23f"/>
+          </g>
+
+          <!-- CAPE (expert+ tier, behind body) -->
+          <g class="overlay overlay-cape">
+            <rect x="5" y="14" width="14" height="2" fill="#5d3a1a"/>
+            <rect x="4" y="16" width="16" height="2" fill="#e63946"/>
+            <rect x="3" y="18" width="18" height="2" fill="#e63946"/>
+            <rect x="3" y="20" width="2" height="3" fill="#e63946"/>
+            <rect x="19" y="20" width="2" height="3" fill="#e63946"/>
+            <rect x="6" y="20" width="2" height="2" fill="#a82838"/>
+            <rect x="16" y="20" width="2" height="2" fill="#a82838"/>
+          </g>
+
+          <!-- BASE HERO (centered) -->
+          <use class="swappable-hero" href="#spr-hero-drafter" x="6" y="11" width="12" height="16"/>
+
+          <!-- AURA (apprentice+, sparkles around hero) -->
+          <g class="overlay overlay-aura">
+            <rect x="2" y="8" width="1" height="1" fill="#51e898"/>
+            <rect x="11" y="5" width="1" height="1" fill="#51e898"/>
+            <rect x="20" y="8" width="1" height="1" fill="#51e898"/>
+            <rect x="2" y="18" width="1" height="1" fill="#51e898"/>
+            <rect x="22" y="18" width="1" height="1" fill="#51e898"/>
+            <rect x="11" y="28" width="1" height="1" fill="#51e898"/>
+            <rect x="3" y="13" width="1" height="1" fill="#fff1e8"/>
+            <rect x="20" y="13" width="1" height="1" fill="#fff1e8"/>
+          </g>
+
+          <!-- STAFF (adept+, in right hand) -->
+          <g class="overlay overlay-staff">
+            <rect x="19" y="17" width="1" height="9" fill="#5d3a1a"/>
+            <rect x="18" y="14" width="3" height="3" fill="#ab5fff"/>
+            <rect x="19" y="14" width="1" height="1" fill="#fff1e8"/>
+            <rect x="18" y="13" width="3" height="1" fill="#ff77a8"/>
+          </g>
+
+          <!-- CROWN (master only, above head) -->
+          <g class="overlay overlay-crown">
+            <rect x="7" y="10" width="10" height="1" fill="#ffd23f"/>
+            <rect x="7" y="8" width="2" height="2" fill="#ffd23f"/>
+            <rect x="11" y="7" width="2" height="3" fill="#ffd23f"/>
+            <rect x="15" y="8" width="2" height="2" fill="#ffd23f"/>
+            <rect x="11" y="9" width="2" height="1" fill="#e63946"/>
+            <rect x="7" y="8" width="1" height="1" fill="#fff1e8"/>
+            <rect x="11" y="7" width="1" height="1" fill="#fff1e8"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- LV.1 -->
+      <div class="level-node level-novice" data-level="1">
+        <div class="level-badge"><span class="level-num">LV.1</span><span class="level-tier">NOVICE</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Ask AI a question</p>
+          <p class="level-tool"><span class="tool-tag">ChatGPT free</span></p>
+          <p class="level-example">"What's the difference between EIFS and rainscreen?"</p>
+        </div>
+      </div>
+
+      <!-- LV.5 -->
+      <div class="level-node level-novice" data-level="5">
+        <div class="level-badge"><span class="level-num">LV.5</span><span class="level-tier">NOVICE</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Summarize a long doc</p>
+          <p class="level-tool"><span class="tool-tag">Claude</span> <span class="tool-tag">ChatGPT</span></p>
+          <p class="level-example">Compress a 60-page product datasheet into a 1-page spec summary.</p>
+        </div>
+      </div>
+
+      <!-- LV.10 -->
+      <div class="level-node level-novice" data-level="10">
+        <div class="level-badge"><span class="level-num">LV.10</span><span class="level-tier">NOVICE</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Give context for better answers</p>
+          <p class="level-tool"><span class="tool-tag">Claude.ai</span></p>
+          <p class="level-example">Paste vendor catalog → ask AI to compare 5 insulation options by R-value + cost.</p>
+        </div>
+      </div>
+
+      <!-- LV.25 -->
+      <div class="level-node level-apprentice" data-level="25">
+        <div class="level-badge"><span class="level-num">LV.25</span><span class="level-tier">APPRENTICE</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Image gen for moodboards & refs</p>
+          <p class="level-tool"><span class="tool-tag">Midjourney</span> <span class="tool-tag">DALL-E</span></p>
+          <p class="level-example">Pre-render a moodboard before bringing geometry into Enscape or Lumion.</p>
+        </div>
+      </div>
+
+      <!-- LV.50 -->
+      <div class="level-node level-apprentice" data-level="50">
+        <div class="level-badge"><span class="level-num">LV.50</span><span class="level-tier">APPRENTICE</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Multi-step prompt chains</p>
+          <p class="level-tool"><span class="tool-tag">Claude</span></p>
+          <p class="level-example">Brief → material shortlist → vendor outreach email → spec section, all in one session.</p>
+        </div>
+      </div>
+
+      <!-- LV.100 -->
+      <div class="level-node level-adept" data-level="100">
+        <div class="level-badge"><span class="level-num">LV.100</span><span class="level-tier">ADEPT</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Custom Project / saved context</p>
+          <p class="level-tool"><span class="tool-tag">Claude Projects</span></p>
+          <p class="level-example">Office's material library + price database loaded as the AI's persistent memory.</p>
+        </div>
+      </div>
+
+      <!-- LV.250 -->
+      <div class="level-node level-expert" data-level="250">
+        <div class="level-badge"><span class="level-num">LV.250</span><span class="level-tier">EXPERT</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Agent in your IDE</p>
+          <p class="level-tool"><span class="tool-tag">Claude Code</span></p>
+          <p class="level-example">Claude writes a SketchUp Ruby script or an Enscape batch render setup for you.</p>
+        </div>
+      </div>
+
+      <!-- LV.500 -->
+      <div class="level-node level-expert" data-level="500">
+        <div class="level-badge"><span class="level-num">LV.500</span><span class="level-tier">EXPERT</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Connect AI to your tools (MCP)</p>
+          <p class="level-tool"><span class="tool-tag">Claude Agent SDK</span></p>
+          <p class="level-example">AI reads your shared drive of past specs, drafts new ones in your office voice.</p>
+        </div>
+      </div>
+
+      <!-- LV.999 -->
+      <div class="level-node level-master" data-level="999">
+        <div class="level-badge"><span class="level-num">LV.999</span><span class="level-tier">MASTER</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Custom agent / full automation</p>
+          <p class="level-tool"><span class="tool-tag">Claude Agent SDK</span></p>
+          <p class="level-example">Auto material-compare pipeline: feed product list → AI scrapes vendors → builds price/method comparison sheet.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 4: QUEST COMICS                      -->
+  <!-- ============================================ -->
+  <section id="quest-comics" class="screen">
+    <div class="section-label">&gt; STAGE 3 — QUEST LOG</div>
+    <h2 class="section-title">Real Quests, Real Prompts</h2>
+    <p class="section-intro">9 case studies pulled from actual chat history. Each shows the problem, the prompt, the result.</p>
+
+    <div class="quest-log" id="quest-log">
+
+      <!-- ===== QUEST 1: TCA Data Alchemist (Lv.10) ===== -->
+      <article class="quest-card fade-in">
+        <header class="quest-header">
+          <h3 class="quest-title">QUEST 1 · The TCA Data Alchemist</h3>
+          <div class="quest-meta">
+            <span class="quest-difficulty">DIFF · LV.10</span>
+            <span class="quest-class class-researcher">⌕ RESEARCHER</span>
+          </div>
+        </header>
+        <!-- SCENE 1 — INDOOR: Archive Reading Room -->
+        <div class="quest-scene quest-scene-1" data-scene="indoor" aria-hidden="true">
+          <span class="scene-tag">INDOOR · ARCHIVE READING ROOM</span>
+          <svg viewBox="0 0 96 24" preserveAspectRatio="xMidYMid meet">
+            <rect width="96" height="2" fill="#3a1a10"/>
+            <rect y="2" width="96" height="18" fill="#2a1a4a"/>
+            <rect y="20" width="96" height="4" fill="#5d3a1a"/>
+            <rect y="20" width="96" height="1" fill="#8a5a2a"/>
+            <rect x="38" y="4" width="20" height="10" fill="#0a0520"/>
+            <rect x="38" y="4" width="20" height="1" fill="#5d3a1a"/>
+            <rect x="38" y="13" width="20" height="1" fill="#5d3a1a"/>
+            <rect x="47" y="4" width="2" height="10" fill="#5d3a1a"/>
+            <rect x="38" y="8" width="20" height="1" fill="#5d3a1a"/>
+            <rect x="42" y="6" width="1" height="1" fill="#fff1e8"/>
+            <rect x="52" y="11" width="1" height="1" fill="#fff1e8"/>
+            <rect x="4" y="5" width="14" height="15" fill="#5d3a1a"/>
+            <rect x="5" y="6" width="3" height="4" fill="#e63946"/>
+            <rect x="9" y="6" width="3" height="4" fill="#51e898"/>
+            <rect x="13" y="6" width="3" height="4" fill="#29adff"/>
+            <rect x="16" y="6" width="2" height="4" fill="#ffd23f"/>
+            <rect x="5" y="11" width="13" height="1" fill="#c9a227"/>
+            <rect x="5" y="12" width="3" height="4" fill="#ab5fff"/>
+            <rect x="9" y="12" width="3" height="4" fill="#ff77a8"/>
+            <rect x="13" y="12" width="3" height="4" fill="#ffd23f"/>
+            <rect x="16" y="12" width="2" height="4" fill="#51e898"/>
+            <rect x="78" y="5" width="14" height="15" fill="#5d3a1a"/>
+            <rect x="79" y="6" width="3" height="4" fill="#29adff"/>
+            <rect x="83" y="6" width="3" height="4" fill="#ffd23f"/>
+            <rect x="87" y="6" width="3" height="4" fill="#e63946"/>
+            <rect x="90" y="6" width="2" height="4" fill="#ab5fff"/>
+            <rect x="79" y="11" width="13" height="1" fill="#c9a227"/>
+            <rect x="79" y="12" width="3" height="4" fill="#51e898"/>
+            <rect x="83" y="12" width="3" height="4" fill="#ff77a8"/>
+            <rect x="87" y="12" width="3" height="4" fill="#29adff"/>
+            <rect x="90" y="12" width="2" height="4" fill="#ffd23f"/>
+            <rect x="47" y="2" width="2" height="2" fill="#5d3a1a"/>
+            <rect x="42" y="2" width="12" height="1" fill="#c9a227"/>
+            <rect x="43" y="3" width="2" height="2" fill="#fff1e8"/>
+            <rect x="51" y="3" width="2" height="2" fill="#fff1e8"/>
+            <rect x="43" y="2" width="2" height="1" fill="#ffd23f"/>
+            <rect x="51" y="2" width="2" height="1" fill="#ffd23f"/>
+            <rect x="20" y="14" width="14" height="2" fill="#5d3a1a"/>
+            <rect x="22" y="16" width="2" height="4" fill="#5d3a1a"/>
+            <rect x="30" y="16" width="2" height="4" fill="#5d3a1a"/>
+            <rect x="24" y="11" width="8" height="3" fill="#f4e4bc"/>
+            <rect x="23" y="11" width="1" height="3" fill="#c9a227"/>
+            <rect x="32" y="11" width="1" height="3" fill="#c9a227"/>
+            <rect x="25" y="12" width="6" height="1" fill="#1d2b53"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="64" y="3" width="3" height="3"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="70" y="15" width="3" height="3"/>
+            <use class="swappable-hero" href="#spr-hero-drafter" x="60" y="4" width="12" height="16"/>
+          </svg>
+        </div>
+        <div class="quest-panels">
+          <div class="panel">
+            <span class="panel-num">01</span>
+            <p class="panel-label">&gt; THE PROBLEM</p>
+            <div class="panel-art">📰</div>
+            <p class="panel-text">Industry news scattered across the web. Manual scanning eats 2 hours every week.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">02</span>
+            <p class="panel-label">&gt; THE SPELL</p>
+            <div class="panel-art">⚙</div>
+            <p class="panel-text panel-prompt">"Build a weekly Python scraper that crawls the TCA news feed + magazine archive and dumps relevant articles into Excel."</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">03</span>
+            <p class="panel-label">&gt; THE RESULT</p>
+            <div class="panel-art">📊</div>
+            <p class="panel-text">Auto-updated tracker of construction trends. Just review — no more crawling.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">04</span>
+            <p class="panel-label">&gt; LOOT GAINED</p>
+            <div class="panel-art">⏱</div>
+            <p class="panel-text"><strong>+2 hours/week.</strong> Reusable scraper skill. Searchable historical archive.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== QUEST 2: Concept Finder Grimoire (Lv.25) ===== -->
+      <article class="quest-card fade-in">
+        <header class="quest-header">
+          <h3 class="quest-title">QUEST 2 · The Concept Finder Grimoire</h3>
+          <div class="quest-meta">
+            <span class="quest-difficulty">DIFF · LV.25</span>
+            <span class="quest-class class-researcher">⌕ RESEARCHER</span>
+          </div>
+        </header>
+        <!-- SCENE 2 — TOWNSCAPE: Thai Shophouse Street (sunset) -->
+        <div class="quest-scene quest-scene-2" data-scene="townscape" aria-hidden="true">
+          <span class="scene-tag">TOWNSCAPE · THAI SHOPHOUSE ROW</span>
+          <svg viewBox="0 0 96 24" preserveAspectRatio="xMidYMid meet">
+            <rect width="96" height="14" fill="#ff8a3a"/>
+            <rect width="96" height="3" fill="#ffd23f"/>
+            <rect y="3" width="96" height="3" fill="#ff77a8"/>
+            <rect x="78" y="2" width="6" height="6" fill="#ffd23f"/>
+            <rect x="79" y="1" width="4" height="1" fill="#ffd23f"/>
+            <rect x="79" y="8" width="4" height="1" fill="#ffd23f"/>
+            <rect y="14" width="96" height="6" fill="#3a2a40"/>
+            <rect y="20" width="96" height="4" fill="#5d3a55"/>
+            <rect y="14" width="96" height="1" fill="#0a0520"/>
+            <rect x="0" y="17" width="6" height="1" fill="#ffd23f"/>
+            <rect x="14" y="17" width="6" height="1" fill="#ffd23f"/>
+            <rect x="74" y="17" width="6" height="1" fill="#ffd23f"/>
+            <rect x="88" y="17" width="6" height="1" fill="#ffd23f"/>
+            <rect x="2" y="6" width="14" height="9" fill="#e63946"/>
+            <rect x="0" y="4" width="18" height="3" fill="#1a1a3e"/>
+            <rect x="2" y="4" width="14" height="2" fill="#1a1a3e"/>
+            <rect x="4" y="9" width="3" height="3" fill="#1d2b53"/>
+            <rect x="11" y="9" width="3" height="3" fill="#1d2b53"/>
+            <rect x="7" y="11" width="4" height="4" fill="#5d3a1a"/>
+            <rect x="20" y="7" width="16" height="8" fill="#51e898"/>
+            <rect x="18" y="5" width="20" height="3" fill="#1a1a3e"/>
+            <rect x="20" y="5" width="16" height="2" fill="#1a1a3e"/>
+            <rect x="22" y="9" width="4" height="4" fill="#1d2b53"/>
+            <rect x="30" y="9" width="4" height="4" fill="#1d2b53"/>
+            <rect x="26" y="11" width="4" height="4" fill="#5d3a1a"/>
+            <rect x="58" y="6" width="14" height="9" fill="#29adff"/>
+            <rect x="56" y="4" width="18" height="3" fill="#1a1a3e"/>
+            <rect x="58" y="4" width="14" height="2" fill="#1a1a3e"/>
+            <rect x="60" y="9" width="3" height="3" fill="#1d2b53"/>
+            <rect x="67" y="9" width="3" height="3" fill="#1d2b53"/>
+            <rect x="63" y="11" width="4" height="4" fill="#5d3a1a"/>
+            <rect x="40" y="9" width="1" height="6" fill="#1a1a3e"/>
+            <rect x="38" y="6" width="5" height="3" fill="#ffd23f"/>
+            <rect x="39" y="5" width="3" height="1" fill="#5d3a1a"/>
+            <rect x="50" y="16" width="6" height="3" fill="#5d3a1a"/>
+            <rect x="51" y="13" width="2" height="3" fill="#e63946"/>
+            <rect x="53" y="13" width="2" height="3" fill="#29adff"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="74" y="10" width="3" height="3"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="46" y="12" width="3" height="3"/>
+            <use class="swappable-hero" href="#spr-hero-drafter" x="42" y="4" width="12" height="16"/>
+          </svg>
+        </div>
+        <div class="quest-panels">
+          <div class="panel">
+            <span class="panel-num">01</span>
+            <p class="panel-label">&gt; THE PROBLEM</p>
+            <div class="panel-art">🏚</div>
+            <p class="panel-text">Picking materials for a Thai shophouse. Polycarbonate? Trapezoidal sheet? Climate compatibility unclear.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">02</span>
+            <p class="panel-label">&gt; THE SPELL</p>
+            <div class="panel-art">📜</div>
+            <p class="panel-text panel-prompt">"Project type = House / storage / shophouse in Thailand using these materials. Compare cost per m², climate resistance, install notes."</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">03</span>
+            <p class="panel-label">&gt; THE RESULT</p>
+            <div class="panel-art">📋</div>
+            <p class="panel-text">Material reference sheet — climate, cost, install, suppliers — ready to brief clients.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">04</span>
+            <p class="panel-label">&gt; LOOT GAINED</p>
+            <div class="panel-art">✨</div>
+            <p class="panel-text"><strong>+Standardized selection logic.</strong> Faster client briefings on Thai-specific constraints.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== QUEST 3: Quotation Fortress (Lv.50) ===== -->
+      <article class="quest-card fade-in">
+        <header class="quest-header">
+          <h3 class="quest-title">QUEST 3 · The Quotation Fortress Boss</h3>
+          <div class="quest-meta">
+            <span class="quest-difficulty">DIFF · LV.50</span>
+            <span class="quest-class class-communicator">✉ COMMUNICATOR</span>
+          </div>
+        </header>
+        <!-- SCENE 3 — BAR: Merchant's Tavern -->
+        <div class="quest-scene quest-scene-3" data-scene="bar" aria-hidden="true">
+          <span class="scene-tag">BAR · MERCHANT'S TAVERN</span>
+          <svg viewBox="0 0 96 24" preserveAspectRatio="xMidYMid meet">
+            <rect width="96" height="2" fill="#3a1a10"/>
+            <rect y="2" width="96" height="18" fill="#5d3a1a"/>
+            <rect y="2" width="96" height="1" fill="#8a5a2a"/>
+            <rect y="9" width="96" height="1" fill="#8a5a2a"/>
+            <rect y="20" width="96" height="4" fill="#3a1a10"/>
+            <rect y="20" width="96" height="1" fill="#5d3a1a"/>
+            <rect x="4" y="3" width="32" height="6" fill="#3a1a10"/>
+            <rect x="4" y="9" width="32" height="1" fill="#1a0a05"/>
+            <rect x="6" y="4" width="2" height="5" fill="#51e898"/>
+            <rect x="10" y="4" width="2" height="5" fill="#29adff"/>
+            <rect x="14" y="4" width="2" height="5" fill="#e63946"/>
+            <rect x="18" y="4" width="2" height="5" fill="#ab5fff"/>
+            <rect x="22" y="4" width="2" height="5" fill="#ffd23f"/>
+            <rect x="26" y="4" width="2" height="5" fill="#ff77a8"/>
+            <rect x="30" y="4" width="2" height="5" fill="#51e898"/>
+            <rect x="34" y="4" width="2" height="5" fill="#29adff"/>
+            <rect x="59" y="2" width="2" height="3" fill="#1a1a3e"/>
+            <rect x="57" y="5" width="6" height="4" fill="#ffd23f"/>
+            <rect x="58" y="6" width="4" height="2" fill="#fff1e8"/>
+            <rect x="46" y="16" width="50" height="4" fill="#5d3a1a"/>
+            <rect x="46" y="16" width="50" height="1" fill="#8a5a2a"/>
+            <rect x="56" y="14" width="3" height="2" fill="#ffd23f"/>
+            <rect x="57" y="13" width="2" height="1" fill="#ffd23f"/>
+            <rect x="62" y="14" width="3" height="2" fill="#ffd23f"/>
+            <rect x="68" y="14" width="3" height="2" fill="#ffd23f"/>
+            <rect x="69" y="13" width="2" height="1" fill="#ffd23f"/>
+            <rect x="76" y="14" width="6" height="2" fill="#f4e4bc"/>
+            <rect x="76" y="14" width="1" height="2" fill="#c9a227"/>
+            <rect x="81" y="14" width="1" height="2" fill="#c9a227"/>
+            <use href="#spr-slime" x="84" y="6" width="10" height="10"/>
+            <rect x="40" y="12" width="3" height="4" fill="#8a5a2a"/>
+            <rect x="40" y="11" width="3" height="1" fill="#fff1e8"/>
+            <rect x="38" y="13" width="2" height="2" fill="#8a5a2a"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="50" y="11" width="3" height="3"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="78" y="10" width="3" height="3"/>
+            <use class="swappable-hero" href="#spr-hero-drafter" x="30" y="4" width="12" height="16"/>
+          </svg>
+        </div>
+        <div class="quest-panels">
+          <div class="panel">
+            <span class="panel-num">01</span>
+            <p class="panel-label">&gt; THE PROBLEM</p>
+            <div class="panel-art">📂</div>
+            <p class="panel-text">Client quotations scattered across a Drive folder. No way to compare vendors, track price changes.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">02</span>
+            <p class="panel-label">&gt; THE SPELL</p>
+            <div class="panel-art">🔮</div>
+            <p class="panel-text panel-prompt">"Look in my Google Drive 'quotation' folder. Organize and create a sheet to manage and compare quotations for the client."</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">03</span>
+            <p class="panel-label">&gt; THE RESULT</p>
+            <div class="panel-art">📈</div>
+            <p class="panel-text">Centralized tracker with formula-based comparison, vendor trends, live Drive links to source PDFs.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">04</span>
+            <p class="panel-label">&gt; LOOT GAINED</p>
+            <div class="panel-art">💰</div>
+            <p class="panel-text"><strong>+2 hours/week saved.</strong> Vendor negotiation time cut by 40%.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== QUEST 4: Punch List Protocol (Lv.50) ===== -->
+      <article class="quest-card fade-in">
+        <header class="quest-header">
+          <h3 class="quest-title">QUEST 4 · The Punch List Protocol</h3>
+          <div class="quest-meta">
+            <span class="quest-difficulty">DIFF · LV.50</span>
+            <span class="quest-class class-drafter">▤ DRAFTER</span>
+          </div>
+        </header>
+        <!-- SCENE 4 — BATTLE: Hero vs Defect Monsters -->
+        <div class="quest-scene quest-scene-4" data-scene="battle" aria-hidden="true">
+          <span class="scene-tag">BATTLE · DEFECT SKIRMISH</span>
+          <svg viewBox="0 0 96 24" preserveAspectRatio="xMidYMid meet">
+            <rect width="96" height="14" fill="#3a2a4a"/>
+            <rect width="96" height="3" fill="#2a1a3a"/>
+            <rect y="11" width="96" height="3" fill="#5d3a1a"/>
+            <rect x="60" y="6" width="20" height="6" fill="#1a0a2a"/>
+            <rect x="62" y="4" width="6" height="2" fill="#1a0a2a"/>
+            <rect x="74" y="4" width="4" height="2" fill="#1a0a2a"/>
+            <rect y="14" width="96" height="10" fill="#5d3a1a"/>
+            <rect y="14" width="96" height="1" fill="#8a5a2a"/>
+            <rect x="0" y="20" width="3" height="2" fill="#1a0a05"/>
+            <rect x="14" y="22" width="2" height="1" fill="#1a0a05"/>
+            <rect x="60" y="21" width="4" height="2" fill="#1a0a05"/>
+            <rect x="86" y="20" width="3" height="2" fill="#1a0a05"/>
+            <rect x="14" y="13" width="6" height="5" fill="#fff1e8"/>
+            <rect x="14" y="13" width="1" height="2" fill="#1a0a2a"/>
+            <rect x="19" y="13" width="1" height="2" fill="#1a0a2a"/>
+            <rect x="13" y="14" width="1" height="3" fill="#fff1e8"/>
+            <rect x="20" y="14" width="1" height="3" fill="#fff1e8"/>
+            <rect x="15" y="15" width="1" height="1" fill="#e63946"/>
+            <rect x="18" y="15" width="1" height="1" fill="#e63946"/>
+            <rect x="16" y="16" width="2" height="1" fill="#1a0a2a"/>
+            <rect x="14" y="18" width="6" height="2" fill="#fff1e8"/>
+            <rect x="22" y="16" width="4" height="3" fill="#fff1e8"/>
+            <rect x="23" y="17" width="1" height="1" fill="#e63946"/>
+            <rect x="24" y="17" width="1" height="1" fill="#e63946"/>
+            <rect x="6" y="14" width="7" height="6" fill="#ab5fff"/>
+            <rect x="7" y="13" width="2" height="1" fill="#ab5fff"/>
+            <rect x="11" y="13" width="2" height="1" fill="#ab5fff"/>
+            <rect x="8" y="15" width="1" height="1" fill="#ffd23f"/>
+            <rect x="11" y="15" width="1" height="1" fill="#ffd23f"/>
+            <rect x="9" y="17" width="2" height="1" fill="#1a0a2a"/>
+            <rect x="76" y="14" width="6" height="2" fill="#e63946"/>
+            <rect x="77" y="11" width="4" height="3" fill="#e63946"/>
+            <rect x="77" y="13" width="4" height="1" fill="#fff1e8"/>
+            <rect x="78" y="9" width="2" height="2" fill="#e63946"/>
+            <rect x="56" y="2" width="20" height="2" fill="#0f0e2a"/>
+            <rect x="56" y="2" width="14" height="2" fill="#51e898"/>
+            <rect x="55" y="2" width="1" height="2" fill="#fff1e8"/>
+            <rect x="76" y="2" width="1" height="2" fill="#fff1e8"/>
+            <rect x="26" y="9" width="6" height="1" fill="#ffd23f"/>
+            <rect x="28" y="11" width="6" height="1" fill="#ffd23f"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="34" y="8" width="4" height="4"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="40" y="14" width="3" height="3"/>
+            <use class="swappable-hero" href="#spr-hero-drafter" x="62" y="4" width="12" height="16"/>
+          </svg>
+        </div>
+        <div class="quest-panels">
+          <div class="panel">
+            <span class="panel-num">01</span>
+            <p class="panel-label">&gt; THE PROBLEM</p>
+            <div class="panel-art">🚧</div>
+            <p class="panel-text">Punch list defects scattered across PDFs, emails, site photos. No central tracking.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">02</span>
+            <p class="panel-label">&gt; THE SPELL</p>
+            <div class="panel-art">📐</div>
+            <p class="panel-text panel-prompt">"Build a framework: OCR punch list photos → parse defects → categorize by zone &amp; trade → assign contractor → link to Drive photos."</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">03</span>
+            <p class="panel-label">&gt; THE RESULT</p>
+            <div class="panel-art">✅</div>
+            <p class="panel-text">Centralized database with visual reference, contractor assignments, real-time status.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">04</span>
+            <p class="panel-label">&gt; LOOT GAINED</p>
+            <div class="panel-art">📊</div>
+            <p class="panel-text"><strong>+Faster defect follow-up.</strong> Contractor comms automated. Trend data unlocked.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== QUEST 5: Tree Survey Oracle (Lv.100) ===== -->
+      <article class="quest-card fade-in">
+        <header class="quest-header">
+          <h3 class="quest-title">QUEST 5 · The Tree Survey Oracle</h3>
+          <div class="quest-meta">
+            <span class="quest-difficulty">DIFF · LV.100</span>
+            <span class="quest-class class-designer">◆ DESIGNER</span>
+          </div>
+        </header>
+        <!-- SCENE 5 — LANDSCAPE: Open Campus Field -->
+        <div class="quest-scene quest-scene-5" data-scene="landscape" aria-hidden="true">
+          <span class="scene-tag">LANDSCAPE · OPEN CAMPUS FIELD</span>
+          <svg viewBox="0 0 96 24" preserveAspectRatio="xMidYMid meet">
+            <rect width="96" height="16" fill="#29adff"/>
+            <rect width="96" height="3" fill="#7fcfff"/>
+            <polygon points="0,16 8,8 16,16" fill="#5d3a1a"/>
+            <polygon points="14,16 26,4 38,16" fill="#3a2a40"/>
+            <polygon points="36,16 48,8 60,16" fill="#5d3a1a"/>
+            <polygon points="58,16 72,6 86,16" fill="#3a2a40"/>
+            <polygon points="22,8 26,4 30,8" fill="#fff1e8"/>
+            <polygon points="68,8 72,6 76,8" fill="#fff1e8"/>
+            <rect x="80" y="2" width="6" height="6" fill="#ffd23f"/>
+            <rect x="79" y="3" width="1" height="4" fill="#ffd23f"/>
+            <rect x="86" y="3" width="1" height="4" fill="#ffd23f"/>
+            <rect x="81" y="1" width="4" height="1" fill="#ffd23f"/>
+            <rect x="81" y="8" width="4" height="1" fill="#ffd23f"/>
+            <rect x="48" y="6" width="3" height="1" fill="#0f0e2a"/>
+            <rect x="47" y="5" width="1" height="1" fill="#0f0e2a"/>
+            <rect x="51" y="5" width="1" height="1" fill="#0f0e2a"/>
+            <rect y="16" width="96" height="8" fill="#51e898"/>
+            <rect y="16" width="96" height="1" fill="#1d4a2a"/>
+            <rect y="20" width="96" height="1" fill="#1d4a2a" opacity="0.4"/>
+            <polygon points="6,17 10,7 14,17" fill="#1d4a2a"/>
+            <polygon points="7,14 10,9 13,14" fill="#1d4a2a"/>
+            <rect x="9" y="17" width="2" height="3" fill="#5d3a1a"/>
+            <rect x="22" y="11" width="6" height="6" fill="#1d4a2a"/>
+            <rect x="21" y="13" width="1" height="3" fill="#1d4a2a"/>
+            <rect x="28" y="13" width="1" height="3" fill="#1d4a2a"/>
+            <rect x="24" y="17" width="2" height="3" fill="#5d3a1a"/>
+            <rect x="76" y="9" width="10" height="9" fill="#1d4a2a"/>
+            <rect x="74" y="12" width="2" height="5" fill="#1d4a2a"/>
+            <rect x="86" y="12" width="2" height="5" fill="#1d4a2a"/>
+            <rect x="80" y="18" width="2" height="3" fill="#5d3a1a"/>
+            <rect x="58" y="3" width="4" height="4" fill="#e63946"/>
+            <rect x="59" y="2" width="2" height="1" fill="#e63946"/>
+            <rect x="60" y="7" width="1" height="2" fill="#e63946"/>
+            <rect x="60" y="4" width="1" height="1" fill="#fff1e8"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="32" y="8" width="3" height="3"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="62" y="9" width="3" height="3"/>
+            <use class="swappable-hero" href="#spr-hero-drafter" x="42" y="4" width="12" height="16"/>
+          </svg>
+        </div>
+        <div class="quest-panels">
+          <div class="panel">
+            <span class="panel-num">01</span>
+            <p class="panel-label">&gt; THE PROBLEM</p>
+            <div class="panel-art">🌳</div>
+            <p class="panel-text">Campus tree inventory at Harrow International. 400+ trees. No record of species, GPS, health, risk.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">02</span>
+            <p class="panel-label">&gt; THE SPELL</p>
+            <div class="panel-art">📱</div>
+            <p class="panel-text panel-prompt">"iPhone photo → extract GPS from EXIF → write to Sheets database → render on a Leaflet.js interactive map. 4-phase rollout."</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">03</span>
+            <p class="panel-label">&gt; THE RESULT</p>
+            <div class="panel-art">🗺</div>
+            <p class="panel-text">Live interactive campus map. Click a tree → see species, condition, risk. Pipeline scales to thousands.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">04</span>
+            <p class="panel-label">&gt; LOOT GAINED</p>
+            <div class="panel-art">⏱</div>
+            <p class="panel-text"><strong>3 weeks → 2 days.</strong> Geo-spatial DB skill unlocked. FM team has auditable record.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== QUEST 6: Sprinkler System Architect (Lv.100) ===== -->
+      <article class="quest-card fade-in">
+        <header class="quest-header">
+          <h3 class="quest-title">QUEST 6 · The Sprinkler System Architect</h3>
+          <div class="quest-meta">
+            <span class="quest-difficulty">DIFF · LV.100</span>
+            <span class="quest-class class-designer">◆ DESIGNER</span>
+          </div>
+        </header>
+        <!-- SCENE 6 — TRAVELING: Pipeline Path -->
+        <div class="quest-scene quest-scene-6" data-scene="travel" aria-hidden="true">
+          <span class="scene-tag">TRAVELING · PIPELINE PATH</span>
+          <svg viewBox="0 0 96 24" preserveAspectRatio="xMidYMid meet">
+            <rect width="96" height="14" fill="#29adff"/>
+            <rect width="96" height="2" fill="#fff1e8" opacity="0.4"/>
+            <rect y="11" width="96" height="3" fill="#1d4a2a"/>
+            <polygon points="0,14 12,9 24,14" fill="#1d4a2a"/>
+            <polygon points="60,14 76,8 92,14" fill="#1d4a2a"/>
+            <rect x="74" y="9" width="2" height="3" fill="#51e898"/>
+            <rect x="72" y="10" width="6" height="2" fill="#51e898"/>
+            <rect x="73" y="11" width="1" height="1" fill="#e63946"/>
+            <rect y="14" width="96" height="10" fill="#5d3a1a"/>
+            <rect y="14" width="96" height="1" fill="#8a5a2a"/>
+            <polygon points="0,24 20,14 76,14 96,24" fill="#b9a380"/>
+            <polygon points="0,24 24,14 72,14 96,24" fill="#c9a227" opacity="0.3"/>
+            <rect x="2" y="22" width="92" height="2" fill="#5d3a1a"/>
+            <rect x="2" y="22" width="92" height="1" fill="#8a5a2a"/>
+            <rect x="20" y="22" width="2" height="2" fill="#0f0e2a"/>
+            <rect x="40" y="22" width="2" height="2" fill="#0f0e2a"/>
+            <rect x="60" y="22" width="2" height="2" fill="#0f0e2a"/>
+            <rect x="80" y="22" width="2" height="2" fill="#0f0e2a"/>
+            <rect x="14" y="20" width="2" height="2" fill="#b9a380"/>
+            <rect x="64" y="20" width="2" height="2" fill="#b9a380"/>
+            <rect x="13" y="17" width="1" height="1" fill="#29adff"/>
+            <rect x="16" y="18" width="1" height="1" fill="#29adff"/>
+            <rect x="63" y="18" width="1" height="1" fill="#29adff"/>
+            <rect x="66" y="17" width="1" height="1" fill="#29adff"/>
+            <rect x="2" y="16" width="3" height="3" fill="#51e898"/>
+            <rect x="3" y="15" width="2" height="1" fill="#51e898"/>
+            <rect x="90" y="16" width="4" height="3" fill="#51e898"/>
+            <rect x="91" y="15" width="2" height="1" fill="#51e898"/>
+            <rect x="38" y="9" width="3" height="2" fill="#fff1e8" opacity="0.7"/>
+            <rect x="42" y="8" width="4" height="2" fill="#fff1e8" opacity="0.7"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="32" y="6" width="3" height="3"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="62" y="5" width="3" height="3"/>
+            <use class="swappable-hero" href="#spr-hero-drafter" x="42" y="4" width="12" height="16"/>
+          </svg>
+        </div>
+        <div class="quest-panels">
+          <div class="panel">
+            <span class="panel-num">01</span>
+            <p class="panel-label">&gt; THE PROBLEM</p>
+            <div class="panel-art">💧</div>
+            <p class="panel-text">No framework for irrigation design. Zones, GPM, pump specs scattered across 50+ training videos.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">02</span>
+            <p class="panel-label">&gt; THE SPELL</p>
+            <div class="panel-art">📚</div>
+            <p class="panel-text panel-prompt">"Extract domain knowledge from these irrigation transcripts: precipitation rates, head-to-head coverage, pipe specs, valves. Build a planning app."</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">03</span>
+            <p class="panel-label">&gt; THE RESULT</p>
+            <div class="panel-art">🌿</div>
+            <p class="panel-text">App takes site layout → returns zones, pipe sizes, head models, pump spec, full BOM in minutes.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">04</span>
+            <p class="panel-label">&gt; LOOT GAINED</p>
+            <div class="panel-art">🎓</div>
+            <p class="panel-text"><strong>100+ hrs of video → executable logic.</strong> Non-experts can now design pro systems.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== QUEST 7: Vision Tools Spell (Lv.250) ===== -->
+      <article class="quest-card fade-in">
+        <header class="quest-header">
+          <h3 class="quest-title">QUEST 7 · The Vision Tools Spell</h3>
+          <div class="quest-meta">
+            <span class="quest-difficulty">DIFF · LV.250</span>
+            <span class="quest-class class-designer">◆ DESIGNER</span>
+          </div>
+        </header>
+        <!-- SCENE 7 — DUNGEON: Mage's Underground Lab -->
+        <div class="quest-scene quest-scene-7" data-scene="dungeon" aria-hidden="true">
+          <span class="scene-tag">DUNGEON · MAGE'S UNDERGROUND LAB</span>
+          <svg viewBox="0 0 96 24" preserveAspectRatio="xMidYMid meet">
+            <rect width="96" height="20" fill="#2a1a4a"/>
+            <rect y="3" width="96" height="1" fill="#1a0a2a"/>
+            <rect y="9" width="96" height="1" fill="#1a0a2a"/>
+            <rect y="15" width="96" height="1" fill="#1a0a2a"/>
+            <rect x="8" width="1" height="3" fill="#1a0a2a"/>
+            <rect x="24" width="1" height="3" fill="#1a0a2a"/>
+            <rect x="40" width="1" height="3" fill="#1a0a2a"/>
+            <rect x="56" width="1" height="3" fill="#1a0a2a"/>
+            <rect x="72" width="1" height="3" fill="#1a0a2a"/>
+            <rect x="88" width="1" height="3" fill="#1a0a2a"/>
+            <rect x="0" y="4" width="1" height="5" fill="#1a0a2a"/>
+            <rect x="16" y="4" width="1" height="5" fill="#1a0a2a"/>
+            <rect x="32" y="4" width="1" height="5" fill="#1a0a2a"/>
+            <rect x="48" y="4" width="1" height="5" fill="#1a0a2a"/>
+            <rect x="64" y="4" width="1" height="5" fill="#1a0a2a"/>
+            <rect x="80" y="4" width="1" height="5" fill="#1a0a2a"/>
+            <rect y="20" width="96" height="4" fill="#1a0a2a"/>
+            <rect y="20" width="96" height="1" fill="#3a2a4a"/>
+            <rect x="20" y="20" width="1" height="4" fill="#0a0520"/>
+            <rect x="40" y="20" width="1" height="4" fill="#0a0520"/>
+            <rect x="60" y="20" width="1" height="4" fill="#0a0520"/>
+            <rect x="80" y="20" width="1" height="4" fill="#0a0520"/>
+            <rect x="6" y="6" width="2" height="6" fill="#5d3a1a"/>
+            <rect x="4" y="3" width="6" height="3" fill="#ff8a3a"/>
+            <rect x="5" y="2" width="4" height="2" fill="#ffd23f"/>
+            <rect x="6" width="2" height="2" fill="#fff1e8"/>
+            <rect x="88" y="6" width="2" height="6" fill="#5d3a1a"/>
+            <rect x="86" y="3" width="6" height="3" fill="#ff8a3a"/>
+            <rect x="87" y="2" width="4" height="2" fill="#ffd23f"/>
+            <rect x="88" width="2" height="2" fill="#fff1e8"/>
+            <rect x="62" y="6" width="14" height="12" fill="#1a0a2a"/>
+            <rect x="63" y="7" width="12" height="10" fill="#ab5fff"/>
+            <rect x="64" y="8" width="10" height="8" fill="#ff77a8"/>
+            <rect x="66" y="10" width="6" height="4" fill="#fff1e8"/>
+            <rect x="67" y="11" width="4" height="2" fill="#ffd23f"/>
+            <rect x="20" y="18" width="4" height="3" fill="#fff1e8"/>
+            <rect x="21" y="19" width="1" height="1" fill="#1a0a2a"/>
+            <rect x="22" y="19" width="1" height="1" fill="#1a0a2a"/>
+            <rect x="34" y="22" width="2" height="1" fill="#ab5fff"/>
+            <rect x="36" y="21" width="2" height="1" fill="#ab5fff"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="58" y="3" width="4" height="4"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="78" y="14" width="3" height="3"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="40" y="3" width="3" height="3"/>
+            <use class="swappable-hero" href="#spr-hero-drafter" x="48" y="4" width="12" height="16"/>
+          </svg>
+        </div>
+        <div class="quest-panels">
+          <div class="panel">
+            <span class="panel-num">01</span>
+            <p class="panel-label">&gt; THE PROBLEM</p>
+            <div class="panel-art">🎨</div>
+            <p class="panel-text">Need concept renders, before/after renovations, 3D assets. NVIDIA Build API too complex to wire up.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">02</span>
+            <p class="panel-label">&gt; THE SPELL</p>
+            <div class="panel-art">⚔</div>
+            <p class="panel-text panel-prompt">"Wrap FLUX.2, FLUX Kontext, and TRELLIS in a Python CLI. venv, env vars, error handling, batch mode."</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">03</span>
+            <p class="panel-label">&gt; THE RESULT</p>
+            <div class="panel-art">🖼</div>
+            <p class="panel-text">Three CLI tools — concept render, before/after, 3D asset — designers run in seconds.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">04</span>
+            <p class="panel-label">&gt; LOOT GAINED</p>
+            <div class="panel-art">💎</div>
+            <p class="panel-text"><strong>~$3-5K saved per project.</strong> Outsourced renderers replaced. In-house viz unlocked.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== QUEST 8: LINE Bot Alchemist (Lv.250) ===== -->
+      <article class="quest-card fade-in">
+        <header class="quest-header">
+          <h3 class="quest-title">QUEST 8 · The LINE Bot Alchemist</h3>
+          <div class="quest-meta">
+            <span class="quest-difficulty">DIFF · LV.250</span>
+            <span class="quest-class class-communicator">✉ COMMUNICATOR</span>
+          </div>
+        </header>
+        <!-- SCENE 8 — TOWNSCAPE NIGHT: City Rooftop -->
+        <div class="quest-scene quest-scene-8" data-scene="townscape-night" aria-hidden="true">
+          <span class="scene-tag">TOWNSCAPE · CITY ROOFTOP, NIGHT</span>
+          <svg viewBox="0 0 96 24" preserveAspectRatio="xMidYMid meet">
+            <rect width="96" height="20" fill="#0a0520"/>
+            <rect x="10" y="2" width="1" height="1" fill="#fff1e8"/>
+            <rect x="22" y="4" width="1" height="1" fill="#fff1e8"/>
+            <rect x="38" y="1" width="1" height="1" fill="#fff1e8"/>
+            <rect x="56" y="3" width="1" height="1" fill="#fff1e8"/>
+            <rect x="68" y="2" width="1" height="1" fill="#fff1e8"/>
+            <rect x="82" y="5" width="1" height="1" fill="#fff1e8"/>
+            <rect x="92" y="3" width="1" height="1" fill="#fff1e8"/>
+            <rect x="78" y="3" width="6" height="6" fill="#fff1e8"/>
+            <rect x="79" y="2" width="4" height="1" fill="#fff1e8"/>
+            <rect x="79" y="9" width="4" height="1" fill="#fff1e8"/>
+            <rect x="80" y="4" width="2" height="1" fill="#b9a380" opacity="0.5"/>
+            <rect x="82" y="6" width="1" height="1" fill="#b9a380" opacity="0.5"/>
+            <rect x="0" y="10" width="14" height="10" fill="#1a0a2a"/>
+            <rect x="14" y="8" width="10" height="12" fill="#1a0a2a"/>
+            <rect x="24" y="12" width="8" height="8" fill="#1a0a2a"/>
+            <rect x="32" y="6" width="8" height="14" fill="#1a0a2a"/>
+            <rect x="40" y="10" width="10" height="10" fill="#1a0a2a"/>
+            <rect x="50" y="14" width="6" height="6" fill="#1a0a2a"/>
+            <rect x="56" y="11" width="10" height="9" fill="#1a0a2a"/>
+            <rect x="66" y="9" width="6" height="11" fill="#1a0a2a"/>
+            <rect x="2" y="13" width="2" height="2" fill="#ffd23f"/>
+            <rect x="6" y="15" width="2" height="2" fill="#ffd23f"/>
+            <rect x="16" y="11" width="2" height="2" fill="#ffd23f"/>
+            <rect x="20" y="14" width="2" height="2" fill="#ffd23f"/>
+            <rect x="34" y="9" width="2" height="2" fill="#29adff"/>
+            <rect x="38" y="11" width="2" height="2" fill="#ffd23f"/>
+            <rect x="44" y="13" width="2" height="2" fill="#ffd23f"/>
+            <rect x="58" y="14" width="2" height="2" fill="#ffd23f"/>
+            <rect x="62" y="16" width="2" height="2" fill="#ffd23f"/>
+            <rect x="68" y="12" width="2" height="2" fill="#29adff"/>
+            <rect x="40" y="20" width="56" height="4" fill="#3a2a40"/>
+            <rect x="40" y="20" width="56" height="1" fill="#5d3a55"/>
+            <rect y="20" width="40" height="4" fill="#1a0a2a"/>
+            <rect y="20" width="40" height="1" fill="#3a2a40"/>
+            <rect x="24" y="4" width="8" height="4" fill="#fff1e8"/>
+            <rect x="25" y="3" width="6" height="1" fill="#fff1e8"/>
+            <rect x="26" y="8" width="2" height="1" fill="#fff1e8"/>
+            <rect x="27" y="5" width="3" height="1" fill="#1d2b53"/>
+            <rect x="27" y="6" width="2" height="1" fill="#1d2b53"/>
+            <rect x="62" y="6" width="6" height="3" fill="#fff1e8"/>
+            <rect x="63" y="5" width="4" height="1" fill="#fff1e8"/>
+            <rect x="64" y="9" width="2" height="1" fill="#fff1e8"/>
+            <rect x="64" y="7" width="3" height="1" fill="#1d2b53"/>
+            <rect x="50" y="3" width="2" height="3" fill="#ffd23f"/>
+            <rect x="51" y="6" width="2" height="3" fill="#ffd23f"/>
+            <rect x="49" y="9" width="2" height="2" fill="#ffd23f"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="14" y="6" width="3" height="3"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="74" y="14" width="3" height="3"/>
+            <use class="swappable-hero" href="#spr-hero-drafter" x="56" y="4" width="12" height="16"/>
+          </svg>
+        </div>
+        <div class="quest-panels">
+          <div class="panel">
+            <span class="panel-num">01</span>
+            <p class="panel-label">&gt; THE PROBLEM</p>
+            <div class="panel-art">💬</div>
+            <p class="panel-text">LINE messages with photos arrive rapid-fire. Manual copying into Sheets eats 3 hours/day.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">02</span>
+            <p class="panel-label">&gt; THE SPELL</p>
+            <div class="panel-art">🤖</div>
+            <p class="panel-text panel-prompt">"Apps Script webhook: capture LINE → group by 5-sec window → extract Drive IDs → embed IMAGE() in Sheets with hyperlinks."</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">03</span>
+            <p class="panel-label">&gt; THE RESULT</p>
+            <div class="panel-art">⚡</div>
+            <p class="panel-text">Client sends a photo → instantly appears in Sheets with thumbnail, link, status column.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">04</span>
+            <p class="panel-label">&gt; LOOT GAINED</p>
+            <div class="panel-art">🔁</div>
+            <p class="panel-text"><strong>+3 hours/day reclaimed.</strong> Real-time tracking. Reusable webhook pattern.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== QUEST 9: The Method Library Codex (Lv.500) ===== -->
+      <article class="quest-card fade-in">
+        <header class="quest-header">
+          <h3 class="quest-title">QUEST 9 · The Method Library Codex <span class="bonus-tag">★ MASTER</span></h3>
+          <div class="quest-meta">
+            <span class="quest-difficulty">DIFF · LV.500</span>
+            <span class="quest-class class-drafter">▤ DRAFTER</span>
+          </div>
+        </header>
+        <!-- SCENE 9 — DUNGEON LIBRARY: Codex Tower with pillars -->
+        <div class="quest-scene quest-scene-9" data-scene="dungeon-library" aria-hidden="true">
+          <span class="scene-tag">DUNGEON · CODEX TOWER ARCHIVE</span>
+          <svg viewBox="0 0 96 24" preserveAspectRatio="xMidYMid meet">
+            <rect width="96" height="20" fill="#1a0a3a"/>
+            <rect width="96" height="2" fill="#0a0520"/>
+            <rect y="2" width="96" height="1" fill="#3a1a5a"/>
+            <rect y="20" width="96" height="4" fill="#0a0520"/>
+            <rect y="20" width="96" height="1" fill="#3a1a5a"/>
+            <rect x="2" y="3" width="3" height="17" fill="#5d3a1a"/>
+            <rect x="2" y="3" width="3" height="2" fill="#c9a227"/>
+            <rect x="2" y="18" width="3" height="2" fill="#c9a227"/>
+            <rect x="91" y="3" width="3" height="17" fill="#5d3a1a"/>
+            <rect x="91" y="3" width="3" height="2" fill="#c9a227"/>
+            <rect x="91" y="18" width="3" height="2" fill="#c9a227"/>
+            <rect x="8" y="2" width="14" height="18" fill="#5d3a1a"/>
+            <rect x="9" y="3" width="3" height="3" fill="#e63946"/>
+            <rect x="13" y="3" width="3" height="3" fill="#51e898"/>
+            <rect x="17" y="3" width="3" height="3" fill="#29adff"/>
+            <rect x="9" y="6" width="12" height="1" fill="#c9a227"/>
+            <rect x="9" y="7" width="3" height="3" fill="#ffd23f"/>
+            <rect x="13" y="7" width="3" height="3" fill="#ab5fff"/>
+            <rect x="17" y="7" width="3" height="3" fill="#ff77a8"/>
+            <rect x="9" y="10" width="12" height="1" fill="#c9a227"/>
+            <rect x="9" y="11" width="3" height="3" fill="#29adff"/>
+            <rect x="13" y="11" width="3" height="3" fill="#ffd23f"/>
+            <rect x="17" y="11" width="3" height="3" fill="#51e898"/>
+            <rect x="9" y="14" width="12" height="1" fill="#c9a227"/>
+            <rect x="9" y="15" width="3" height="3" fill="#ab5fff"/>
+            <rect x="13" y="15" width="3" height="3" fill="#e63946"/>
+            <rect x="17" y="15" width="3" height="3" fill="#ffd23f"/>
+            <rect x="74" y="2" width="14" height="18" fill="#5d3a1a"/>
+            <rect x="75" y="3" width="3" height="3" fill="#29adff"/>
+            <rect x="79" y="3" width="3" height="3" fill="#ffd23f"/>
+            <rect x="83" y="3" width="3" height="3" fill="#e63946"/>
+            <rect x="75" y="6" width="12" height="1" fill="#c9a227"/>
+            <rect x="75" y="7" width="3" height="3" fill="#51e898"/>
+            <rect x="79" y="7" width="3" height="3" fill="#ff77a8"/>
+            <rect x="83" y="7" width="3" height="3" fill="#ab5fff"/>
+            <rect x="75" y="10" width="12" height="1" fill="#c9a227"/>
+            <rect x="75" y="11" width="3" height="3" fill="#ffd23f"/>
+            <rect x="79" y="11" width="3" height="3" fill="#29adff"/>
+            <rect x="83" y="11" width="3" height="3" fill="#51e898"/>
+            <rect x="75" y="14" width="12" height="1" fill="#c9a227"/>
+            <rect x="75" y="15" width="3" height="3" fill="#e63946"/>
+            <rect x="79" y="15" width="3" height="3" fill="#ab5fff"/>
+            <rect x="83" y="15" width="3" height="3" fill="#ffd23f"/>
+            <rect x="42" y="16" width="12" height="4" fill="#5d3a1a"/>
+            <rect x="44" y="14" width="8" height="2" fill="#c9a227"/>
+            <rect x="44" y="10" width="8" height="4" fill="#ffd23f"/>
+            <rect x="45" y="10" width="6" height="4" fill="#fff1e8"/>
+            <rect x="46" y="11" width="4" height="1" fill="#1a0a2a"/>
+            <rect x="46" y="13" width="3" height="1" fill="#1a0a2a"/>
+            <rect x="40" y="9" width="16" height="1" fill="#ffd23f" opacity="0.5"/>
+            <rect x="38" y="11" width="1" height="3" fill="#ffd23f" opacity="0.5"/>
+            <rect x="57" y="11" width="1" height="3" fill="#ffd23f" opacity="0.5"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="36" y="6" width="3" height="3"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="56" y="5" width="4" height="4"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="48" y="3" width="3" height="3"/>
+            <use class="swappable-hero" href="#spr-hero-drafter" x="28" y="4" width="12" height="16"/>
+          </svg>
+        </div>
+        <div class="quest-panels">
+          <div class="panel">
+            <span class="panel-num">01</span>
+            <p class="panel-label">&gt; THE PROBLEM</p>
+            <div class="panel-art">🎨</div>
+            <p class="panel-text">12 paint materials scattered across brands and price feeds. Specs, MAT-IDs, costs verified by hand for every exterior repair job.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">02</span>
+            <p class="panel-label">&gt; THE SPELL</p>
+            <div class="panel-art">🐍</div>
+            <p class="panel-text panel-prompt">"WebFetch live HomePro pricing. Python <em>verify_xlsx.py</em> + <em>extract_alternatives.py</em> validate specs and cross-reference MAT-IDs. Auto-emit bilingual work orders."</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">03</span>
+            <p class="panel-label">&gt; THE RESULT</p>
+            <div class="panel-art">📑</div>
+            <p class="panel-text">3-sheet XLSX (Materials + Work Order + Alternatives) — 12 materials × 43 brand options, 8-step bilingual repair method with PPE/QC checkpoints, PDF-ready.</p>
+          </div>
+          <div class="panel">
+            <span class="panel-num">04</span>
+            <p class="panel-label">&gt; LOOT GAINED</p>
+            <div class="panel-art">📚</div>
+            <p class="panel-text"><strong>2 hours → 15 minutes per build.</strong> 75% shipping-time cut. Reusable <code>build.py</code>. Repair-method library unlocked.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 5: BOSS BATTLES                      -->
+  <!-- ============================================ -->
+  <section id="boss-battles" class="screen">
+    <div class="section-label">&gt; STAGE 4 — BOSS BATTLES</div>
+    <h2 class="section-title">Three Bosses Every Architect Fights</h2>
+
+    <!-- ============ FINAL FANTASY-STYLE BATTLE ARENA ============ -->
+    <div class="battle-arena-wrap" aria-hidden="true">
+      <p class="battle-caption">★ PARTY VS BOSS PARTY · ENGAGED ★</p>
+      <svg class="battle-arena" viewBox="0 0 192 48" preserveAspectRatio="xMidYMid meet">
+        <!-- Sky -->
+        <rect width="192" height="34" fill="#3a1a4a"/>
+        <rect width="192" height="3" fill="#1a0a2a"/>
+        <rect y="3" width="192" height="2" fill="#5d3a55"/>
+        <!-- Distant mountains -->
+        <polygon points="0,34 24,18 48,34" fill="#1a0a2a"/>
+        <polygon points="40,34 70,12 100,34" fill="#1a0a2a"/>
+        <polygon points="90,34 120,16 150,34" fill="#1a0a2a"/>
+        <polygon points="140,34 170,14 192,34" fill="#1a0a2a"/>
+        <polygon points="63,16 70,12 77,16" fill="#fff1e8"/>
+        <polygon points="115,18 120,16 125,18" fill="#fff1e8"/>
+        <!-- Ground -->
+        <rect y="34" width="192" height="14" fill="#5d3a1a"/>
+        <rect y="34" width="192" height="1" fill="#8a5a2a"/>
+        <rect y="40" width="192" height="1" fill="#3a1a10" opacity="0.5"/>
+        <!-- Ground rubble -->
+        <rect x="20" y="44" width="3" height="2" fill="#3a1a10"/>
+        <rect x="56" y="45" width="2" height="1" fill="#3a1a10"/>
+        <rect x="100" y="44" width="3" height="2" fill="#3a1a10"/>
+        <rect x="144" y="46" width="3" height="1" fill="#3a1a10"/>
+        <rect x="170" y="44" width="2" height="2" fill="#3a1a10"/>
+        <!-- Stars in sky -->
+        <rect x="20" y="6" width="1" height="1" fill="#fff1e8"/>
+        <rect x="50" y="4" width="1" height="1" fill="#fff1e8"/>
+        <rect x="80" y="8" width="1" height="1" fill="#fff1e8"/>
+        <rect x="160" y="6" width="1" height="1" fill="#fff1e8"/>
+        <!-- Moon -->
+        <rect x="172" y="6" width="6" height="6" fill="#fff1e8"/>
+        <rect x="173" y="5" width="4" height="1" fill="#fff1e8"/>
+        <rect x="173" y="12" width="4" height="1" fill="#fff1e8"/>
+        <!-- LEFT SIDE: 3 monsters -->
+        <use href="#spr-monster-permit" x="16" y="14" width="28" height="28"/>
+        <use href="#spr-monster-revision" x="48" y="18" width="22" height="22"/>
+        <use href="#spr-monster-material" x="68" y="14" width="26" height="26"/>
+        <!-- Boss HP labels -->
+        <rect x="14" y="11" width="32" height="2" fill="#0f0e2a"/>
+        <rect x="14" y="11" width="22" height="2" fill="#e63946"/>
+        <rect x="48" y="15" width="22" height="2" fill="#0f0e2a"/>
+        <rect x="48" y="15" width="14" height="2" fill="#e63946"/>
+        <rect x="68" y="11" width="26" height="2" fill="#0f0e2a"/>
+        <rect x="68" y="11" width="20" height="2" fill="#e63946"/>
+        <!-- Attack effects in middle -->
+        <rect x="106" y="20" width="10" height="1" fill="#ffd23f"/>
+        <rect x="104" y="22" width="14" height="1" fill="#ffd23f"/>
+        <rect x="106" y="24" width="12" height="1" fill="#ffd23f"/>
+        <use class="scene-sparkle" href="#spr-sparkle" x="100" y="14" width="6" height="6"/>
+        <use class="scene-sparkle" href="#spr-sparkle" x="116" y="22" width="5" height="5"/>
+        <use class="scene-sparkle" href="#spr-sparkle" x="98" y="28" width="5" height="5"/>
+        <use href="#spr-sword" x="108" y="14" width="10" height="18"/>
+        <!-- RIGHT SIDE: 4-character party -->
+        <use class="swappable-hero" href="#spr-hero-drafter" x="132" y="14" width="14" height="20"/>
+        <use href="#spr-hero-designer" x="150" y="11" width="14" height="20"/>
+        <use href="#spr-hero-communicator" x="166" y="14" width="14" height="20"/>
+        <use href="#spr-hero-researcher" x="174" y="22" width="14" height="20"/>
+        <!-- Party HP/MP bars (bottom right) -->
+        <rect x="128" y="44" width="60" height="2" fill="#0f0e2a"/>
+        <rect x="128" y="44" width="48" height="2" fill="#51e898"/>
+        <rect x="127" y="44" width="1" height="2" fill="#fff1e8"/>
+        <rect x="188" y="44" width="1" height="2" fill="#fff1e8"/>
+        <rect x="128" y="46" width="60" height="2" fill="#0f0e2a"/>
+        <rect x="128" y="46" width="30" height="2" fill="#29adff"/>
+      </svg>
+      <div class="battle-legend">
+        <span class="legend-side legend-foes"><span class="legend-dot" style="background:#e63946"></span>3 BOSSES</span>
+        <span class="legend-vs">VS</span>
+        <span class="legend-side legend-allies"><span class="legend-dot" style="background:#51e898"></span>4-HERO PARTY</span>
+      </div>
+    </div>
+
+    <div class="boss-grid">
+      <article class="boss-card boss-permit">
+        <div class="boss-portrait">📜</div>
+        <h3 class="boss-name">THE PERMIT DRAWING BOSS</h3>
+        <div class="hp-bar"><div class="hp-fill" style="width:90%"></div></div>
+        <p class="boss-hp">HP: 9999 — long, repetitive, error-prone documentation</p>
+        <div class="spell-list nes-container is-rounded">
+          <p class="spell-list-title">★ SPELL LIST</p>
+          <ul class="nes-list is-disc">
+            <li>Auto-generate sheet annotations</li>
+            <li>Cross-check code references</li>
+            <li>Draft general notes from precedent</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="boss-card boss-revision">
+        <div class="boss-portrait">🔁</div>
+        <h3 class="boss-name">THE CLIENT REVISION BOSS</h3>
+        <div class="hp-bar"><div class="hp-fill" style="width:75%"></div></div>
+        <p class="boss-hp">HP: 7500 — endless rounds of "can you tweak…"</p>
+        <div class="spell-list nes-container is-rounded">
+          <p class="spell-list-title">★ SPELL LIST</p>
+          <ul class="nes-list is-disc">
+            <li>Summarize client emails into a punch list</li>
+            <li>Generate three concept variants in minutes</li>
+            <li>Draft polite "no" / scope-change replies</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="boss-card boss-spec">
+        <div class="boss-portrait">⚒</div>
+        <h3 class="boss-name">THE MATERIAL SPEC BOSS</h3>
+        <div class="hp-bar"><div class="hp-fill" style="width:85%"></div></div>
+        <p class="boss-hp">HP: 8500 — research, comparison, justification</p>
+        <div class="spell-list nes-container is-rounded">
+          <p class="spell-list-title">★ SPELL LIST</p>
+          <ul class="nes-list is-disc">
+            <li>Compare 5 vendors by price + lead time</li>
+            <li>Pull warranty / fire-rating from datasheets</li>
+            <li>Auto-write spec sections from product PDFs</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 6: STARTER PACK                      -->
+  <!-- ============================================ -->
+  <section id="starter-pack" class="screen">
+    <div class="section-label">&gt; STAGE 5 — STARTER PACK</div>
+    <h2 class="section-title">Get Going Today</h2>
+    <p class="section-intro">Pick the lane that matches your level. Three concrete moves each.</p>
+
+    <div class="starter-grid">
+      <div class="starter-lane lane-novice">
+        <div class="starter-header">
+          <span class="starter-level">LV.1</span>
+          <span class="starter-label">START HERE TODAY</span>
+        </div>
+        <ol class="starter-steps">
+          <li>Open <span class="nes-badge"><span class="is-dark">Claude.ai</span></span> and ask: <em>"Explain the difference between [two materials I confuse]."</em></li>
+          <li>Drag a long PDF in. Ask for a 5-bullet summary.</li>
+          <li>Take one routine email. Ask AI to draft a reply. Edit, send.</li>
+        </ol>
+      </div>
+
+      <div class="starter-lane lane-apprentice">
+        <div class="starter-header">
+          <span class="starter-level">LV.50</span>
+          <span class="starter-label">TRY THIS WEEK</span>
+        </div>
+        <ol class="starter-steps">
+          <li>Create a <span class="nes-badge"><span class="is-warning">Claude Project</span></span>, drop in your office's spec template + style guide.</li>
+          <li>Build a 3-step prompt chain: brief → shortlist → spec section.</li>
+          <li>Generate a moodboard with Midjourney before your next concept presentation.</li>
+        </ol>
+      </div>
+
+      <div class="starter-lane lane-expert">
+        <div class="starter-header">
+          <span class="starter-level">LV.500</span>
+          <span class="starter-label">PUSH THE FRONTIER</span>
+        </div>
+        <ol class="starter-steps">
+          <li>Install <span class="nes-badge"><span class="is-error">Claude Code</span></span>. Have it write a SketchUp Ruby helper.</li>
+          <li>Set up an MCP that reads your project drive.</li>
+          <li>Automate one repeating task end-to-end (vendor compare, spec draft, etc.).</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SECTION 7: END CREDITS                       -->
+  <!-- ============================================ -->
+  <section id="credits" class="screen">
+    <div class="section-label">&gt; END OF GAME</div>
+    <h2 class="section-title">Credits & Tools</h2>
+
+    <div class="credits-block nes-container is-dark with-title">
+      <p class="title">★ TOOLS MENTIONED</p>
+      <ul class="nes-list is-disc">
+        <li><a href="https://claude.ai" target="_blank">Claude.ai</a> — conversation, projects, long-context reasoning</li>
+        <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a> — entry-level conversation + image gen</li>
+        <li><a href="https://www.midjourney.com" target="_blank">Midjourney</a> — moodboards and reference images</li>
+        <li><a href="https://claude.com/product/claude-code" target="_blank">Claude Code</a> — agent in your terminal/IDE</li>
+        <li><a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Claude Agent SDK</a> — build custom agents and MCPs</li>
+      </ul>
+    </div>
+
+    <div class="end-message">
+      <p class="end-thanks">Thanks for playing.</p>
+      <p class="end-share">Share this with one architect friend. Their Lv.1 starts when they open it.</p>
+      <p class="end-signature">— Made with pixels &amp; prompts</p>
+    </div>
+
+    <p class="press-start blink">[ ^ ]&nbsp;&nbsp;SCROLL UP TO REPLAY&nbsp;&nbsp;[ ^ ]</p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

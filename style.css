@@ -1,0 +1,1295 @@
+/* ============================================================
+   THE ARCHITECT'S AI QUEST — Lv.1 → Lv.999
+   Pixel-art / JRPG style sheet
+   ============================================================ */
+
+/* ---------- 0. RESET + BASE ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  padding: 0;
+  background: #0f0e2a;
+  color: #f4e4bc;
+  font-family: 'VT323', 'Press Start 2P', monospace;
+  font-size: 26px;
+  line-height: 1.55;
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+  overflow-x: hidden;
+}
+
+/* Pixel-grid background overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 4px 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---------- 1. JRPG COLOR PALETTE ---------- */
+:root {
+  /* Background tones */
+  --bg-deep:       #0f0e2a;   /* deep night blue */
+  --bg-screen:     #1a1a3e;   /* main screen */
+  --bg-card:       #2a2455;   /* cards / containers */
+  --bg-card-alt:   #1d2b53;   /* alt panel */
+
+  /* Foreground tones */
+  --ink-cream:     #f4e4bc;   /* main text */
+  --ink-white:     #fff1e8;   /* highlights */
+  --ink-dim:       #b9a380;   /* secondary */
+
+  /* Accents */
+  --gold:          #ffd23f;   /* level / highlights */
+  --gold-dark:     #c9a227;
+  --red:           #e63946;   /* boss / danger */
+  --green:         #00e756;   /* novice / success */
+  --cyan:          #29adff;   /* adept */
+  --purple:        #ab5fff;   /* expert */
+  --magenta:       #ff77a8;
+
+  /* Class colors */
+  --c-designer:     #29adff;
+  --c-drafter:      #ab5fff;
+  --c-communicator: #ff6b6b;
+  --c-researcher:   #51e898;
+}
+
+/* ---------- 2. TYPOGRAPHY ---------- */
+h1, h2, h3, .pixel, .title-main, .section-title, .level-badge,
+.boss-name, .starter-level, .press-start, .section-label,
+.class-name, .level-num, .level-tier, .quest-title,
+.tutorial-grid .col-heading, .tool-tag, .starter-label {
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+p, li, a, span, em, strong {
+  font-family: 'VT323', monospace;
+}
+
+a { color: var(--gold); text-decoration: underline; }
+a:hover { color: var(--ink-white); }
+
+/* ---------- 3. SECTIONS / SCREENS ---------- */
+section.screen {
+  position: relative;
+  z-index: 2;
+  padding: 80px 6vw 100px;
+  min-height: 100vh;
+  border-bottom: 4px dashed rgba(244,228,188,0.15);
+}
+
+.section-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 13px;
+  color: var(--gold);
+  margin-bottom: 18px;
+  letter-spacing: 0.1em;
+}
+
+.section-title {
+  font-size: 32px;
+  color: var(--ink-white);
+  margin: 0 0 14px;
+  text-shadow: 3px 3px 0 var(--bg-deep);
+}
+
+.section-intro {
+  font-size: 24px;
+  max-width: 760px;
+  color: var(--ink-cream);
+  margin: 0 0 40px;
+}
+
+/* ---------- 4. SECTION 1 — TITLE SCREEN ---------- */
+#title-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse at center, #1d2b53 0%, #0f0e2a 80%);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.title-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 15% 20%, #fff, transparent),
+    radial-gradient(1px 1px at 25% 70%, #fff, transparent),
+    radial-gradient(2px 2px at 50% 30%, #fff, transparent),
+    radial-gradient(1px 1px at 70% 60%, #fff, transparent),
+    radial-gradient(2px 2px at 85% 15%, #fff, transparent),
+    radial-gradient(1px 1px at 90% 80%, #fff, transparent),
+    radial-gradient(1px 1px at 35% 90%, #fff, transparent),
+    radial-gradient(2px 2px at 60% 85%, #fff, transparent);
+  animation: twinkle 4s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.title-content { position: relative; z-index: 2; max-width: 900px; }
+
+.title-subtitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: var(--gold);
+  margin-bottom: 30px;
+  letter-spacing: 0.2em;
+}
+
+.title-main {
+  margin: 0 0 24px;
+  font-size: 56px;
+  color: var(--ink-white);
+  line-height: 1.2;
+  text-shadow:
+    4px 4px 0 var(--gold-dark),
+    8px 8px 0 var(--bg-deep);
+}
+.title-line-1, .title-line-2 { display: block; }
+
+.title-tagline {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 22px;
+  color: var(--gold);
+  margin: 30px 0;
+  letter-spacing: 0.1em;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+}
+
+.title-hook {
+  margin: 50px auto;
+  max-width: 640px;
+  font-size: 26px;
+}
+
+.press-start {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: var(--gold);
+  margin-top: 40px;
+  letter-spacing: 0.15em;
+}
+
+.blink { animation: blink-keys 1.2s steps(2) infinite; }
+@keyframes blink-keys { 50% { opacity: 0.25; } }
+
+/* ---------- 5. SECTION 2 — TUTORIAL ---------- */
+#tutorial { background: var(--bg-screen); }
+
+.tutorial-panel { margin: 30px 0 50px; }
+
+.tutorial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 12px;
+}
+@media (max-width: 720px) {
+  .tutorial-grid { grid-template-columns: 1fr; }
+}
+
+.col-heading {
+  font-size: 16px;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.tutorial-col .nes-list li { margin-bottom: 10px; }
+
+.party-roster { margin-top: 50px; }
+.roster-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: var(--gold);
+  margin-bottom: 24px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.class-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+@media (max-width: 900px) {
+  .class-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+.class-card {
+  position: relative;
+  padding: 18px 14px 14px;
+  border: 4px solid var(--ink-cream);
+  text-align: center;
+  background: var(--bg-card);
+  transition: transform 0.2s steps(3), box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.class-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 6px 0 rgba(0,0,0,0.5);
+}
+.class-card:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+.class-card.is-recruited {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--bg-deep), 0 0 18px rgba(255,210,63,0.55);
+  background: linear-gradient(180deg, var(--bg-card) 0%, rgba(255,210,63,0.08) 100%);
+}
+.class-card.is-recruited::before {
+  content: "★ IN PARTY";
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  padding: 4px 8px;
+  letter-spacing: 0.1em;
+  border: 2px solid var(--bg-deep);
+  white-space: nowrap;
+}
+
+.class-sprite {
+  display: block;
+  width: 48px;
+  height: 64px;
+  margin: 0 auto 6px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  shape-rendering: crispEdges;
+  filter: drop-shadow(2px 3px 0 rgba(0,0,0,0.5));
+  animation: hero-bob 0.8s steps(4) infinite;
+}
+.class-card:nth-child(2) .class-sprite { animation-delay: 0.2s; }
+.class-card:nth-child(3) .class-sprite { animation-delay: 0.4s; }
+.class-card:nth-child(4) .class-sprite { animation-delay: 0.6s; }
+.class-card:hover .class-sprite { animation-duration: 0.4s; }
+
+.class-icon {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+.class-name {
+  font-size: 13px;
+  color: var(--ink-white);
+  margin: 4px 0 6px;
+}
+.class-desc {
+  font-size: 19px;
+  color: var(--ink-dim);
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+.class-status {
+  display: block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.class-card:hover .class-status { opacity: 1; }
+.class-card.is-recruited .class-status {
+  opacity: 1;
+  color: var(--ink-cream);
+}
+.class-card.is-recruited .class-status::before { content: "RECRUITED ✓"; }
+.class-card.is-recruited .class-status { font-size: 0; }
+.class-card.is-recruited .class-status::before { font-size: 9px; }
+
+.class-designer .class-icon { color: var(--c-designer); }
+.class-drafter .class-icon { color: var(--c-drafter); }
+.class-communicator .class-icon { color: var(--c-communicator); }
+.class-researcher .class-icon { color: var(--c-researcher); }
+
+.roster-hint {
+  margin: 24px 0 0;
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: var(--ink-dim);
+  letter-spacing: 0.1em;
+}
+.roster-current {
+  color: var(--gold);
+  margin-left: 6px;
+}
+
+/* ---------- 6. SECTION 3 — LEVEL MAP ---------- */
+#level-map { background: var(--bg-deep); }
+
+.level-track {
+  position: relative;
+  max-width: 1100px;
+  margin: 60px auto 0;
+  padding: 20px 0;
+}
+
+/* central vertical line */
+.level-track::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 4px;
+  background-image: linear-gradient(to bottom,
+    var(--gold) 0px, var(--gold) 12px,
+    transparent 12px, transparent 24px);
+  background-size: 100% 24px;
+  transform: translateX(-50%);
+}
+
+.level-node {
+  position: relative;
+  width: 50%;
+  padding: 0 40px;
+  margin-bottom: 50px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s steps(8);
+}
+.level-node.in-view { opacity: 1; transform: translateY(0); }
+.level-node:nth-child(odd) { left: 0; text-align: right; }
+.level-node:nth-child(even) { left: 50%; text-align: left; }
+
+.level-node::after {
+  /* the dot on the track */
+  content: "◆";
+  position: absolute;
+  top: 14px;
+  font-size: 20px;
+  color: var(--gold);
+  text-shadow: 0 0 8px var(--gold);
+}
+.level-node:nth-child(odd)::after { right: -12px; }
+.level-node:nth-child(even)::after { left: -12px; }
+
+.level-badge {
+  display: inline-block;
+  padding: 10px 16px;
+  margin-bottom: 14px;
+  background: var(--gold);
+  color: var(--bg-deep);
+  border: 3px solid var(--bg-deep);
+  box-shadow: 4px 4px 0 var(--bg-deep);
+}
+.level-num {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  letter-spacing: 0.05em;
+}
+.level-tier {
+  font-size: 11px;
+  display: block;
+  margin-top: 5px;
+  letter-spacing: 0.2em;
+}
+
+.level-novice .level-badge      { background: var(--green);   }
+.level-apprentice .level-badge  { background: var(--gold);    }
+.level-adept .level-badge       { background: var(--cyan);    }
+.level-expert .level-badge      { background: var(--purple);  color: var(--ink-white); }
+.level-master .level-badge      { background: linear-gradient(45deg, var(--gold), var(--magenta)); color: var(--bg-deep); }
+
+.level-card {
+  background: var(--bg-card) !important;
+  color: var(--ink-cream) !important;
+  border-color: var(--ink-cream) !important;
+  padding: 18px !important;
+  text-align: left;
+}
+
+.level-skill {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 15px;
+  color: var(--ink-white);
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+.level-tool {
+  margin: 0 0 12px;
+}
+.tool-tag {
+  display: inline-block;
+  padding: 4px 9px;
+  margin-right: 5px;
+  font-size: 11px;
+  background: var(--bg-deep);
+  color: var(--gold);
+  border: 2px solid var(--gold);
+}
+.level-example {
+  font-size: 21px;
+  color: var(--ink-cream);
+  margin: 0;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .level-track::before { left: 20px; }
+  .level-node { width: 100%; left: 0 !important; padding: 0 0 0 50px; text-align: left !important; }
+  .level-node::after { left: 8px !important; right: auto !important; }
+}
+
+/* ---------- 7. SECTION 4 — QUEST COMICS ---------- */
+#quest-comics { background: var(--bg-screen); }
+
+.quest-loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+  color: var(--gold);
+}
+
+.quest-log {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 110px;
+  margin-top: 40px;
+}
+
+.quest-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 4px solid var(--ink-cream);
+  padding: 24px;
+  box-shadow: 8px 8px 0 var(--bg-deep);
+}
+
+/* Decorative divider between quests (above each card after the first) */
+.quest-card + .quest-card {
+  margin-top: 0;
+}
+.quest-card + .quest-card::before {
+  content: "★   ◆   ★   ◆   ★";
+  position: absolute;
+  top: -68px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  white-space: nowrap;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+  opacity: 0.7;
+}
+.quest-card + .quest-card::after {
+  content: "";
+  position: absolute;
+  top: -52px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, var(--gold) 0 6px, transparent 6px 10px);
+  opacity: 0.6;
+}
+
+/* ---------- Quest scene banner (pixel-art dungeon) ---------- */
+.quest-scene {
+  margin: 0 -24px 22px;
+  border-top: 3px solid var(--ink-cream);
+  border-bottom: 3px solid var(--ink-cream);
+  background: #0a0520;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Scene caption tag (top-left of each scene) */
+.scene-tag {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  z-index: 3;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: var(--gold);
+  background: rgba(0,0,0,0.7);
+  padding: 4px 8px;
+  border: 2px solid var(--gold);
+  letter-spacing: 0.1em;
+  text-shadow: 1px 1px 0 var(--bg-deep);
+}
+.quest-scene svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  shape-rendering: crispEdges;
+  filter: drop-shadow(0 2px 0 rgba(0,0,0,0.4));
+}
+/* Vignette fade on edges */
+.quest-scene::before, .quest-scene::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  z-index: 2;
+}
+.quest-scene::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.5), transparent);
+}
+.quest-scene::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.5), transparent);
+}
+/* Scene-name caption */
+.quest-scene-1::after  { content: "" !important; }
+.quest-scene .scene-sparkle {
+  animation: sparkle-twinkle 1.4s steps(3) infinite;
+}
+.quest-scene-2 .scene-sparkle:nth-of-type(2) { animation-delay: 0.5s; }
+.quest-scene .scene-sparkle:nth-of-type(2) { animation-delay: 0.4s; }
+.quest-scene .scene-sparkle:nth-of-type(3) { animation-delay: 0.8s; }
+.quest-scene .scene-sparkle:nth-of-type(4) { animation-delay: 1.2s; }
+/* Scene hero gentle hover-bob */
+.quest-scene .swappable-hero {
+  animation: hero-bob 0.9s steps(3) infinite;
+  transform-origin: center bottom;
+  transform-box: fill-box;
+}
+
+.quest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 2px dashed var(--ink-dim);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+.quest-title {
+  font-size: 18px;
+  color: var(--gold);
+  margin: 0;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+  line-height: 1.4;
+}
+.quest-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.quest-difficulty, .quest-class {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  padding: 5px 10px;
+  background: var(--bg-deep);
+  color: var(--gold);
+  border: 2px solid var(--gold);
+}
+.quest-class.class-designer     { color: var(--c-designer);     border-color: var(--c-designer); }
+.quest-class.class-drafter      { color: var(--c-drafter);      border-color: var(--c-drafter); }
+.quest-class.class-communicator { color: var(--c-communicator); border-color: var(--c-communicator); }
+.quest-class.class-researcher   { color: var(--c-researcher);   border-color: var(--c-researcher); }
+
+.bonus-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 3px 7px;
+  background: var(--magenta);
+  color: var(--bg-deep);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  vertical-align: middle;
+}
+
+.quest-panels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 900px) {
+  .quest-panels { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .quest-panels { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--bg-deep);
+  border: 3px solid var(--ink-cream);
+  padding: 14px;
+  position: relative;
+  min-height: 180px;
+}
+
+.panel-num {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  padding: 5px 7px;
+  border: 2px solid var(--bg-deep);
+}
+
+.panel-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  margin: 0 0 10px;
+  letter-spacing: 0.1em;
+}
+
+.panel-art {
+  height: 80px;
+  background: var(--bg-card-alt);
+  border: 2px dashed rgba(244,228,188,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  margin-bottom: 10px;
+  color: var(--gold);
+}
+
+.panel-text {
+  font-size: 19px;
+  margin: 0;
+  color: var(--ink-cream);
+  line-height: 1.4;
+}
+
+.panel-prompt {
+  background: var(--bg-card);
+  border-left: 3px solid var(--gold);
+  padding: 10px;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink-white);
+}
+
+/* ---------- 8. SECTION 5 — BOSS BATTLES ---------- */
+#boss-battles { background: var(--bg-deep); }
+
+/* FF-style battle arena */
+.battle-arena-wrap {
+  margin: 30px 0 60px;
+  padding: 16px;
+  background: #0a0520;
+  border: 4px solid var(--gold);
+  box-shadow: 8px 8px 0 var(--bg-deep);
+  position: relative;
+}
+.battle-caption {
+  font-family: 'Press Start 2P', monospace;
+  text-align: center;
+  font-size: 13px;
+  color: var(--gold);
+  margin: 0 0 14px;
+  letter-spacing: 0.18em;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+}
+.battle-arena {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  shape-rendering: crispEdges;
+  border: 2px solid var(--ink-cream);
+}
+.battle-arena .swappable-hero {
+  animation: hero-bob 0.7s steps(3) infinite;
+  transform-origin: center bottom;
+  transform-box: fill-box;
+}
+.battle-arena .scene-sparkle {
+  animation: sparkle-twinkle 0.8s steps(2) infinite;
+}
+.battle-arena .scene-sparkle:nth-of-type(2) { animation-delay: 0.2s; }
+.battle-arena .scene-sparkle:nth-of-type(3) { animation-delay: 0.4s; }
+
+.battle-legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  padding: 0 12px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: var(--ink-cream);
+  letter-spacing: 0.1em;
+}
+.legend-side {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  image-rendering: pixelated;
+}
+.legend-vs {
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+}
+
+.boss-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 30px;
+}
+@media (max-width: 900px) { .boss-grid { grid-template-columns: 1fr; } }
+
+.boss-card {
+  background: var(--bg-card);
+  border: 4px solid var(--red);
+  padding: 24px;
+  box-shadow: 6px 6px 0 var(--bg-deep);
+  text-align: center;
+}
+
+.boss-portrait {
+  font-size: 64px;
+  margin: 8px 0 16px;
+  filter: drop-shadow(3px 3px 0 var(--bg-deep));
+}
+
+.boss-name {
+  font-size: 15px;
+  color: var(--red);
+  margin: 0 0 14px;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+  line-height: 1.5;
+}
+
+.hp-bar {
+  width: 100%;
+  height: 16px;
+  background: var(--bg-deep);
+  border: 2px solid var(--ink-cream);
+  margin: 12px 0 6px;
+  position: relative;
+}
+.hp-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--red), #ff8a8a);
+}
+.boss-hp {
+  font-size: 19px;
+  color: var(--ink-cream);
+  margin: 0 0 18px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.spell-list {
+  background: var(--bg-deep) !important;
+  color: var(--ink-cream) !important;
+  text-align: left;
+}
+.spell-list-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  margin: 0 0 12px;
+}
+.spell-list .nes-list li { font-size: 19px; margin-bottom: 8px; line-height: 1.4; }
+
+/* ---------- 9. SECTION 6 — STARTER PACK ---------- */
+#starter-pack { background: var(--bg-screen); }
+
+.starter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 30px;
+}
+@media (max-width: 900px) { .starter-grid { grid-template-columns: 1fr; } }
+
+.starter-lane {
+  background: var(--bg-card);
+  border: 4px solid var(--ink-cream);
+  padding: 24px;
+  box-shadow: 6px 6px 0 var(--bg-deep);
+}
+
+.starter-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px dashed var(--ink-dim);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+.starter-level {
+  font-size: 20px;
+  background: var(--gold);
+  color: var(--bg-deep);
+  padding: 7px 11px;
+  border: 2px solid var(--bg-deep);
+}
+.starter-label {
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+
+.lane-novice .starter-level    { background: var(--green); }
+.lane-apprentice .starter-level { background: var(--gold); }
+.lane-expert .starter-level    { background: var(--purple); color: var(--ink-white); }
+
+.starter-steps {
+  margin: 0;
+  padding: 0 0 0 22px;
+  list-style-type: decimal;
+}
+.starter-steps li {
+  font-size: 21px;
+  margin-bottom: 14px;
+  color: var(--ink-cream);
+  line-height: 1.45;
+}
+.starter-steps li em { color: var(--ink-white); }
+
+/* ---------- 10. SECTION 7 — CREDITS ---------- */
+#credits {
+  background: radial-gradient(ellipse at center, #1d2b53 0%, #0f0e2a 80%);
+  text-align: center;
+}
+
+.credits-block {
+  max-width: 800px;
+  margin: 30px auto 50px;
+  text-align: left;
+}
+.credits-block .nes-list li { margin-bottom: 12px; font-size: 21px; line-height: 1.4; }
+
+.end-message { margin: 40px 0; }
+.end-thanks {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 28px;
+  color: var(--gold);
+  margin: 0 0 20px;
+  text-shadow: 3px 3px 0 var(--bg-deep);
+}
+.end-share {
+  font-size: 25px;
+  max-width: 640px;
+  margin: 0 auto 18px;
+  color: var(--ink-cream);
+  line-height: 1.45;
+}
+.end-signature {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 13px;
+  color: var(--ink-dim);
+  margin: 24px 0;
+}
+
+/* ---------- 11. ANIMATION HELPERS ---------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s steps(8);
+}
+.fade-in.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   PIXEL SPRITES — shared rules
+   ============================================================ */
+.hero-sprite, .level-hero, .sparkle-spr, .quest-icon-spr, .boss-minion {
+  display: inline-block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  vertical-align: middle;
+  shape-rendering: crispEdges;
+}
+
+/* ----- Title-screen hero ----- */
+.hero-stage {
+  position: relative;
+  margin: 30px auto 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 24px;
+  height: 140px;
+}
+.hero-large {
+  width: 96px;
+  height: 128px;
+  filter: drop-shadow(3px 5px 0 rgba(0,0,0,0.6));
+}
+.hero-tiny {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(2px 3px 0 rgba(0,0,0,0.5));
+}
+.hero-companion {
+  margin-bottom: 4px;
+  animation-delay: 0.3s !important;
+}
+
+/* Hero idle bob — gentle up/down */
+@keyframes hero-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.hero-bob {
+  animation: hero-bob 0.8s steps(4) infinite;
+}
+
+/* ----- Sparkles floating around the title ----- */
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.sparkle-spr {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  animation: sparkle-twinkle 1.5s steps(3) infinite;
+}
+.sparkle-1 { top: 12%;  left: 10%; animation-delay: 0s; }
+.sparkle-2 { top: 22%;  right: 12%; width: 22px; height: 22px; animation-delay: 0.3s; }
+.sparkle-3 { top: 60%;  left: 8%;  width: 14px; height: 14px; animation-delay: 0.7s; }
+.sparkle-4 { top: 70%;  right: 14%; animation-delay: 1.1s; }
+.sparkle-5 { top: 40%;  left: 18%; width: 12px; height: 12px; animation-delay: 0.5s; }
+.sparkle-6 { top: 35%;  right: 22%; width: 18px; height: 18px; animation-delay: 0.9s; }
+
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8) rotate(0deg); }
+  50%      { opacity: 1;   transform: scale(1.4) rotate(45deg); }
+}
+
+/* ----- Sticky walking hero on the level map ----- */
+.level-hero-wrap {
+  position: sticky;
+  top: 28vh;
+  height: 0;
+  width: 100%;
+  z-index: 10;
+  pointer-events: none;
+  text-align: center;
+}
+.level-hero {
+  width: 72px;
+  height: 90px;
+  position: relative;
+  top: -45px;
+  filter: drop-shadow(2px 4px 0 rgba(0,0,0,0.5));
+  transition: filter 0.5s ease-out;
+}
+@keyframes hero-walk {
+  0%   { transform: translateY(0)    scaleX(1); }
+  25%  { transform: translateY(-2px) scaleX(1); }
+  50%  { transform: translateY(0)    scaleX(-1); }
+  75%  { transform: translateY(-2px) scaleX(-1); }
+  100% { transform: translateY(0)    scaleX(1); }
+}
+.hero-walk {
+  animation: hero-walk 1.6s steps(4) infinite;
+}
+
+/* ----- Hero transformation overlays per tier ----- */
+.level-hero .overlay { display: none; }
+
+/* NOVICE — bare base */
+.level-hero[data-tier="novice"] {
+  filter: drop-shadow(2px 4px 0 rgba(0,0,0,0.5));
+}
+
+/* APPRENTICE — green aura */
+.level-hero[data-tier="apprentice"] .overlay-aura { display: block; }
+.level-hero[data-tier="apprentice"] {
+  filter:
+    drop-shadow(0 0 6px var(--green))
+    drop-shadow(2px 4px 0 rgba(0,0,0,0.5));
+}
+.level-hero[data-tier="apprentice"] .overlay-aura rect {
+  animation: aura-pulse 1s ease-in-out infinite;
+}
+
+/* ADEPT — aura + staff with cyan glow */
+.level-hero[data-tier="adept"] .overlay-aura,
+.level-hero[data-tier="adept"] .overlay-staff { display: block; }
+.level-hero[data-tier="adept"] {
+  filter:
+    drop-shadow(0 0 8px var(--cyan))
+    drop-shadow(2px 4px 0 rgba(0,0,0,0.5));
+}
+.level-hero[data-tier="adept"] .overlay-aura rect { fill: #29adff; }
+
+/* EXPERT — aura + staff + cape with purple glow */
+.level-hero[data-tier="expert"] .overlay-aura,
+.level-hero[data-tier="expert"] .overlay-staff,
+.level-hero[data-tier="expert"] .overlay-cape { display: block; }
+.level-hero[data-tier="expert"] {
+  filter:
+    drop-shadow(0 0 10px var(--purple))
+    drop-shadow(3px 5px 0 rgba(0,0,0,0.5));
+}
+.level-hero[data-tier="expert"] .overlay-aura rect { fill: #ab5fff; }
+
+/* MASTER — full kit: aura + staff + cape + wings + crown with gold glow */
+.level-hero[data-tier="master"] .overlay { display: block; }
+.level-hero[data-tier="master"] {
+  filter:
+    drop-shadow(0 0 14px var(--gold))
+    drop-shadow(0 0 24px rgba(255,210,63,0.5))
+    drop-shadow(3px 6px 0 rgba(0,0,0,0.5));
+}
+.level-hero[data-tier="master"] .overlay-aura rect { fill: var(--gold); }
+.level-hero[data-tier="master"] .overlay-wings {
+  animation: wings-flap 0.6s steps(2) infinite alternate;
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+
+/* Aura pulse animation */
+@keyframes aura-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.5); }
+}
+
+/* Wings flap (master) */
+@keyframes wings-flap {
+  from { transform: scaleY(1); }
+  to   { transform: scaleY(0.8); }
+}
+
+/* Tier-up flash when transitioning */
+@keyframes tier-up-flash {
+  0%   { filter: brightness(1); }
+  20%  { filter: brightness(2.6) saturate(1.5); }
+  40%  { filter: brightness(3) saturate(2) hue-rotate(20deg); }
+  60%  { filter: brightness(2) saturate(1.2); }
+  100% { filter: brightness(1); }
+}
+.level-hero.tier-up {
+  animation: tier-up-flash 0.7s ease-out, hero-walk 1.6s steps(4) infinite;
+}
+
+/* Tier label that floats next to the hero (optional, JS-driven) */
+.tier-label {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: var(--gold);
+  background: var(--bg-deep);
+  border: 2px solid var(--gold);
+  padding: 3px 6px;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.level-hero-wrap[data-show-label="true"] .tier-label { opacity: 1; }
+
+@keyframes label-popup {
+  0%   { transform: translateX(-50%) scale(0); }
+  60%  { transform: translateX(-50%) scale(1.3); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+.level-hero-wrap[data-tier-changed] .tier-label {
+  animation: label-popup 0.4s steps(4);
+}
+
+/* ----- Level-track diamond pulse ----- */
+.level-node::after {
+  animation: diamond-pulse 2s ease-in-out infinite;
+}
+@keyframes diamond-pulse {
+  0%, 100% {
+    text-shadow: 0 0 6px var(--gold);
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 0 0 16px var(--gold), 0 0 24px var(--gold);
+    opacity: 0.85;
+  }
+}
+
+/* ----- Boss-portrait breathe + hover-attack shake ----- */
+.boss-portrait {
+  display: inline-block;
+  animation: boss-breathe 3.2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+@keyframes boss-breathe {
+  0%, 100% { transform: scale(1)   translateY(0); }
+  50%      { transform: scale(1.06) translateY(-2px); }
+}
+.boss-card { transition: transform 0.2s; cursor: default; }
+.boss-card:hover { transform: translateY(-3px); }
+.boss-card:hover .boss-portrait {
+  animation: boss-shake 0.4s steps(2) 2;
+}
+@keyframes boss-shake {
+  0%, 100% { transform: translateX(0)    rotate(0); }
+  25%      { transform: translateX(-4px) rotate(-3deg); }
+  75%      { transform: translateX(4px)  rotate(3deg); }
+}
+
+/* HP bar pulse for "danger" feel */
+.hp-fill {
+  animation: hp-glow 2s ease-in-out infinite;
+}
+@keyframes hp-glow {
+  0%, 100% { box-shadow: inset 0 0 0 rgba(255,255,255,0); }
+  50%      { box-shadow: inset 0 0 12px rgba(255,255,255,0.3); }
+}
+
+/* ----- Quest panel-art bounce ----- */
+.panel-art {
+  animation: panel-bounce 2.4s ease-in-out infinite;
+}
+.panel:nth-child(2) .panel-art { animation-delay: 0.2s; }
+.panel:nth-child(3) .panel-art { animation-delay: 0.4s; }
+.panel:nth-child(4) .panel-art { animation-delay: 0.6s; }
+@keyframes panel-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+/* Quest card hover lift */
+.quest-card {
+  transition: transform 0.2s steps(3), box-shadow 0.2s;
+}
+.quest-card:hover {
+  transform: translate(-2px, -4px);
+  box-shadow: 10px 12px 0 var(--bg-deep);
+}
+
+/* ----- Class icon idle bob + hover wobble ----- */
+.class-icon {
+  display: inline-block;
+  transition: transform 0.2s;
+  animation: class-bob 1.6s ease-in-out infinite;
+}
+.class-card:nth-child(2) .class-icon { animation-delay: 0.4s; }
+.class-card:nth-child(3) .class-icon { animation-delay: 0.8s; }
+.class-card:nth-child(4) .class-icon { animation-delay: 1.2s; }
+@keyframes class-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+.class-card:hover .class-icon {
+  animation: class-wobble 0.5s ease-in-out 1;
+}
+@keyframes class-wobble {
+  0%, 100% { transform: rotate(0); }
+  20%      { transform: rotate(-18deg) scale(1.15); }
+  40%      { transform: rotate(14deg)  scale(1.15); }
+  60%      { transform: rotate(-10deg) scale(1.1); }
+  80%      { transform: rotate(8deg)   scale(1.05); }
+}
+
+/* ----- Starter level-badge glow pulse ----- */
+.starter-level {
+  animation: badge-glow 2.5s ease-in-out infinite;
+}
+@keyframes badge-glow {
+  0%, 100% { box-shadow: 0 0 0 var(--bg-deep); }
+  50%      { box-shadow: 0 0 14px currentColor; }
+}
+
+/* ----- Reduced motion: disable for accessibility ----- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bob, .hero-walk, .sparkle-spr,
+  .boss-portrait, .panel-art, .class-icon,
+  .level-node::after, .hp-fill, .starter-level {
+    animation: none !important;
+  }
+  .blink { animation: none !important; }
+}
+
+/* ---------- 12. NES.css OVERRIDES ---------- */
+.nes-container {
+  background: var(--bg-card);
+  color: var(--ink-cream);
+}
+.nes-container.is-dark {
+  background: var(--bg-deep) !important;
+  color: var(--ink-cream) !important;
+}
+.nes-container.with-title > .title {
+  background: var(--bg-screen);
+  color: var(--gold);
+}
+.nes-balloon {
+  background: var(--ink-cream);
+  color: var(--bg-deep);
+  font-size: 20px;
+}
+.nes-balloon.from-left::before, .nes-balloon.from-left::after {
+  filter: drop-shadow(0 0 0 var(--ink-cream));
+}
+.nes-list { padding-left: 1.4em; }
+.nes-list.is-disc li::before { color: var(--gold) !important; }
+
+/* ---------- 13. TYPE SCALING FOR LARGE / SMALL ---------- */
+@media (max-width: 600px) {
+  body { font-size: 22px; }
+  .title-main { font-size: 36px; }
+  .title-tagline { font-size: 14px; }
+  .section-title { font-size: 22px; }
+  .section-intro { font-size: 21px; }
+  .section-label { font-size: 11px; }
+  .level-skill { font-size: 13px; }
+  .level-example { font-size: 19px; }
+  .quest-title { font-size: 14px; }
+  .panel-text { font-size: 17px; }
+  .panel-prompt { font-size: 16px; }
+  .panel-label { font-size: 11px; }
+  .end-thanks { font-size: 20px; }
+  .end-share { font-size: 22px; }
+  .starter-steps li { font-size: 19px; }
+  .roster-label { font-size: 12px; }
+  .class-desc { font-size: 17px; }
+  .spell-list .nes-list li { font-size: 17px; }
+  .boss-name { font-size: 13px; }
+  .boss-hp { font-size: 17px; }
+}
