@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" />
 
   <!-- Local styles -->
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body>
 
@@ -652,6 +652,53 @@
         </div>
       </div>
 
+      <!-- LV.35 -->
+      <div class="level-node level-apprentice" data-level="35">
+        <div class="level-badge"><span class="level-num">LV.35</span><span class="level-tier">APPRENTICE</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Custom prompt template / saved persona</p>
+          <p class="level-tool"><span class="tool-tag">ChatGPT custom GPT</span> <span class="tool-tag">Claude system prompt</span></p>
+          <p class="level-example">Save a "JSA Generator" persona that always replies bilingually with safety codes attached.</p>
+          <p class="level-anchor">★ Like my <em>Safety Consultant</em> — bilingual JSA template engine with embedded Thai code references.</p>
+          <p class="level-case">↪ A "Spec Writer" persona that always uses your office's voice + section numbering</p>
+          <p class="level-case">↪ A "Polite Email" persona for client comms — fixed tone, fixed structure</p>
+          <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Write a 100-word system prompt for one repeating role you do. Save it. Test it 3 times.</p>
+        </div>
+        <!-- DEMO: persona card + styled output -->
+        <div class="level-demo" data-demo="persona" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect x="4" y="6" width="34" height="48" fill="#5d3a1a" stroke="#ffd23f" stroke-width="0.5"/>
+            <rect x="4" y="6" width="34" height="6" fill="#c9a227"/>
+            <text x="21" y="11" text-anchor="middle" fill="#1d2b53" font-size="5" font-family="monospace">PERSONA</text>
+            <rect x="14" y="16" width="14" height="14" fill="#ffccaa"/>
+            <rect x="14" y="16" width="14" height="3" fill="#ffd23f"/>
+            <rect x="17" y="22" width="2" height="2" fill="#0f0e2a"/>
+            <rect x="23" y="22" width="2" height="2" fill="#0f0e2a"/>
+            <rect x="19" y="26" width="4" height="1" fill="#e63946"/>
+            <text x="21" y="36" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">JSA SAFETY</text>
+            <text x="21" y="40" text-anchor="middle" fill="#f4e4bc" font-size="3" font-family="monospace">CONSULTANT</text>
+            <rect x="6" y="44" width="30" height="1" fill="#c9a227"/>
+            <text x="8" y="48" fill="#51e898" font-size="3" font-family="monospace">+ Bilingual EN/TH</text>
+            <text x="8" y="51" fill="#51e898" font-size="3" font-family="monospace">+ Thai code refs</text>
+            <rect class="demo-render-arrow" x="42" y="28" width="6" height="2" fill="#ffd23f"/>
+            <rect x="52" y="8" width="44" height="44" fill="#1d2b53" stroke="#f4e4bc" stroke-width="0.4"/>
+            <text x="74" y="14" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">RESPONSE</text>
+            <rect x="54" y="17" width="40" height="1" fill="#c9a227"/>
+            <rect class="demo-line-1" x="56" y="20" width="36" height="1" fill="#fff1e8"/>
+            <rect class="demo-line-2" x="56" y="23" width="32" height="1" fill="#fff1e8"/>
+            <rect class="demo-line-3" x="56" y="26" width="34" height="1" fill="#51e898"/>
+            <rect class="demo-line-4" x="56" y="29" width="30" height="1" fill="#fff1e8"/>
+            <rect class="demo-line-1" x="56" y="34" width="38" height="1" fill="#fff1e8"/>
+            <rect class="demo-line-2" x="56" y="37" width="34" height="1" fill="#fff1e8"/>
+            <rect class="demo-line-3" x="56" y="40" width="32" height="1" fill="#51e898"/>
+            <rect class="demo-line-4" x="56" y="43" width="36" height="1" fill="#fff1e8"/>
+            <text x="74" y="50" text-anchor="middle" fill="#51e898" font-size="3" font-family="monospace">in office voice</text>
+          </svg>
+        </div>
+      </div>
+
       <!-- LV.50 -->
       <div class="level-node level-apprentice" data-level="50">
         <div class="level-badge"><span class="level-num">LV.50</span><span class="level-tier">APPRENTICE</span></div>
@@ -698,6 +745,50 @@
             <polygon points="76,28 76,32 78,30" fill="#ffd23f"/>
             <rect class="demo-pulse" x="6" y="29" width="3" height="2" fill="#ffd23f"/>
             <text x="50" y="50" text-anchor="middle" fill="#f4e4bc" font-size="5" font-family="monospace">one chat · 4 steps</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- LV.75 -->
+      <div class="level-node level-adept" data-level="75">
+        <div class="level-badge"><span class="level-num">LV.75</span><span class="level-tier">ADEPT</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Long-context multi-doc analysis</p>
+          <p class="level-tool"><span class="tool-tag">Claude (200k context)</span></p>
+          <p class="level-example">Paste 10 building codes at once → ask cross-document questions like "any rules about double-skin facades?"</p>
+          <p class="level-anchor">★ Like my <em>Project Safety Standards</em> — Thai safety codes loaded as one searchable Q&amp;A library.</p>
+          <p class="level-case">↪ Drop a whole repo's source files in → ask "where is auth handled?"</p>
+          <p class="level-case">↪ Compare 5 vendor contracts in one prompt → spot every unusual clause</p>
+          <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Pick the 5 longest PDFs you reference often. Paste them in one chat. Ask 3 cross-document questions.</p>
+        </div>
+        <!-- DEMO: many docs flowing into tall AI tower -->
+        <div class="level-demo" data-demo="longctx" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <g class="demo-pdf-1"><rect x="4" y="4" width="8" height="10" fill="#e63946"/><rect x="5" y="6" width="6" height="1" fill="#fff1e8"/><rect x="5" y="9" width="5" height="1" fill="#fff1e8"/></g>
+            <g class="demo-pdf-2"><rect x="4" y="16" width="8" height="10" fill="#29adff"/><rect x="5" y="18" width="6" height="1" fill="#fff1e8"/><rect x="5" y="21" width="5" height="1" fill="#fff1e8"/></g>
+            <g class="demo-pdf-3"><rect x="4" y="28" width="8" height="10" fill="#51e898"/><rect x="5" y="30" width="6" height="1" fill="#fff1e8"/><rect x="5" y="33" width="5" height="1" fill="#fff1e8"/></g>
+            <g class="demo-pdf-4"><rect x="4" y="40" width="8" height="10" fill="#ffd23f"/><rect x="5" y="42" width="6" height="1" fill="#1d2b53"/><rect x="5" y="45" width="5" height="1" fill="#1d2b53"/></g>
+            <g class="demo-pdf-1"><rect x="14" y="10" width="8" height="10" fill="#ab5fff"/><rect x="15" y="12" width="6" height="1" fill="#fff1e8"/></g>
+            <g class="demo-pdf-2"><rect x="14" y="22" width="8" height="10" fill="#ff77a8"/><rect x="15" y="24" width="6" height="1" fill="#fff1e8"/></g>
+            <g class="demo-pdf-3"><rect x="14" y="34" width="8" height="10" fill="#5d3a1a"/><rect x="15" y="36" width="6" height="1" fill="#fff1e8"/></g>
+            <rect x="42" y="6" width="22" height="48" fill="#ab5fff" stroke="#ffd23f" stroke-width="0.6"/>
+            <text x="53" y="20" text-anchor="middle" fill="#fff1e8" font-size="6" font-family="monospace">200k</text>
+            <text x="53" y="28" text-anchor="middle" fill="#fff1e8" font-size="6" font-family="monospace">CTX</text>
+            <text x="53" y="40" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">all docs</text>
+            <text x="53" y="46" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">in scope</text>
+            <rect class="demo-flow-1" x="24" y="29" width="2" height="2" fill="#ffd23f"/>
+            <rect class="demo-flow-2" x="32" y="29" width="2" height="2" fill="#ffd23f"/>
+            <rect class="demo-flow-3" x="38" y="29" width="2" height="2" fill="#ffd23f"/>
+            <rect x="68" y="6" width="28" height="22" fill="#1d2b53" stroke="#ffd23f" stroke-width="0.4"/>
+            <text x="82" y="13" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">CROSS-DOC</text>
+            <text x="82" y="18" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">SYNTHESIS</text>
+            <rect x="70" y="22" width="24" height="1" fill="#fff1e8"/>
+            <rect x="70" y="24" width="20" height="1" fill="#fff1e8"/>
+            <rect x="70" y="26" width="22" height="1" fill="#51e898"/>
+            <text x="82" y="46" text-anchor="middle" fill="#51e898" font-size="4" font-family="monospace">spotted across</text>
+            <text x="82" y="51" text-anchor="middle" fill="#51e898" font-size="4" font-family="monospace">all 10 docs</text>
           </svg>
         </div>
       </div>
@@ -757,6 +848,50 @@
         </div>
       </div>
 
+      <!-- LV.150 -->
+      <div class="level-node level-adept" data-level="150">
+        <div class="level-badge"><span class="level-num">LV.150</span><span class="level-tier">ADEPT</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Custom rules + AI persona</p>
+          <p class="level-tool"><span class="tool-tag">Claude Projects</span> <span class="tool-tag">system prompt</span></p>
+          <p class="level-example">Set rules: "Always reply in markdown. Cite Thai building codes by section. Never hallucinate brand names."</p>
+          <p class="level-anchor">★ Like my <em>Personal Analysis</em> project — private data + custom AI persona that knows my style.</p>
+          <p class="level-case">↪ Office-wide system prompt: "Use UK English. Reference our Spec Library v2.3."</p>
+          <p class="level-case">↪ A teaching persona: "Always quiz back after explaining"</p>
+          <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Write 5 strict rules for one Claude Project. Test that it follows all 5 across 3 different prompts.</p>
+        </div>
+        <!-- DEMO: rules sidebar + AI persona -->
+        <div class="level-demo" data-demo="rules" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect x="4" y="6" width="32" height="48" fill="#5d3a1a" stroke="#ffd23f" stroke-width="0.5"/>
+            <rect x="4" y="6" width="32" height="6" fill="#c9a227"/>
+            <text x="20" y="11" text-anchor="middle" fill="#1d2b53" font-size="4.5" font-family="monospace">PROJECT RULES</text>
+            <rect class="demo-rule-1" x="6" y="15" width="2" height="2" fill="#51e898"/>
+            <text class="demo-rule-1" x="10" y="17" fill="#fff1e8" font-size="3.5" font-family="monospace">always markdown</text>
+            <rect class="demo-rule-2" x="6" y="22" width="2" height="2" fill="#51e898"/>
+            <text class="demo-rule-2" x="10" y="24" fill="#fff1e8" font-size="3.5" font-family="monospace">cite by section</text>
+            <rect class="demo-rule-3" x="6" y="29" width="2" height="2" fill="#51e898"/>
+            <text class="demo-rule-3" x="10" y="31" fill="#fff1e8" font-size="3.5" font-family="monospace">UK English</text>
+            <rect class="demo-rule-4" x="6" y="36" width="2" height="2" fill="#51e898"/>
+            <text class="demo-rule-4" x="10" y="38" fill="#fff1e8" font-size="3.5" font-family="monospace">no brand guessing</text>
+            <rect class="demo-rule-5" x="6" y="43" width="2" height="2" fill="#51e898"/>
+            <text class="demo-rule-5" x="10" y="45" fill="#fff1e8" font-size="3.5" font-family="monospace">spec lib v2.3</text>
+            <rect class="demo-render-arrow" x="40" y="28" width="6" height="2" fill="#ffd23f"/>
+            <rect x="50" y="6" width="46" height="48" fill="#1d2b53" stroke="#ab5fff" stroke-width="0.5"/>
+            <rect x="50" y="6" width="46" height="6" fill="#ab5fff"/>
+            <text x="73" y="11" text-anchor="middle" fill="#fff1e8" font-size="4.5" font-family="monospace">AI · CONFIGURED</text>
+            <text x="52" y="20" fill="#51e898" font-size="4" font-family="monospace">## Section 4.1.2</text>
+            <text x="52" y="26" fill="#fff1e8" font-size="4" font-family="monospace">Per UK BS 5950,</text>
+            <text x="52" y="32" fill="#fff1e8" font-size="4" font-family="monospace">load factor 1.4 should</text>
+            <text x="52" y="38" fill="#fff1e8" font-size="4" font-family="monospace">be applied to dead</text>
+            <text x="52" y="44" fill="#fff1e8" font-size="4" font-family="monospace">loads in this case.</text>
+            <text x="52" y="50" fill="#ffd23f" font-size="3.5" font-family="monospace">[ ✓ all 5 rules followed ]</text>
+          </svg>
+        </div>
+      </div>
+
       <!-- LV.250 -->
       <div class="level-node level-expert" data-level="250">
         <div class="level-badge"><span class="level-num">LV.250</span><span class="level-tier">EXPERT</span></div>
@@ -788,6 +923,46 @@
             <text x="6" y="44" fill="#fff1e8" font-size="3.5" font-family="monospace" class="demo-code-5">  end</text>
             <text x="6" y="49" fill="#ab5fff" font-size="3.5" font-family="monospace" class="demo-code-6">end</text>
             <rect class="demo-cursor" x="6" y="50" width="2" height="3" fill="#51e898"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- LV.350 -->
+      <div class="level-node level-expert" data-level="350">
+        <div class="level-badge"><span class="level-num">LV.350</span><span class="level-tier">EXPERT</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">API integration / function calling</p>
+          <p class="level-tool"><span class="tool-tag">Claude API</span> <span class="tool-tag">webhooks</span></p>
+          <p class="level-example">"Should I bike to work?" — AI calls weather API at 7am, checks rain probability, sends a Yes/No to your phone.</p>
+          <p class="level-anchor">★ Like a daily morning agent — wires one external service into Claude's tool-use, gets a useful answer.</p>
+          <p class="level-case">↪ Hourly Notion API call → AI summarizes new pages into a digest</p>
+          <p class="level-case">↪ Stock price API + portfolio sheet → AI texts you on threshold breaches</p>
+          <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Pick one public API (weather, news, calendar). Wire it into Claude tool-use. Get one structured answer.</p>
+        </div>
+        <!-- DEMO: external service → AI → output -->
+        <div class="level-demo" data-demo="api" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect x="4" y="14" width="22" height="14" fill="#0a3a55" stroke="#29adff" stroke-width="0.5"/>
+            <rect x="6" y="10" width="6" height="2" fill="#fff1e8"/>
+            <rect x="8" y="8" width="10" height="2" fill="#fff1e8"/>
+            <rect x="10" y="6" width="14" height="2" fill="#fff1e8"/>
+            <text x="15" y="22" text-anchor="middle" fill="#29adff" font-size="4" font-family="monospace">WEATHER</text>
+            <text x="15" y="26" text-anchor="middle" fill="#29adff" font-size="3" font-family="monospace">API</text>
+            <line class="demo-link demo-link-1" x1="26" y1="20" x2="40" y2="30" stroke="#ffd23f" stroke-width="0.6" stroke-dasharray="2 1"/>
+            <rect x="38" y="20" width="22" height="20" fill="#ab5fff" stroke="#ffd23f" stroke-width="0.6"/>
+            <text x="49" y="29" text-anchor="middle" fill="#fff1e8" font-size="5" font-family="monospace">AI</text>
+            <text x="49" y="36" text-anchor="middle" fill="#ffd23f" font-size="3" font-family="monospace">tool-use</text>
+            <line class="demo-link demo-link-2" x1="60" y1="30" x2="74" y2="30" stroke="#ffd23f" stroke-width="0.6" stroke-dasharray="2 1"/>
+            <rect x="72" y="20" width="22" height="20" fill="#1d4a2a" stroke="#51e898" stroke-width="0.5"/>
+            <text x="83" y="27" text-anchor="middle" fill="#51e898" font-size="4" font-family="monospace">DECISION</text>
+            <rect x="74" y="30" width="18" height="3" fill="#51e898"/>
+            <text x="83" y="33" text-anchor="middle" fill="#1d2b53" font-size="3.5" font-family="monospace">YES BIKE</text>
+            <text x="83" y="38" text-anchor="middle" fill="#51e898" font-size="3" font-family="monospace">2% rain · 22°C</text>
+            <text x="50" y="50" text-anchor="middle" fill="#f4e4bc" font-size="4" font-family="monospace">7am · daily · automatic</text>
+            <use class="scene-sparkle" href="#spr-sparkle" x="32" y="46" width="4" height="4"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="64" y="46" width="4" height="4"/>
           </svg>
         </div>
       </div>
@@ -845,6 +1020,107 @@
             <circle class="demo-pulse-mcp demo-pulse-2" cx="80" cy="14" r="1.5" fill="#ffd23f"/>
             <circle class="demo-pulse-mcp demo-pulse-3" cx="20" cy="46" r="1.5" fill="#ffd23f"/>
             <circle class="demo-pulse-mcp demo-pulse-4" cx="80" cy="46" r="1.5" fill="#ffd23f"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- LV.700 -->
+      <div class="level-node level-master" data-level="700">
+        <div class="level-badge"><span class="level-num">LV.700</span><span class="level-tier">MASTER</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Multi-agent / parallel worktrees</p>
+          <p class="level-tool"><span class="tool-tag">Claude Code worktrees</span> <span class="tool-tag">Agent SDK</span></p>
+          <p class="level-example">3 agents test 3 trading strategies in parallel git branches. Hours of sequential work → minutes of concurrent.</p>
+          <p class="level-anchor">★ Like my <em>BTC Strategy Research</em> — Claude Code worktrees test parallel hypotheses, results converge.</p>
+          <p class="level-case">↪ Spawn 4 design-variant agents on the same brief, pick the best</p>
+          <p class="level-case">↪ Run 3 refactor agents on the same legacy file, compare diffs</p>
+          <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Use <code>git worktree add</code> + Claude Code in 2 branches. Run the same task in both. Compare.</p>
+        </div>
+        <!-- DEMO: parallel agents → convergence -->
+        <div class="level-demo" data-demo="parallel" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect x="4" y="26" width="14" height="8" fill="#5d3a1a" stroke="#ffd23f" stroke-width="0.4"/>
+            <text x="11" y="32" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">SAME</text>
+            <text x="11" y="38" text-anchor="middle" fill="#ffd23f" font-size="3" font-family="monospace">brief</text>
+            <line class="demo-link demo-link-1" x1="18" y1="30" x2="32" y2="14" stroke="#ffd23f" stroke-width="0.5" stroke-dasharray="2 1"/>
+            <line class="demo-link demo-link-2" x1="18" y1="30" x2="32" y2="30" stroke="#ffd23f" stroke-width="0.5" stroke-dasharray="2 1"/>
+            <line class="demo-link demo-link-3" x1="18" y1="30" x2="32" y2="46" stroke="#ffd23f" stroke-width="0.5" stroke-dasharray="2 1"/>
+            <rect x="32" y="8" width="22" height="14" fill="#e63946" stroke="#fff1e8" stroke-width="0.4"/>
+            <text x="43" y="14" text-anchor="middle" fill="#fff1e8" font-size="3.5" font-family="monospace">AGENT 1</text>
+            <text x="43" y="19" text-anchor="middle" fill="#fff1e8" font-size="3" font-family="monospace">strategy A</text>
+            <rect x="32" y="24" width="22" height="14" fill="#29adff" stroke="#fff1e8" stroke-width="0.4"/>
+            <text x="43" y="30" text-anchor="middle" fill="#fff1e8" font-size="3.5" font-family="monospace">AGENT 2</text>
+            <text x="43" y="35" text-anchor="middle" fill="#fff1e8" font-size="3" font-family="monospace">strategy B</text>
+            <rect x="32" y="40" width="22" height="14" fill="#51e898" stroke="#fff1e8" stroke-width="0.4"/>
+            <text x="43" y="46" text-anchor="middle" fill="#1d2b53" font-size="3.5" font-family="monospace">AGENT 3</text>
+            <text x="43" y="51" text-anchor="middle" fill="#1d2b53" font-size="3" font-family="monospace">strategy C</text>
+            <line class="demo-link demo-link-4" x1="54" y1="14" x2="74" y2="30" stroke="#ffd23f" stroke-width="0.5" stroke-dasharray="2 1"/>
+            <line class="demo-link demo-link-5" x1="54" y1="30" x2="74" y2="30" stroke="#ffd23f" stroke-width="0.5" stroke-dasharray="2 1"/>
+            <line class="demo-link demo-link-6" x1="54" y1="46" x2="74" y2="30" stroke="#ffd23f" stroke-width="0.5" stroke-dasharray="2 1"/>
+            <rect x="74" y="22" width="22" height="16" fill="#ffd23f" stroke="#bg-deep" stroke-width="0.4"/>
+            <text x="85" y="29" text-anchor="middle" fill="#1d2b53" font-size="4" font-family="monospace">BEST</text>
+            <text x="85" y="34" text-anchor="middle" fill="#1d2b53" font-size="4" font-family="monospace">PICK</text>
+            <use class="scene-sparkle" href="#spr-sparkle" x="84" y="14" width="6" height="6"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- LV.850 -->
+      <div class="level-node level-master" data-level="850">
+        <div class="level-badge"><span class="level-num">LV.850</span><span class="level-tier">MASTER</span></div>
+        <div class="level-card nes-container">
+          <p class="level-skill">Long-running scheduled pipelines</p>
+          <p class="level-tool"><span class="tool-tag">Agent SDK</span> <span class="tool-tag">cron</span></p>
+          <p class="level-example">Every Monday 8am: AI scrapes 10 vendor sites, builds price comparison sheet, emails it to your team — without you lifting a finger.</p>
+          <p class="level-anchor">★ The "set it and forget it" agent. Runs while you sleep. Reports when you wake up.</p>
+          <p class="level-case">↪ Daily: market digest with portfolio deltas + 3 action signals</p>
+          <p class="level-case">↪ Weekly: project meeting summarizer + auto-distribute to stakeholders</p>
+          <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Take any quest you already automated. Wrap it in <code>cron</code> or GitHub Actions. Let it run weekly.</p>
+        </div>
+        <!-- DEMO: scheduled timeline -->
+        <div class="level-demo" data-demo="scheduled" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect x="4" y="6" width="22" height="22" fill="#5d3a1a" stroke="#ffd23f" stroke-width="0.5"/>
+            <rect x="4" y="6" width="22" height="4" fill="#c9a227"/>
+            <text x="15" y="9" text-anchor="middle" fill="#1d2b53" font-size="3" font-family="monospace">MON 8AM</text>
+            <line x1="6" y1="13" x2="24" y2="13" stroke="#fff1e8" stroke-width="0.3"/>
+            <line x1="6" y1="17" x2="24" y2="17" stroke="#fff1e8" stroke-width="0.3"/>
+            <line x1="6" y1="21" x2="24" y2="21" stroke="#fff1e8" stroke-width="0.3"/>
+            <line x1="6" y1="25" x2="24" y2="25" stroke="#fff1e8" stroke-width="0.3"/>
+            <rect x="11" y="11" width="2" height="2" fill="#e63946"/>
+            <rect x="13" y="15" width="2" height="2" fill="#51e898"/>
+            <rect x="15" y="19" width="2" height="2" fill="#29adff"/>
+            <rect x="9" y="23" width="2" height="2" fill="#ffd23f"/>
+            <text x="15" y="35" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">⏰ AUTO-RUN</text>
+            <rect class="demo-pulse" x="30" y="29" width="3" height="2" fill="#ffd23f"/>
+            <rect x="34" y="6" width="14" height="48" fill="#1d4a2a" stroke="#51e898" stroke-width="0.4"/>
+            <text x="41" y="13" text-anchor="middle" fill="#51e898" font-size="3" font-family="monospace">SCRAPE</text>
+            <circle class="demo-gear demo-gear-1" cx="41" cy="20" r="3" fill="none" stroke="#51e898" stroke-width="0.6"/>
+            <line x1="41" y1="17" x2="41" y2="23" stroke="#51e898" stroke-width="0.6"/>
+            <line x1="38" y1="20" x2="44" y2="20" stroke="#51e898" stroke-width="0.6"/>
+            <text x="41" y="34" text-anchor="middle" fill="#ffd23f" font-size="3" font-family="monospace">PARSE</text>
+            <circle class="demo-gear demo-gear-2" cx="41" cy="40" r="3" fill="none" stroke="#ffd23f" stroke-width="0.6"/>
+            <line x1="41" y1="37" x2="41" y2="43" stroke="#ffd23f" stroke-width="0.6"/>
+            <line x1="38" y1="40" x2="44" y2="40" stroke="#ffd23f" stroke-width="0.6"/>
+            <text x="41" y="51" text-anchor="middle" fill="#29adff" font-size="3" font-family="monospace">EMAIL</text>
+            <line class="demo-link demo-link-1" x1="48" y1="30" x2="58" y2="30" stroke="#ffd23f" stroke-width="0.5" stroke-dasharray="2 1"/>
+            <rect x="58" y="14" width="38" height="32" fill="#1d2b53" stroke="#ffd23f" stroke-width="0.4"/>
+            <text x="77" y="20" text-anchor="middle" fill="#ffd23f" font-size="3.5" font-family="monospace">YOUR INBOX</text>
+            <rect x="60" y="22" width="34" height="3" fill="#ffd23f"/>
+            <text x="77" y="24.5" text-anchor="middle" fill="#1d2b53" font-size="2.5" font-family="monospace">Weekly Report — auto</text>
+            <rect x="60" y="27" width="34" height="1" fill="#fff1e8"/>
+            <rect x="60" y="29" width="30" height="1" fill="#fff1e8"/>
+            <rect x="60" y="31" width="32" height="1" fill="#fff1e8"/>
+            <rect x="60" y="33" width="28" height="1" fill="#51e898"/>
+            <rect x="60" y="35" width="34" height="1" fill="#fff1e8"/>
+            <rect x="60" y="37" width="30" height="1" fill="#51e898"/>
+            <rect x="60" y="39" width="32" height="1" fill="#fff1e8"/>
+            <rect x="60" y="41" width="26" height="1" fill="#51e898"/>
+            <text x="77" y="50" text-anchor="middle" fill="#51e898" font-size="3" font-family="monospace">delivered while you slept</text>
           </svg>
         </div>
       </div>
@@ -1549,6 +1825,6 @@
     <p class="press-start blink">[ ^ ]&nbsp;&nbsp;SCROLL UP TO REPLAY&nbsp;&nbsp;[ ^ ]</p>
   </section>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=8"></script>
 </body>
 </html>

@@ -176,22 +176,22 @@
     apprentice: {
       headline: 'APPRENTICE',
       sub:      'TIER UNLOCKED · LV.25+',
-      summary:  'Image generation for moodboards · Multi-step prompt chains',
+      summary:  'Image generation · Saved personas / custom prompts · Multi-step chains',
     },
     adept: {
       headline: 'ADEPT',
-      sub:      'TIER UNLOCKED · LV.100+',
-      summary:  'Custom Projects with persistent memory · Office style guides loaded as context',
+      sub:      'TIER UNLOCKED · LV.75+',
+      summary:  'Long-context multi-doc analysis · Custom Projects · Custom rules + AI persona',
     },
     expert: {
       headline: 'EXPERT',
       sub:      'TIER UNLOCKED · LV.250+',
-      summary:  'AI agents in your IDE · Connect AI to your tools via MCP',
+      summary:  'AI agents in your IDE · API integration / function calling · MCP servers',
     },
     master: {
       headline: 'MASTER',
-      sub:      'FINAL TIER UNLOCKED · LV.999',
-      summary:  'Custom multi-agent automation · Full pipelines that run themselves',
+      sub:      'FINAL TIER UNLOCKED · LV.700+',
+      summary:  'Multi-agent worktrees · Long-running scheduled pipelines · Full agent orchestration',
     },
   };
 
@@ -268,10 +268,10 @@
   /* ---------- 7. Hero transformation by scroll position ---------- */
   const TIER_FOR_LEVEL = {
     1: 'novice', 5: 'novice', 10: 'novice',
-    25: 'apprentice', 50: 'apprentice',
-    100: 'adept',
-    250: 'expert', 500: 'expert',
-    999: 'master'
+    25: 'apprentice', 35: 'apprentice', 50: 'apprentice',
+    75: 'adept', 100: 'adept', 150: 'adept',
+    250: 'expert', 350: 'expert', 500: 'expert',
+    700: 'master', 850: 'master', 999: 'master'
   };
   const TIER_LABEL = {
     novice: 'NOVICE',
