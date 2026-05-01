@@ -230,28 +230,10 @@
   updateHeroTier();
 
   /* ---------- 8. "Open Project in VS Code" launcher per quest ---------- */
-  // Maps each quest's data-quest-id to the local Windows path of its source project.
-  // Edit these paths to match your drive layout. Set to null if no local project.
-  const QUEST_PATHS = {
-    // Main quests
-    "quest-first":        null,                         // generic, no project
-    "quest-meeting":      "E:/HIBS-LIBRARY-Meeting-Record",
-    "quest-tca":          "E:/Construction-Data",
-    "quest-tor":          "E:/AI/ai-for-friends/export ai data/Gemini/Takeout",
-    "quest-concept":      "E:/APP-Concept-Finder",
-    "quest-quotation":    "E:/APP-Quatation-Organize",
-    "quest-punch":        "E:/APP-Punch-List",
-    "quest-tree":         "E:/APP-Tree-Mpping",
-    "quest-sprinkler":    "E:/Irrigation",
-    "quest-vision":       "E:/APP-HISB-visual-tools",
-    "quest-line":         "E:/APP-Line-Client-request",
-    "quest-method":       "E:/HIBS-LIBRARY-Repair-Method",
-    // Side quests
-    "quest-trader":       "E:/Portfolio-BTC-ANALYSIS",
-    "quest-vocab":        "E:/AI/ai-for-friends/export ai data/Gemini/Takeout/NotebookLM/New HSK 1 Chinese-Thai Vocabulary",
-    "quest-forensic":     "E:/AI/ai-for-friends/export ai data/Gemini/Takeout/NotebookLM/Titan Submersible Implosion",
-    "quest-daily-report": "E:/Portfolio-MARKET-DAILY-REPORT--CRYPTO",
-  };
+  // Path map is loaded from quest-paths.local.json (gitignored, local-only).
+  // Public site visitors won't have this file, so the launcher buttons stay hidden for them.
+  // The author can edit the JSON to map quest-id → local path on their disk.
+  let QUEST_PATHS = {};
 
   function launcherTemplate(path) {
     // Encode the path safely for vscode://file URL
@@ -265,18 +247,30 @@
     `;
   }
 
-  // Inject launcher into each quest header
-  document.querySelectorAll('.quest-card[data-quest-id]').forEach((card) => {
-    const id = card.getAttribute('data-quest-id');
-    const path = QUEST_PATHS[id];
-    if (!path) return;
-    const header = card.querySelector('.quest-header');
-    if (!header) return;
-    header.insertAdjacentHTML('beforeend', launcherTemplate(path));
-  });
+  // Async-load the local path map, then inject launchers
+  async function loadQuestPaths() {
+    try {
+      const resp = await fetch('quest-paths.local.json', { cache: 'no-store' });
+      if (!resp.ok) return;
+      QUEST_PATHS = await resp.json();
+    } catch (e) {
+      // No local config (public site) — silently skip launchers
+      return;
+    }
+    document.querySelectorAll('.quest-card[data-quest-id]').forEach((card) => {
+      const id = card.getAttribute('data-quest-id');
+      const path = QUEST_PATHS[id];
+      if (!path) return;
+      const header = card.querySelector('.quest-header');
+      if (!header) return;
+      header.insertAdjacentHTML('beforeend', launcherTemplate(path));
+    });
+    // Wire copy buttons after they're injected
+    document.querySelectorAll('.quest-copy-btn').forEach(wireCopyButton);
+  }
+  loadQuestPaths();
 
-  // Wire copy-to-clipboard for the COPY CMD buttons
-  document.querySelectorAll('.quest-copy-btn').forEach((btn) => {
+  function wireCopyButton(btn) {
     btn.addEventListener('click', async (e) => {
       e.preventDefault();
       const cmd = btn.dataset.cmd;
@@ -290,7 +284,6 @@
           btn.classList.remove('is-copied');
         }, 1500);
       } catch (err) {
-        // clipboard blocked; fall back to selecting a temp textarea
         const ta = document.createElement('textarea');
         ta.value = cmd;
         document.body.appendChild(ta);
@@ -299,7 +292,7 @@
         document.body.removeChild(ta);
       }
     });
-  });
+  }
 
   /* ---------- 9. Konami-style easter egg (optional fun) ---------- */
   const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];

@@ -50,7 +50,7 @@ architect-ai-quest/
 | # | Title | Lv | Class | Source folder |
 |---|---|---|---|---|
 | 1 | The Apprentice's First Spell  | 1   | Researcher    | (generic — your first prompt) |
-| 2 | The Meeting Note Distiller    | 5   | Communicator  | `HIBS-LIBRARY-Meeting-Record` |
+| 2 | The Meeting Note Distiller    | 5   | Communicator  | Project Meeting Records |
 | 3 | The TCA Data Alchemist        | 10  | Researcher    | `Construction-Data` |
 | 4 | The TOR Translation Scroll    | 15  | Researcher    | Gemini Workspace TOR translation |
 | 5 | The Concept Finder Grimoire   | 25  | Researcher    | `APP-Concept-Finder` |
@@ -58,9 +58,9 @@ architect-ai-quest/
 | 7 | The Punch List Protocol       | 50  | Drafter       | `APP-Punch-List` |
 | 8 | The Tree Survey Oracle        | 100 | Designer      | `APP-Tree-Mpping` |
 | 9 | The Sprinkler System Architect| 100 | Designer      | `Irrigation` |
-| 10 | The Vision Tools Spell       | 250 | Designer      | `APP-HISB-visual-tools` |
+| 10 | The Vision Tools Spell       | 250 | Designer      | NVIDIA Build CLI wrapper |
 | 11 | The LINE Bot Alchemist       | 250 | Communicator  | `APP-Line-Client-request` |
-| 12 | The Method Library Codex ★  | 500 | Drafter       | `HIBS-LIBRARY-Repair-Method` |
+| 12 | The Method Library Codex ★  | 500 | Drafter       | Project Repair Method Library |
 
 ## Side quests (for friends outside architecture)
 

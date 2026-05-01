@@ -23,3 +23,6 @@ yarn-error.log*
 .cache/
 *.tmp
 .tools/
+
+# Private project path map for launcher buttons
+quest-paths.local.json
