@@ -154,7 +154,7 @@
     btn.addEventListener('click', () => setHero(btn.dataset.hero));
   });
 
-  /* ---------- 7a. Locked level reveal + level-up overlay ---------- */
+  /* ---------- 7a. Locked level reveal + tier-unlock overlay ---------- */
   const levelUpOverlay = document.getElementById('levelup-overlay');
   const luBanner = levelUpOverlay?.querySelector('.lu-banner');
   const luLevel = levelUpOverlay?.querySelector('.lu-level');
@@ -162,10 +162,40 @@
   const luSkill = levelUpOverlay?.querySelector('.lu-skill');
   const reachedLevels = new Set();
   let userHasScrolled = false;
-  let levelUpQueue = [];
-  let levelUpPlaying = false;
+  let tierUnlockQueue = [];
+  let tierUnlockPlaying = false;
+  let lastUnlockedTier = null;
 
-  // First scroll flag — used to suppress level-up animation on initial page load
+  // Tier copy — fires once per tier transition. Skill-list summarizes what the tier unlocks.
+  const TIER_COPY = {
+    novice: {
+      headline: 'NOVICE',
+      sub:      'YOUR JOURNEY BEGINS · LV.1+',
+      summary:  'Ask AI questions · Summarize docs · Provide context for better answers',
+    },
+    apprentice: {
+      headline: 'APPRENTICE',
+      sub:      'TIER UNLOCKED · LV.25+',
+      summary:  'Image generation for moodboards · Multi-step prompt chains',
+    },
+    adept: {
+      headline: 'ADEPT',
+      sub:      'TIER UNLOCKED · LV.100+',
+      summary:  'Custom Projects with persistent memory · Office style guides loaded as context',
+    },
+    expert: {
+      headline: 'EXPERT',
+      sub:      'TIER UNLOCKED · LV.250+',
+      summary:  'AI agents in your IDE · Connect AI to your tools via MCP',
+    },
+    master: {
+      headline: 'MASTER',
+      sub:      'FINAL TIER UNLOCKED · LV.999',
+      summary:  'Custom multi-agent automation · Full pipelines that run themselves',
+    },
+  };
+
+  // First scroll flag — used to suppress overlay on initial page load
   window.addEventListener('scroll', () => { userHasScrolled = true; }, { once: true, passive: true });
 
   function reachLevel(node, animated) {
@@ -176,35 +206,41 @@
     if (animated) {
       node.classList.add('just-reached');
       setTimeout(() => node.classList.remove('just-reached'), 800);
-      // Queue the level-up overlay
-      const skill = node.querySelector('.level-skill')?.textContent || '';
-      const tierText = node.querySelector('.level-tier')?.textContent || 'NOVICE';
-      levelUpQueue.push({ lvl, skill, tier: tierText });
-      processLevelUpQueue();
+      // Only fire overlay on TIER transitions, not every level
+      const tier = TIER_FOR_LEVEL[lvl] || 'novice';
+      if (tier !== lastUnlockedTier) {
+        lastUnlockedTier = tier;
+        tierUnlockQueue.push(tier);
+        processTierUnlockQueue();
+      }
     }
   }
 
-  function processLevelUpQueue() {
-    if (levelUpPlaying || levelUpQueue.length === 0 || !levelUpOverlay) return;
-    const next = levelUpQueue.shift();
-    levelUpPlaying = true;
-    if (luLevel)  luLevel.textContent  = 'LV.' + next.lvl;
-    if (luTier)   luTier.textContent   = next.tier + ' TIER';
-    if (luSkill)  luSkill.textContent  = next.skill;
+  function processTierUnlockQueue() {
+    if (tierUnlockPlaying || tierUnlockQueue.length === 0 || !levelUpOverlay) return;
+    const tierKey = tierUnlockQueue.shift();
+    const copy = TIER_COPY[tierKey];
+    if (!copy) return;
+    tierUnlockPlaying = true;
+    if (luLevel) luLevel.textContent = copy.headline;
+    if (luTier)  luTier.textContent  = copy.sub;
+    if (luSkill) luSkill.textContent = copy.summary;
     levelUpOverlay.classList.remove('is-active');
     void levelUpOverlay.offsetWidth;
     levelUpOverlay.classList.add('is-active');
-    // Chime ladder per level
+    // Tier-up chime — pitch climbs per tier
     if (typeof chime === 'function' && audioReady) {
-      const f = 220 + Math.min(next.lvl, 999) * 0.5;
-      chime(f, 0.18);
-      setTimeout(() => chime(f * 1.5, 0.14), 180);
+      const tierFreq = { novice: 330, apprentice: 440, adept: 550, expert: 660, master: 880 };
+      const f = tierFreq[tierKey] || 440;
+      chime(f, 0.22);
+      setTimeout(() => chime(f * 1.5, 0.18), 220);
+      setTimeout(() => chime(f * 2, 0.18), 440);
     }
     setTimeout(() => {
       levelUpOverlay.classList.remove('is-active');
-      levelUpPlaying = false;
-      processLevelUpQueue();
-    }, 2500);
+      tierUnlockPlaying = false;
+      processTierUnlockQueue();
+    }, 2800);
   }
 
   // Initial pass: mark already-visible nodes as reached without animation
