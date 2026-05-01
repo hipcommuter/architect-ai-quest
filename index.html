@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" />
 
   <!-- Local styles -->
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
 
@@ -442,6 +442,27 @@
           <p class="level-example">"What's the difference between EIFS and rainscreen?"</p>
           <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Open Claude.ai and type — "explain [a term you confuse] like I'm 10."</p>
         </div>
+        <!-- DEMO: chat bubble typing -->
+        <div class="level-demo" data-demo="chat" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect x="2" y="2" width="96" height="56" fill="#1d2b53" stroke="#f4e4bc" stroke-width="0.5"/>
+            <rect x="4" y="4" width="92" height="6" fill="#5d3a1a"/>
+            <rect x="6" y="6" width="2" height="2" fill="#e63946"/>
+            <rect x="10" y="6" width="2" height="2" fill="#ffd23f"/>
+            <rect x="14" y="6" width="2" height="2" fill="#51e898"/>
+            <rect class="demo-bubble-user" x="30" y="14" width="60" height="10" fill="#29adff"/>
+            <rect class="demo-typing-1" x="34" y="18" width="2" height="2" fill="#fff1e8"/>
+            <rect class="demo-typing-2" x="40" y="18" width="2" height="2" fill="#fff1e8"/>
+            <rect class="demo-typing-3" x="46" y="18" width="2" height="2" fill="#fff1e8"/>
+            <rect class="demo-bubble-ai" x="6" y="30" width="70" height="22" fill="#3a2a40"/>
+            <rect class="demo-line-1" x="10" y="34" width="40" height="2" fill="#f4e4bc"/>
+            <rect class="demo-line-2" x="10" y="38" width="50" height="2" fill="#f4e4bc"/>
+            <rect class="demo-line-3" x="10" y="42" width="35" height="2" fill="#f4e4bc"/>
+            <rect class="demo-line-4" x="10" y="46" width="45" height="2" fill="#f4e4bc"/>
+          </svg>
+        </div>
       </div>
 
       <!-- LV.5 -->
@@ -453,6 +474,39 @@
           <p class="level-example">Compress a 60-page product datasheet into a 1-page spec summary.</p>
           <p class="level-anchor">★ Like my <em>HIBS Meeting Records</em> — meeting transcripts → bullet action items.</p>
           <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Drag a 30-page PDF in. Ask for 5 bullets + action items.</p>
+        </div>
+        <!-- DEMO: long doc → bullets -->
+        <div class="level-demo" data-demo="summarize" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect class="demo-doc-tall" x="6" y="6" width="20" height="48" fill="#f4e4bc"/>
+            <rect x="9" y="10" width="14" height="1" fill="#1d2b53"/>
+            <rect x="9" y="13" width="14" height="1" fill="#1d2b53"/>
+            <rect x="9" y="16" width="12" height="1" fill="#1d2b53"/>
+            <rect x="9" y="19" width="14" height="1" fill="#1d2b53"/>
+            <rect x="9" y="22" width="13" height="1" fill="#1d2b53"/>
+            <rect x="9" y="25" width="14" height="1" fill="#1d2b53"/>
+            <rect x="9" y="28" width="11" height="1" fill="#1d2b53"/>
+            <rect x="9" y="31" width="14" height="1" fill="#1d2b53"/>
+            <rect x="9" y="34" width="13" height="1" fill="#1d2b53"/>
+            <rect x="9" y="37" width="14" height="1" fill="#1d2b53"/>
+            <rect x="9" y="40" width="12" height="1" fill="#1d2b53"/>
+            <rect x="9" y="43" width="14" height="1" fill="#1d2b53"/>
+            <rect x="9" y="46" width="13" height="1" fill="#1d2b53"/>
+            <rect x="9" y="49" width="11" height="1" fill="#1d2b53"/>
+            <use class="demo-arrow-spark" href="#spr-sparkle" x="34" y="26" width="10" height="10"/>
+            <rect class="demo-bullet-1" x="50" y="14" width="2" height="2" fill="#ffd23f"/>
+            <rect class="demo-bullet-1" x="54" y="14" width="40" height="2" fill="#f4e4bc"/>
+            <rect class="demo-bullet-2" x="50" y="22" width="2" height="2" fill="#ffd23f"/>
+            <rect class="demo-bullet-2" x="54" y="22" width="36" height="2" fill="#f4e4bc"/>
+            <rect class="demo-bullet-3" x="50" y="30" width="2" height="2" fill="#ffd23f"/>
+            <rect class="demo-bullet-3" x="54" y="30" width="42" height="2" fill="#f4e4bc"/>
+            <rect class="demo-bullet-4" x="50" y="38" width="2" height="2" fill="#ffd23f"/>
+            <rect class="demo-bullet-4" x="54" y="38" width="32" height="2" fill="#f4e4bc"/>
+            <rect class="demo-bullet-5" x="50" y="46" width="2" height="2" fill="#ffd23f"/>
+            <rect class="demo-bullet-5" x="54" y="46" width="38" height="2" fill="#f4e4bc"/>
+          </svg>
         </div>
       </div>
 
@@ -466,6 +520,46 @@
           <p class="level-anchor">★ Like my <em>Construction Data Alchemist</em> — TCA news scraper into Excel.</p>
           <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Paste a vendor catalog. Ask AI to compare 3 options by cost + spec.</p>
         </div>
+        <!-- DEMO: 3 PDFs flowing into AI → table -->
+        <div class="level-demo" data-demo="context" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <g class="demo-pdf-1">
+              <rect x="6" y="4" width="14" height="18" fill="#e63946"/>
+              <rect x="8" y="6" width="10" height="1" fill="#fff1e8"/>
+              <rect x="8" y="9" width="10" height="1" fill="#fff1e8"/>
+              <rect x="8" y="12" width="8" height="1" fill="#fff1e8"/>
+              <rect x="8" y="15" width="10" height="1" fill="#fff1e8"/>
+              <rect x="6" y="18" width="14" height="4" fill="#a82838"/>
+            </g>
+            <g class="demo-pdf-2">
+              <rect x="6" y="4" width="14" height="18" fill="#29adff"/>
+              <rect x="8" y="6" width="10" height="1" fill="#fff1e8"/>
+              <rect x="8" y="9" width="10" height="1" fill="#fff1e8"/>
+              <rect x="8" y="12" width="8" height="1" fill="#fff1e8"/>
+              <rect x="6" y="18" width="14" height="4" fill="#1d6a99"/>
+            </g>
+            <g class="demo-pdf-3">
+              <rect x="6" y="4" width="14" height="18" fill="#51e898"/>
+              <rect x="8" y="6" width="10" height="1" fill="#fff1e8"/>
+              <rect x="8" y="9" width="10" height="1" fill="#fff1e8"/>
+              <rect x="6" y="18" width="14" height="4" fill="#2a8a55"/>
+            </g>
+            <rect class="demo-ai-core" x="40" y="6" width="20" height="14" fill="#ab5fff" stroke="#ffd23f" stroke-width="0.6"/>
+            <text x="50" y="15" text-anchor="middle" fill="#fff1e8" font-size="6" font-family="monospace">AI</text>
+            <rect class="demo-table" x="64" y="4" width="32" height="18" fill="#1d2b53" stroke="#ffd23f" stroke-width="0.4"/>
+            <rect class="demo-tr-1" x="66" y="7" width="28" height="2" fill="#ffd23f"/>
+            <rect class="demo-tr-2" x="66" y="11" width="28" height="2" fill="#f4e4bc"/>
+            <rect class="demo-tr-3" x="66" y="15" width="28" height="2" fill="#f4e4bc"/>
+            <rect class="demo-tr-4" x="66" y="19" width="28" height="2" fill="#f4e4bc"/>
+            <rect class="demo-flow-1" x="22" y="12" width="2" height="2" fill="#ffd23f"/>
+            <rect class="demo-flow-2" x="30" y="12" width="2" height="2" fill="#ffd23f"/>
+            <rect class="demo-flow-3" x="38" y="12" width="2" height="2" fill="#ffd23f"/>
+            <text x="50" y="40" text-anchor="middle" fill="#51e898" font-size="6" font-family="monospace">comparison</text>
+            <text x="50" y="48" text-anchor="middle" fill="#51e898" font-size="6" font-family="monospace">table built</text>
+          </svg>
+        </div>
       </div>
 
       <!-- LV.25 -->
@@ -477,6 +571,52 @@
           <p class="level-example">Pre-render a moodboard before bringing geometry into Enscape or Lumion.</p>
           <p class="level-anchor">★ Like my <em>Concept Finder Grimoire</em> — Thai-shophouse material guide.</p>
           <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Generate 4 Midjourney moodboards before opening SketchUp.</p>
+        </div>
+        <!-- DEMO: 4 moodboard tiles filling -->
+        <div class="level-demo" data-demo="moodboard" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect x="6" y="6" width="40" height="22" fill="#1d2b53" stroke="#f4e4bc" stroke-width="0.4"/>
+            <g class="demo-tile-1">
+              <rect x="8" y="8" width="14" height="9" fill="#e63946"/>
+              <rect x="10" y="11" width="10" height="2" fill="#ff8a8a"/>
+              <rect x="10" y="14" width="6" height="1" fill="#fff1e8"/>
+            </g>
+            <g class="demo-tile-2">
+              <rect x="24" y="8" width="14" height="9" fill="#5d3a1a"/>
+              <rect x="26" y="9" width="10" height="2" fill="#8a5a2a"/>
+              <rect x="26" y="13" width="8" height="1" fill="#c9a227"/>
+            </g>
+            <g class="demo-tile-3">
+              <rect x="8" y="19" width="14" height="9" fill="#1d4a2a"/>
+              <rect x="10" y="20" width="3" height="3" fill="#51e898"/>
+              <rect x="14" y="20" width="3" height="3" fill="#51e898"/>
+              <rect x="18" y="20" width="3" height="3" fill="#51e898"/>
+              <rect x="10" y="24" width="10" height="3" fill="#7fcfff"/>
+            </g>
+            <g class="demo-tile-4">
+              <rect x="24" y="19" width="14" height="9" fill="#3a2a40"/>
+              <rect x="26" y="21" width="10" height="1" fill="#ffd23f"/>
+              <rect x="26" y="23" width="8" height="1" fill="#ff77a8"/>
+              <rect x="26" y="25" width="9" height="1" fill="#29adff"/>
+            </g>
+            <text x="26" y="35" text-anchor="middle" fill="#ffd23f" font-size="5" font-family="monospace">prompt</text>
+            <text x="26" y="42" text-anchor="middle" fill="#f4e4bc" font-size="4.5" font-family="monospace">"brutalist library"</text>
+            <rect class="demo-render-arrow" x="48" y="14" width="6" height="2" fill="#ffd23f"/>
+            <rect class="demo-render-arrow" x="50" y="12" width="2" height="6" fill="#ffd23f"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="56" y="6" width="6" height="6"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="84" y="46" width="5" height="5"/>
+            <rect x="60" y="32" width="34" height="22" fill="#1d2b53" stroke="#ffd23f" stroke-width="0.4"/>
+            <g class="demo-render-tile">
+              <rect x="62" y="34" width="30" height="14" fill="#ff8a3a"/>
+              <rect x="62" y="34" width="30" height="6" fill="#ffd23f"/>
+              <rect x="64" y="40" width="6" height="6" fill="#5d3a1a"/>
+              <rect x="74" y="40" width="6" height="6" fill="#5d3a1a"/>
+              <rect x="84" y="40" width="6" height="6" fill="#5d3a1a"/>
+            </g>
+            <text x="76" y="52" text-anchor="middle" fill="#fff1e8" font-size="4" font-family="monospace">render</text>
+          </svg>
         </div>
       </div>
 
@@ -490,6 +630,42 @@
           <p class="level-anchor">★ Like my <em>Quotation Fortress</em> — scattered vendor PDFs into one tracker with formula-based comparison and live source links.</p>
           <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Take 3 vendor PDFs from one job. Compile a comparison table in one chat.</p>
         </div>
+        <!-- DEMO: 4-step pipeline with pulse moving through -->
+        <div class="level-demo" data-demo="chain" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect x="4" y="22" width="18" height="16" fill="#1d2b53" stroke="#ffd23f" stroke-width="0.4"/>
+            <text x="13" y="28" text-anchor="middle" fill="#ffd23f" font-size="3.5" font-family="monospace">BRIEF</text>
+            <rect x="6" y="30" width="14" height="1" fill="#f4e4bc"/>
+            <rect x="6" y="32" width="12" height="1" fill="#f4e4bc"/>
+            <rect x="6" y="34" width="14" height="1" fill="#f4e4bc"/>
+            <rect x="28" y="22" width="18" height="16" fill="#1d2b53" stroke="#ffd23f" stroke-width="0.4"/>
+            <text x="37" y="28" text-anchor="middle" fill="#51e898" font-size="3.5" font-family="monospace">SHORTLIST</text>
+            <rect x="30" y="30" width="2" height="2" fill="#51e898"/>
+            <rect x="33" y="30" width="11" height="1" fill="#f4e4bc"/>
+            <rect x="30" y="33" width="2" height="2" fill="#51e898"/>
+            <rect x="33" y="33" width="11" height="1" fill="#f4e4bc"/>
+            <rect x="52" y="22" width="18" height="16" fill="#1d2b53" stroke="#ffd23f" stroke-width="0.4"/>
+            <text x="61" y="28" text-anchor="middle" fill="#29adff" font-size="3.5" font-family="monospace">EMAIL</text>
+            <rect x="54" y="30" width="14" height="1" fill="#29adff"/>
+            <rect x="54" y="32" width="12" height="1" fill="#f4e4bc"/>
+            <rect x="54" y="34" width="14" height="1" fill="#f4e4bc"/>
+            <rect x="76" y="22" width="20" height="16" fill="#1d2b53" stroke="#ffd23f" stroke-width="0.4"/>
+            <text x="86" y="28" text-anchor="middle" fill="#ff77a8" font-size="3.5" font-family="monospace">SPEC</text>
+            <rect x="78" y="30" width="16" height="1" fill="#ff77a8"/>
+            <rect x="78" y="32" width="14" height="1" fill="#f4e4bc"/>
+            <rect x="78" y="34" width="16" height="1" fill="#f4e4bc"/>
+            <rect x="22" y="29" width="6" height="2" fill="#5d3a1a"/>
+            <polygon points="28,28 28,32 30,30" fill="#ffd23f"/>
+            <rect x="46" y="29" width="6" height="2" fill="#5d3a1a"/>
+            <polygon points="52,28 52,32 54,30" fill="#ffd23f"/>
+            <rect x="70" y="29" width="6" height="2" fill="#5d3a1a"/>
+            <polygon points="76,28 76,32 78,30" fill="#ffd23f"/>
+            <rect class="demo-pulse" x="6" y="29" width="3" height="2" fill="#ffd23f"/>
+            <text x="50" y="50" text-anchor="middle" fill="#f4e4bc" font-size="5" font-family="monospace">one chat · 4 steps</text>
+          </svg>
+        </div>
       </div>
 
       <!-- LV.100 -->
@@ -501,6 +677,47 @@
           <p class="level-example">Office's material library + price database loaded as the AI's persistent memory.</p>
           <p class="level-anchor">★ Like my <em>HIBS Repair Method Library</em> — 12 paint methods × 43 brand options.</p>
           <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Make a Claude Project. Drop in your office's spec template + style guide.</p>
+        </div>
+        <!-- DEMO: project folder + files orbit -->
+        <div class="level-demo" data-demo="project" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect x="34" y="22" width="32" height="22" fill="#5d3a1a" stroke="#ffd23f" stroke-width="0.4"/>
+            <rect x="34" y="20" width="14" height="2" fill="#5d3a1a"/>
+            <rect x="34" y="22" width="32" height="3" fill="#c9a227"/>
+            <text x="50" y="36" text-anchor="middle" fill="#ffd23f" font-size="6" font-family="monospace">PROJECT</text>
+            <text x="50" y="42" text-anchor="middle" fill="#f4e4bc" font-size="3.5" font-family="monospace">persistent memory</text>
+            <g class="demo-orbit-1">
+              <rect x="10" y="6" width="10" height="12" fill="#f4e4bc"/>
+              <rect x="11" y="8" width="8" height="1" fill="#1d2b53"/>
+              <rect x="11" y="10" width="6" height="1" fill="#1d2b53"/>
+              <rect x="11" y="12" width="8" height="1" fill="#1d2b53"/>
+              <text x="15" y="16" text-anchor="middle" fill="#1d2b53" font-size="2.5" font-family="monospace">spec.md</text>
+            </g>
+            <g class="demo-orbit-2">
+              <rect x="80" y="6" width="10" height="12" fill="#f4e4bc"/>
+              <rect x="81" y="8" width="8" height="1" fill="#1d2b53"/>
+              <rect x="81" y="10" width="6" height="1" fill="#1d2b53"/>
+              <text x="85" y="16" text-anchor="middle" fill="#1d2b53" font-size="2.5" font-family="monospace">style.md</text>
+            </g>
+            <g class="demo-orbit-3">
+              <rect x="10" y="46" width="10" height="10" fill="#51e898"/>
+              <rect x="11" y="48" width="8" height="1" fill="#1d2b53"/>
+              <rect x="11" y="50" width="6" height="1" fill="#1d2b53"/>
+              <text x="15" y="55" text-anchor="middle" fill="#1d2b53" font-size="2.5" font-family="monospace">price.csv</text>
+            </g>
+            <g class="demo-orbit-4">
+              <rect x="80" y="46" width="10" height="10" fill="#29adff"/>
+              <rect x="81" y="48" width="8" height="1" fill="#fff1e8"/>
+              <rect x="81" y="50" width="6" height="1" fill="#fff1e8"/>
+              <text x="85" y="55" text-anchor="middle" fill="#fff1e8" font-size="2.5" font-family="monospace">refs.pdf</text>
+            </g>
+            <line x1="20" y1="14" x2="34" y2="28" stroke="#ffd23f" stroke-width="0.4" stroke-dasharray="2 1"/>
+            <line x1="80" y1="14" x2="66" y2="28" stroke="#ffd23f" stroke-width="0.4" stroke-dasharray="2 1"/>
+            <line x1="20" y1="50" x2="34" y2="40" stroke="#ffd23f" stroke-width="0.4" stroke-dasharray="2 1"/>
+            <line x1="80" y1="50" x2="66" y2="40" stroke="#ffd23f" stroke-width="0.4" stroke-dasharray="2 1"/>
+          </svg>
         </div>
       </div>
 
@@ -514,6 +731,27 @@
           <p class="level-anchor">★ Like my <em>Tree Survey Oracle</em> — 400+ trees mapped from phone photos, 3 weeks → 2 days.</p>
           <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Install Claude Code. Have it write a 20-line EXIF reader for one phone photo, then plot the point on a Leaflet map.</p>
         </div>
+        <!-- DEMO: terminal with code being typed -->
+        <div class="level-demo" data-demo="ide" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <rect x="4" y="4" width="92" height="52" fill="#1a1a3e" stroke="#ab5fff" stroke-width="0.4"/>
+            <rect x="4" y="4" width="92" height="6" fill="#3a2a4a"/>
+            <rect x="6" y="6" width="2" height="2" fill="#e63946"/>
+            <rect x="10" y="6" width="2" height="2" fill="#ffd23f"/>
+            <rect x="14" y="6" width="2" height="2" fill="#51e898"/>
+            <text x="92" y="9" text-anchor="end" fill="#f4e4bc" font-size="3" font-family="monospace">claude</text>
+            <text x="6" y="18" fill="#51e898" font-size="3.5" font-family="monospace" class="demo-line-prompt">$ build sketchup helper</text>
+            <text x="6" y="24" fill="#ab5fff" font-size="3.5" font-family="monospace" class="demo-code-1">def export_dwg(model)</text>
+            <text x="6" y="29" fill="#fff1e8" font-size="3.5" font-family="monospace" class="demo-code-2">  scale = 1.0 / 12</text>
+            <text x="6" y="34" fill="#fff1e8" font-size="3.5" font-family="monospace" class="demo-code-3">  model.entities.each do |e|</text>
+            <text x="6" y="39" fill="#29adff" font-size="3.5" font-family="monospace" class="demo-code-4">    e.write_to "out.dwg"</text>
+            <text x="6" y="44" fill="#fff1e8" font-size="3.5" font-family="monospace" class="demo-code-5">  end</text>
+            <text x="6" y="49" fill="#ab5fff" font-size="3.5" font-family="monospace" class="demo-code-6">end</text>
+            <rect class="demo-cursor" x="6" y="50" width="2" height="3" fill="#51e898"/>
+          </svg>
+        </div>
       </div>
 
       <!-- LV.500 -->
@@ -526,6 +764,49 @@
           <p class="level-anchor">★ Like my <em>LINE Bot Alchemist</em> — client snaps a photo, it lands in Sheets with a thumbnail. +3 hrs/day reclaimed.</p>
           <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Wire one chat tool (LINE / Slack / Telegram) into a Sheet via an Apps Script webhook. Start with text-only, add photos next.</p>
         </div>
+        <!-- DEMO: MCP network of tools connected to AI core -->
+        <div class="level-demo" data-demo="mcp" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <line class="demo-link demo-link-1" x1="50" y1="30" x2="20" y2="14" stroke="#ab5fff" stroke-width="0.6"/>
+            <line class="demo-link demo-link-2" x1="50" y1="30" x2="80" y2="14" stroke="#ab5fff" stroke-width="0.6"/>
+            <line class="demo-link demo-link-3" x1="50" y1="30" x2="20" y2="46" stroke="#ab5fff" stroke-width="0.6"/>
+            <line class="demo-link demo-link-4" x1="50" y1="30" x2="80" y2="46" stroke="#ab5fff" stroke-width="0.6"/>
+            <line class="demo-link demo-link-5" x1="50" y1="30" x2="50" y2="6" stroke="#ab5fff" stroke-width="0.6"/>
+            <line class="demo-link demo-link-6" x1="50" y1="30" x2="50" y2="54" stroke="#ab5fff" stroke-width="0.6"/>
+            <rect class="demo-core" x="42" y="22" width="16" height="16" fill="#ab5fff" stroke="#ffd23f" stroke-width="0.6"/>
+            <text x="50" y="33" text-anchor="middle" fill="#fff1e8" font-size="5" font-family="monospace">AI</text>
+            <g class="demo-tool demo-tool-1">
+              <rect x="12" y="8" width="16" height="10" fill="#5d3a1a"/>
+              <text x="20" y="15" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">DRIVE</text>
+            </g>
+            <g class="demo-tool demo-tool-2">
+              <rect x="72" y="8" width="16" height="10" fill="#1d4a2a"/>
+              <text x="80" y="15" text-anchor="middle" fill="#51e898" font-size="4" font-family="monospace">DOCS</text>
+            </g>
+            <g class="demo-tool demo-tool-3">
+              <rect x="12" y="42" width="16" height="10" fill="#3a1a4a"/>
+              <text x="20" y="49" text-anchor="middle" fill="#ff77a8" font-size="4" font-family="monospace">SHEETS</text>
+            </g>
+            <g class="demo-tool demo-tool-4">
+              <rect x="72" y="42" width="16" height="10" fill="#0a3a55"/>
+              <text x="80" y="49" text-anchor="middle" fill="#29adff" font-size="4" font-family="monospace">SLACK</text>
+            </g>
+            <g class="demo-tool demo-tool-5">
+              <rect x="42" y="0" width="16" height="6" fill="#3a2010"/>
+              <text x="50" y="5" text-anchor="middle" fill="#ff8a3a" font-size="3.5" font-family="monospace">EMAIL</text>
+            </g>
+            <g class="demo-tool demo-tool-6">
+              <rect x="42" y="54" width="16" height="6" fill="#5d3a55"/>
+              <text x="50" y="59" text-anchor="middle" fill="#ff77a8" font-size="3.5" font-family="monospace">CAL</text>
+            </g>
+            <circle class="demo-pulse-mcp demo-pulse-1" cx="20" cy="14" r="1.5" fill="#ffd23f"/>
+            <circle class="demo-pulse-mcp demo-pulse-2" cx="80" cy="14" r="1.5" fill="#ffd23f"/>
+            <circle class="demo-pulse-mcp demo-pulse-3" cx="20" cy="46" r="1.5" fill="#ffd23f"/>
+            <circle class="demo-pulse-mcp demo-pulse-4" cx="80" cy="46" r="1.5" fill="#ffd23f"/>
+          </svg>
+        </div>
       </div>
 
       <!-- LV.999 -->
@@ -537,6 +818,48 @@
           <p class="level-example">Auto material-compare pipeline: feed product list → AI scrapes vendors → builds price/method comparison sheet.</p>
           <p class="level-anchor">★ Like <em>this site</em> — built by orchestrating multiple agents to extract real quests from chat history.</p>
           <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Pick one repeating weekly task. Automate it end-to-end with the Agent SDK.</p>
+        </div>
+        <!-- DEMO: full pipeline with items flowing through -->
+        <div class="level-demo" data-demo="pipeline" aria-hidden="true">
+          <p class="demo-caption">&gt; HOW IT LOOKS</p>
+          <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
+            <rect width="100" height="60" fill="#0f0e2a"/>
+            <text x="50" y="6" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">FULL AUTOMATION PIPELINE</text>
+            <rect x="2" y="22" width="14" height="14" fill="#5d3a1a" stroke="#ffd23f" stroke-width="0.4"/>
+            <text x="9" y="29" text-anchor="middle" fill="#ffd23f" font-size="3" font-family="monospace">PRODUCT</text>
+            <text x="9" y="33" text-anchor="middle" fill="#ffd23f" font-size="3" font-family="monospace">LIST</text>
+            <rect x="20" y="24" width="16" height="10" fill="#1d4a2a" stroke="#51e898" stroke-width="0.4"/>
+            <text x="28" y="30" text-anchor="middle" fill="#51e898" font-size="3" font-family="monospace">SCRAPE</text>
+            <circle class="demo-gear demo-gear-1" cx="28" cy="20" r="3" fill="none" stroke="#51e898" stroke-width="0.6"/>
+            <line x1="28" y1="17" x2="28" y2="23" stroke="#51e898" stroke-width="0.6"/>
+            <line x1="25" y1="20" x2="31" y2="20" stroke="#51e898" stroke-width="0.6"/>
+            <rect x="40" y="24" width="16" height="10" fill="#3a1a4a" stroke="#ab5fff" stroke-width="0.4"/>
+            <text x="48" y="30" text-anchor="middle" fill="#ab5fff" font-size="3" font-family="monospace">PARSE</text>
+            <circle class="demo-gear demo-gear-2" cx="48" cy="20" r="3" fill="none" stroke="#ab5fff" stroke-width="0.6"/>
+            <line x1="48" y1="17" x2="48" y2="23" stroke="#ab5fff" stroke-width="0.6"/>
+            <line x1="45" y1="20" x2="51" y2="20" stroke="#ab5fff" stroke-width="0.6"/>
+            <rect x="60" y="24" width="16" height="10" fill="#0a3a55" stroke="#29adff" stroke-width="0.4"/>
+            <text x="68" y="30" text-anchor="middle" fill="#29adff" font-size="3" font-family="monospace">COMPARE</text>
+            <circle class="demo-gear demo-gear-3" cx="68" cy="20" r="3" fill="none" stroke="#29adff" stroke-width="0.6"/>
+            <line x1="68" y1="17" x2="68" y2="23" stroke="#29adff" stroke-width="0.6"/>
+            <line x1="65" y1="20" x2="71" y2="20" stroke="#29adff" stroke-width="0.6"/>
+            <rect x="80" y="22" width="18" height="14" fill="#ffd23f" stroke="#fff1e8" stroke-width="0.4"/>
+            <text x="89" y="29" text-anchor="middle" fill="#1d2b53" font-size="3" font-family="monospace">SHEET</text>
+            <text x="89" y="33" text-anchor="middle" fill="#1d2b53" font-size="3" font-family="monospace">DELIVERED</text>
+            <rect x="16" y="28" width="4" height="2" fill="#ffd23f"/>
+            <polygon points="20,27 20,31 22,29" fill="#ffd23f"/>
+            <rect x="36" y="28" width="4" height="2" fill="#ffd23f"/>
+            <polygon points="40,27 40,31 42,29" fill="#ffd23f"/>
+            <rect x="56" y="28" width="4" height="2" fill="#ffd23f"/>
+            <polygon points="60,27 60,31 62,29" fill="#ffd23f"/>
+            <rect x="76" y="28" width="4" height="2" fill="#ffd23f"/>
+            <polygon points="80,27 80,31 82,29" fill="#ffd23f"/>
+            <rect class="demo-flow-item demo-flow-1" x="10" y="28" width="3" height="2" fill="#fff1e8"/>
+            <rect class="demo-flow-item demo-flow-2" x="10" y="28" width="3" height="2" fill="#ff77a8"/>
+            <text x="50" y="48" text-anchor="middle" fill="#51e898" font-size="4" font-family="monospace">runs every Monday 8am</text>
+            <use class="scene-sparkle" href="#spr-sparkle" x="14" y="50" width="4" height="4"/>
+            <use class="scene-sparkle" href="#spr-sparkle" x="84" y="50" width="4" height="4"/>
+          </svg>
         </div>
       </div>
 
@@ -2004,6 +2327,6 @@
     <p class="press-start blink">[ ^ ]&nbsp;&nbsp;SCROLL UP TO REPLAY&nbsp;&nbsp;[ ^ ]</p>
   </section>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

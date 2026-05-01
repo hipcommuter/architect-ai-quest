@@ -456,6 +456,291 @@ section.screen {
   .level-node::after { left: 8px !important; right: auto !important; }
 }
 
+/* ============================================================
+   LEVEL-MAP DEMO PANELS — animated mini-illustrations
+   per level showing how the skill looks in practice.
+   Positioned in the empty space opposite each card.
+   ============================================================ */
+.level-demo {
+  position: absolute;
+  top: 14px;
+  width: 280px;
+  pointer-events: none;
+  text-align: left;
+}
+.level-node:nth-child(odd) .level-demo {
+  left: calc(100% + 30px);
+}
+.level-node:nth-child(even) .level-demo {
+  right: calc(100% + 30px);
+  text-align: right;
+}
+.demo-caption {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin: 0 0 8px;
+  opacity: 0.85;
+}
+.demo-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 170px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  shape-rendering: crispEdges;
+  border: 3px solid var(--ink-cream);
+  background: #0f0e2a;
+  filter: drop-shadow(3px 4px 0 rgba(0,0,0,0.6));
+}
+
+/* Hide demos when track collapses (no room) */
+@media (max-width: 1100px) {
+  .level-demo { display: none; }
+}
+
+/* ---------- DEMO 1: Chat (Lv.1) ---------- */
+.demo-typing-1, .demo-typing-2, .demo-typing-3 {
+  animation: demo-typing 1.4s steps(2) infinite;
+}
+.demo-typing-2 { animation-delay: 0.2s; }
+.demo-typing-3 { animation-delay: 0.4s; }
+@keyframes demo-typing {
+  0%, 100% { opacity: 0.2; transform: translateY(0); }
+  50%      { opacity: 1;   transform: translateY(-1px); }
+}
+.demo-line-1, .demo-line-2, .demo-line-3, .demo-line-4 {
+  transform-origin: left center;
+  animation: demo-line-grow 5s steps(20) infinite;
+}
+.demo-line-2 { animation-delay: 0.4s; }
+.demo-line-3 { animation-delay: 0.8s; }
+.demo-line-4 { animation-delay: 1.2s; }
+@keyframes demo-line-grow {
+  0%, 5%   { transform: scaleX(0); opacity: 0; }
+  10%, 90% { transform: scaleX(1); opacity: 1; }
+  95%, 100%{ transform: scaleX(1); opacity: 0; }
+}
+
+/* ---------- DEMO 2: Summarize (Lv.5) ---------- */
+.demo-doc-tall {
+  animation: demo-shrink 4s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes demo-shrink {
+  0%, 30%  { transform: scale(1); opacity: 1; }
+  60%, 70% { transform: scale(0.85); opacity: 0.7; }
+  100%     { transform: scale(1); opacity: 1; }
+}
+.demo-arrow-spark {
+  animation: sparkle-twinkle 1.2s steps(3) infinite;
+}
+.demo-bullet-1, .demo-bullet-2, .demo-bullet-3, .demo-bullet-4, .demo-bullet-5 {
+  transform-origin: left center;
+  animation: demo-bullet-pop 4s steps(20) infinite;
+}
+.demo-bullet-2 { animation-delay: 0.4s; }
+.demo-bullet-3 { animation-delay: 0.8s; }
+.demo-bullet-4 { animation-delay: 1.2s; }
+.demo-bullet-5 { animation-delay: 1.6s; }
+@keyframes demo-bullet-pop {
+  0%, 10%  { transform: scaleX(0); opacity: 0; }
+  20%, 90% { transform: scaleX(1); opacity: 1; }
+  100%     { transform: scaleX(0); opacity: 0; }
+}
+
+/* ---------- DEMO 3: Context (Lv.10) ---------- */
+.demo-pdf-1, .demo-pdf-2, .demo-pdf-3 {
+  animation: demo-pdf-slide 3.6s ease-in-out infinite;
+}
+.demo-pdf-1 { animation-delay: 0s; }
+.demo-pdf-2 { animation-delay: 0.4s; }
+.demo-pdf-3 { animation-delay: 0.8s; }
+@keyframes demo-pdf-slide {
+  0%      { transform: translate(-30px, 0); opacity: 0; }
+  20%, 70%{ transform: translate(0, 0); opacity: 1; }
+  85%     { transform: translate(20px, 0) scale(0.6); opacity: 0.4; }
+  100%    { transform: translate(0, 0); opacity: 0; }
+}
+.demo-ai-core {
+  animation: demo-ai-pulse 1s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+@keyframes demo-ai-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+.demo-flow-1, .demo-flow-2, .demo-flow-3 {
+  animation: demo-flow-right 1.6s linear infinite;
+}
+.demo-flow-2 { animation-delay: 0.5s; }
+.demo-flow-3 { animation-delay: 1s; }
+@keyframes demo-flow-right {
+  0%   { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(20px); opacity: 0; }
+}
+.demo-tr-1, .demo-tr-2, .demo-tr-3, .demo-tr-4 {
+  transform-origin: left center;
+  animation: demo-bullet-pop 3.6s steps(20) infinite;
+}
+.demo-tr-2 { animation-delay: 0.3s; }
+.demo-tr-3 { animation-delay: 0.6s; }
+.demo-tr-4 { animation-delay: 0.9s; }
+
+/* ---------- DEMO 4: Moodboard (Lv.25) ---------- */
+.demo-tile-1, .demo-tile-2, .demo-tile-3, .demo-tile-4 {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: demo-tile-fill 4s steps(8) infinite;
+}
+.demo-tile-2 { animation-delay: 0.5s; }
+.demo-tile-3 { animation-delay: 1s; }
+.demo-tile-4 { animation-delay: 1.5s; }
+@keyframes demo-tile-fill {
+  0%, 12%  { opacity: 0; transform: scale(0.4); }
+  25%, 90% { opacity: 1; transform: scale(1); }
+  100%     { opacity: 0; transform: scale(0.4); }
+}
+.demo-render-arrow {
+  animation: demo-pulse-x 0.6s steps(2) infinite alternate;
+}
+@keyframes demo-pulse-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(2px); }
+}
+.demo-render-tile {
+  animation: demo-render-fade 4s ease-in-out infinite;
+}
+@keyframes demo-render-fade {
+  0%, 50%  { opacity: 0; }
+  60%, 100%{ opacity: 1; }
+}
+
+/* ---------- DEMO 5: Chain (Lv.50) ---------- */
+.demo-pulse {
+  animation: demo-pulse-walk 4s linear infinite;
+}
+@keyframes demo-pulse-walk {
+  0%   { transform: translateX(0); opacity: 1; }
+  20%  { transform: translateX(20px); opacity: 1; }
+  21%  { opacity: 0.4; }
+  25%  { transform: translateX(24px); opacity: 1; }
+  45%  { transform: translateX(44px); opacity: 1; }
+  46%  { opacity: 0.4; }
+  50%  { transform: translateX(48px); opacity: 1; }
+  70%  { transform: translateX(68px); opacity: 1; }
+  71%  { opacity: 0.4; }
+  75%  { transform: translateX(72px); opacity: 1; }
+  95%  { transform: translateX(92px); opacity: 1; }
+  100% { transform: translateX(0); opacity: 0; }
+}
+
+/* ---------- DEMO 6: Project folder (Lv.100) ---------- */
+.demo-orbit-1, .demo-orbit-2, .demo-orbit-3, .demo-orbit-4 {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: demo-file-bob 2.4s ease-in-out infinite;
+}
+.demo-orbit-2 { animation-delay: 0.3s; }
+.demo-orbit-3 { animation-delay: 0.6s; }
+.demo-orbit-4 { animation-delay: 0.9s; }
+@keyframes demo-file-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+/* ---------- DEMO 7: IDE typing (Lv.250) ---------- */
+.demo-line-prompt, .demo-code-1, .demo-code-2, .demo-code-3, .demo-code-4, .demo-code-5, .demo-code-6 {
+  opacity: 0;
+  animation: demo-line-appear 6s steps(40) infinite;
+}
+.demo-line-prompt { animation-delay: 0s; }
+.demo-code-1 { animation-delay: 0.5s; }
+.demo-code-2 { animation-delay: 1s; }
+.demo-code-3 { animation-delay: 1.5s; }
+.demo-code-4 { animation-delay: 2s; }
+.demo-code-5 { animation-delay: 2.5s; }
+.demo-code-6 { animation-delay: 3s; }
+@keyframes demo-line-appear {
+  0%, 7%   { opacity: 0; }
+  10%, 90% { opacity: 1; }
+  100%     { opacity: 0; }
+}
+.demo-cursor {
+  animation: demo-blink 0.7s steps(2) infinite;
+}
+@keyframes demo-blink {
+  50% { opacity: 0; }
+}
+
+/* ---------- DEMO 8: MCP network (Lv.500) ---------- */
+.demo-link {
+  stroke-dasharray: 2 1;
+  animation: demo-link-flow 1.6s linear infinite;
+}
+.demo-link-1 { animation-delay: 0s; }
+.demo-link-2 { animation-delay: 0.2s; }
+.demo-link-3 { animation-delay: 0.4s; }
+.demo-link-4 { animation-delay: 0.6s; }
+.demo-link-5 { animation-delay: 0.8s; }
+.demo-link-6 { animation-delay: 1s; }
+@keyframes demo-link-flow {
+  to { stroke-dashoffset: -10; }
+}
+.demo-core {
+  animation: demo-ai-pulse 1.4s ease-in-out infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.demo-pulse-mcp {
+  transform-origin: center;
+  animation: demo-mcp-blink 2s steps(4) infinite;
+}
+.demo-pulse-1 { animation-delay: 0s; }
+.demo-pulse-2 { animation-delay: 0.5s; }
+.demo-pulse-3 { animation-delay: 1s; }
+.demo-pulse-4 { animation-delay: 1.5s; }
+@keyframes demo-mcp-blink {
+  0%, 30%  { opacity: 0.2; transform: scale(0.6); }
+  50%      { opacity: 1;   transform: scale(1.4); }
+  70%, 100%{ opacity: 0.2; transform: scale(0.6); }
+}
+
+/* ---------- DEMO 9: Pipeline (Lv.999) ---------- */
+.demo-gear {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: demo-gear-spin 2s linear infinite;
+}
+.demo-gear-1 { animation-delay: 0s; }
+.demo-gear-2 { animation-delay: 0.3s; }
+.demo-gear-3 { animation-delay: 0.6s; }
+@keyframes demo-gear-spin {
+  to { transform: rotate(360deg); }
+}
+.demo-flow-item {
+  animation: demo-pipeline-flow 4s linear infinite;
+}
+.demo-flow-1 { animation-delay: 0s; }
+.demo-flow-2 { animation-delay: 2s; }
+@keyframes demo-pipeline-flow {
+  0%   { transform: translateX(0); opacity: 1; }
+  90%  { transform: translateX(78px); opacity: 1; }
+  100% { transform: translateX(82px); opacity: 0; }
+}
+
+/* Reduced motion override — kill all demo animations */
+@media (prefers-reduced-motion: reduce) {
+  .level-demo *,
+  .level-demo *::before,
+  .level-demo *::after {
+    animation: none !important;
+  }
+}
+
 /* ---------- 7. SECTION 4 — QUEST COMICS ---------- */
 #quest-comics { background: var(--bg-screen); }
 
