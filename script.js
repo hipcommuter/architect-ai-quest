@@ -229,7 +229,79 @@
   // Initial sync
   updateHeroTier();
 
-  /* ---------- 8. Konami-style easter egg (optional fun) ---------- */
+  /* ---------- 8. "Open Project in VS Code" launcher per quest ---------- */
+  // Maps each quest's data-quest-id to the local Windows path of its source project.
+  // Edit these paths to match your drive layout. Set to null if no local project.
+  const QUEST_PATHS = {
+    // Main quests
+    "quest-first":        null,                         // generic, no project
+    "quest-meeting":      "E:/HIBS-LIBRARY-Meeting-Record",
+    "quest-tca":          "E:/Construction-Data",
+    "quest-tor":          "E:/AI/ai-for-friends/export ai data/Gemini/Takeout",
+    "quest-concept":      "E:/APP-Concept-Finder",
+    "quest-quotation":    "E:/APP-Quatation-Organize",
+    "quest-punch":        "E:/APP-Punch-List",
+    "quest-tree":         "E:/APP-Tree-Mpping",
+    "quest-sprinkler":    "E:/Irrigation",
+    "quest-vision":       "E:/APP-HISB-visual-tools",
+    "quest-line":         "E:/APP-Line-Client-request",
+    "quest-method":       "E:/HIBS-LIBRARY-Repair-Method",
+    // Side quests
+    "quest-trader":       "E:/Portfolio-BTC-ANALYSIS",
+    "quest-vocab":        "E:/AI/ai-for-friends/export ai data/Gemini/Takeout/NotebookLM/New HSK 1 Chinese-Thai Vocabulary",
+    "quest-forensic":     "E:/AI/ai-for-friends/export ai data/Gemini/Takeout/NotebookLM/Titan Submersible Implosion",
+    "quest-daily-report": "E:/Portfolio-MARKET-DAILY-REPORT--CRYPTO",
+  };
+
+  function launcherTemplate(path) {
+    // Encode the path safely for vscode://file URL
+    const encoded = encodeURI(path).replace(/#/g, '%23');
+    const cmd = `cd "${path.replace(/\//g, '\\\\')}" && claude`;
+    return `
+      <div class="quest-launch">
+        <a class="quest-launch-btn" href="vscode://file/${encoded}" title="Open this project's folder in VS Code"><span class="launch-icon">▶</span> OPEN IN VS CODE</a>
+        <button class="quest-launch-btn quest-copy-btn" type="button" data-cmd='${cmd}' title="Copy 'cd path && claude' to clipboard"><span class="launch-icon">📋</span> COPY CMD</button>
+      </div>
+    `;
+  }
+
+  // Inject launcher into each quest header
+  document.querySelectorAll('.quest-card[data-quest-id]').forEach((card) => {
+    const id = card.getAttribute('data-quest-id');
+    const path = QUEST_PATHS[id];
+    if (!path) return;
+    const header = card.querySelector('.quest-header');
+    if (!header) return;
+    header.insertAdjacentHTML('beforeend', launcherTemplate(path));
+  });
+
+  // Wire copy-to-clipboard for the COPY CMD buttons
+  document.querySelectorAll('.quest-copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const cmd = btn.dataset.cmd;
+      try {
+        await navigator.clipboard.writeText(cmd);
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<span class="launch-icon">✓</span> COPIED!';
+        btn.classList.add('is-copied');
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.classList.remove('is-copied');
+        }, 1500);
+      } catch (err) {
+        // clipboard blocked; fall back to selecting a temp textarea
+        const ta = document.createElement('textarea');
+        ta.value = cmd;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e2) {}
+        document.body.removeChild(ta);
+      }
+    });
+  });
+
+  /* ---------- 9. Konami-style easter egg (optional fun) ---------- */
   const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let pos = 0;
   window.addEventListener('keydown', (e) => {

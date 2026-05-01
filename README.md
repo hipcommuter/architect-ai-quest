@@ -38,26 +38,38 @@ architect-ai-quest/
 ## Sections
 
 1. **Title Screen** — hook + press-start cue
-2. **Tutorial** — why this game? + four classes (Designer / Drafter / Communicator / Researcher)
-3. **Level Map** — the spine: 9 milestones from Lv.1 to Lv.999
-4. **Quest Comics** — 9 real case studies pulled from chat history, each as a 4-panel pixel comic
-5. **Boss Battles** — three archetypal architect problems and how AI defeats them
+2. **Tutorial** — why this game? + four classes (Designer / Drafter / Communicator / Researcher) — clickable to recruit your party hero
+3. **Level Map** — the spine: 9 milestones from Lv.1 to Lv.999, each grounded in a real project + a `TRY TODAY:` hook
+4. **Quest Comics** — 12 main quests + 4 side quests, each a 4-panel pixel comic with a unique pixel-art scene + a "▶ OPEN IN VS CODE" launcher
+5. **Boss Battles** — Final-Fantasy-style party-vs-monsters arena + three archetypal architect bosses
 6. **Starter Pack** — three lanes of "what to try today" for Lv.1, Lv.50, Lv.500
 7. **End Credits** — tools, links, share prompt
 
-## Quests (sourced from real Claude Code projects)
+## Main quests (sourced from real Claude Code projects)
 
 | # | Title | Lv | Class | Source folder |
 |---|---|---|---|---|
-| 1 | The TCA Data Alchemist        | 10  | Researcher    | `Construction-Data` |
-| 2 | The Concept Finder Grimoire   | 25  | Researcher    | `APP-Concept-Finder` |
-| 3 | The Quotation Fortress Boss   | 50  | Communicator  | `APP-Quatation-Organize` |
-| 4 | The Punch List Protocol       | 50  | Drafter       | `APP-Punch-List` |
-| 5 | The Tree Survey Oracle        | 100 | Designer      | `APP-Tree-Mpping` |
-| 6 | The Sprinkler System Architect| 100 | Designer      | `Irrigation` |
-| 7 | The Vision Tools Spell        | 250 | Designer      | `APP-HISB-visual-tools` |
-| 8 | The LINE Bot Alchemist        | 250 | Communicator  | `APP-Line-Client-request` |
-| 9 | The Method Library Codex ★    | 500 | Drafter       | `HIBS-LIBRARY-Repair-Method` |
+| 1 | The Apprentice's First Spell  | 1   | Researcher    | (generic — your first prompt) |
+| 2 | The Meeting Note Distiller    | 5   | Communicator  | `HIBS-LIBRARY-Meeting-Record` |
+| 3 | The TCA Data Alchemist        | 10  | Researcher    | `Construction-Data` |
+| 4 | The TOR Translation Scroll    | 15  | Researcher    | Gemini Workspace TOR translation |
+| 5 | The Concept Finder Grimoire   | 25  | Researcher    | `APP-Concept-Finder` |
+| 6 | The Quotation Fortress Boss   | 50  | Communicator  | `APP-Quatation-Organize` |
+| 7 | The Punch List Protocol       | 50  | Drafter       | `APP-Punch-List` |
+| 8 | The Tree Survey Oracle        | 100 | Designer      | `APP-Tree-Mpping` |
+| 9 | The Sprinkler System Architect| 100 | Designer      | `Irrigation` |
+| 10 | The Vision Tools Spell       | 250 | Designer      | `APP-HISB-visual-tools` |
+| 11 | The LINE Bot Alchemist       | 250 | Communicator  | `APP-Line-Client-request` |
+| 12 | The Method Library Codex ★  | 500 | Drafter       | `HIBS-LIBRARY-Repair-Method` |
+
+## Side quests (for friends outside architecture)
+
+| Quest | Lv | For friends in… | Source project |
+|---|---|---|---|
+| The Trader's Pattern Compass | 14 | Finance | `Portfolio-BTC-ANALYSIS` (Wyckoff method) |
+| The Vocabulary Grimoire      | 18 | Language students | NotebookLM `HSK 1 Chinese-Thai Vocabulary` |
+| The Forensic Analyst         | 35 | Researchers / journalists | NotebookLM `Titan Submersible Implosion` |
+| The Daily Report Robot       | 75 | Anyone with morning routines | `Portfolio-MARKET-DAILY-REPORT--CRYPTO` |
 
 ## Tech notes
 

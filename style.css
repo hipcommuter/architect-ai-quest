@@ -625,6 +625,117 @@ section.screen {
   vertical-align: middle;
 }
 
+/* ---------- LEVEL-MAP: real-project anchors + TRY TODAY hooks ---------- */
+.level-anchor {
+  margin: 10px 0 6px;
+  padding: 7px 10px;
+  background: rgba(255, 210, 63, 0.08);
+  border-left: 3px solid var(--gold);
+  font-size: 18px;
+  color: var(--ink-cream);
+  line-height: 1.4;
+}
+.level-anchor em {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: bold;
+}
+.level-try-today {
+  margin: 6px 0 0;
+  font-size: 18px;
+  color: var(--ink-white);
+  line-height: 1.4;
+}
+.try-label {
+  display: inline-block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: var(--bg-deep);
+  background: var(--green);
+  padding: 3px 7px;
+  margin-right: 6px;
+  letter-spacing: 0.1em;
+  vertical-align: middle;
+}
+/* Match the try-label color to each tier's badge color */
+.level-apprentice .try-label { background: var(--gold); }
+.level-adept .try-label { background: var(--cyan); }
+.level-expert .try-label { background: var(--purple); color: var(--ink-white); }
+.level-master .try-label { background: linear-gradient(45deg, var(--gold), var(--magenta)); }
+
+/* ---------- SIDE QUESTS DIVIDER ---------- */
+.side-quest-divider {
+  margin: 30px 0 20px;
+  padding: 28px 20px;
+  text-align: center;
+  border-top: 4px dashed var(--magenta);
+  border-bottom: 4px dashed var(--magenta);
+  background: linear-gradient(180deg, transparent 0%, rgba(171, 95, 255, 0.08) 50%, transparent 100%);
+}
+.divider-tag {
+  display: inline-block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 15px;
+  color: var(--magenta);
+  letter-spacing: 0.1em;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+  margin-bottom: 12px;
+}
+.divider-sub {
+  font-size: 20px;
+  color: var(--ink-cream);
+  margin: 0;
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.45;
+}
+
+/* ---------- "OPEN IN VS CODE" launcher buttons on each quest card ---------- */
+.quest-launch {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  width: 100%;
+}
+.quest-launch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  padding: 6px 10px;
+  background: var(--bg-deep);
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s steps(2), background 0.15s, color 0.15s;
+  font-family: 'Press Start 2P', monospace;
+}
+.quest-launch-btn:hover {
+  background: var(--gold);
+  color: var(--bg-deep);
+  transform: translateY(-2px);
+}
+.quest-launch-btn.is-copied {
+  background: var(--green);
+  color: var(--bg-deep);
+  border-color: var(--green);
+}
+.launch-icon {
+  font-size: 11px;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .quest-launch-btn { font-size: 8px; padding: 5px 7px; }
+  .level-anchor, .level-try-today { font-size: 16px; }
+  .divider-tag { font-size: 11px; }
+  .divider-sub { font-size: 17px; }
+}
+
 .quest-panels {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
