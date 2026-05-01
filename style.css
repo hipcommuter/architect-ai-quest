@@ -1157,11 +1157,27 @@ section.screen {
   font-weight: bold;
 }
 .level-try-today {
-  margin: 6px 0 0;
+  margin: 12px 0 0;
   font-size: 18px;
   color: var(--ink-white);
   line-height: 1.4;
 }
+
+.level-case {
+  margin: 4px 0 0;
+  padding: 4px 0 4px 14px;
+  font-size: 17px;
+  color: var(--ink-cream);
+  line-height: 1.4;
+  border-left: 2px dashed rgba(244,228,188,0.25);
+  opacity: 0.92;
+}
+.level-case em {
+  color: var(--gold);
+  font-style: normal;
+  font-weight: bold;
+}
+@media (max-width: 600px) { .level-case { font-size: 15px; } }
 .try-label {
   display: inline-block;
   font-family: 'Press Start 2P', monospace;
