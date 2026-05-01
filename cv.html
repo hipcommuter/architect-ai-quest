@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player Profile · Woratat Saruno · The Architect's AI Quest</title>
+  <meta name="description" content="Landscape architect with 14 years of large-scale public-space experience. Now also building AI-powered tools for design, documentation, and operations." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" />
+  <link rel="stylesheet" href="style.css?v=10" />
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- SVG SPRITE LIBRARY (shared with main)        -->
+  <!-- ============================================ -->
+  <svg id="sprite-defs" width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="spr-hero-drafter" viewBox="0 0 12 16">
+        <rect x="3" y="1" width="6" height="2" fill="#ffd23f"/>
+        <rect x="2" y="2" width="8" height="1" fill="#ffd23f"/>
+        <rect x="1" y="3" width="10" height="1" fill="#c9a227"/>
+        <rect x="3" y="4" width="6" height="3" fill="#ffccaa"/>
+        <rect x="4" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="5" y="6" width="2" height="1" fill="#e63946"/>
+        <rect x="3" y="7" width="6" height="1" fill="#ffccaa"/>
+        <rect x="2" y="8" width="8" height="4" fill="#29adff"/>
+        <rect x="3" y="9" width="6" height="1" fill="#ffd23f"/>
+        <rect x="1" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="10" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="3" y="12" width="2" height="3" fill="#1d2b53"/>
+        <rect x="7" y="12" width="2" height="3" fill="#1d2b53"/>
+        <rect x="2" y="15" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="15" width="3" height="1" fill="#0f0e2a"/>
+      </symbol>
+      <symbol id="spr-sparkle" viewBox="0 0 5 5">
+        <rect x="2" y="0" width="1" height="5" fill="#fff1e8"/>
+        <rect x="0" y="2" width="5" height="1" fill="#fff1e8"/>
+        <rect x="2" y="2" width="1" height="1" fill="#ffd23f"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Top nav -->
+  <nav class="library-nav">
+    <a href="index.html" class="library-back-btn"><span class="launch-icon">◀</span> BACK TO MAIN</a>
+    <span class="library-nav-title">PLAYER PROFILE</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cv-hero screen">
+    <div class="cv-portrait" aria-hidden="true">
+      <svg viewBox="0 0 12 16" class="cv-portrait-svg"><use href="#spr-hero-drafter"/></svg>
+    </div>
+    <p class="cv-tagline">LANDSCAPE ARCHITECT &middot; AI WORKFLOW BUILDER</p>
+    <h1 class="cv-name">WORATAT SARUNO</h1>
+    <p class="cv-subtitle">LV.14 IRL &middot; SHIPPING SUSTAINABLE PARKS &amp; ROOFTOPS SINCE 2011</p>
+
+    <div class="cv-statbar nes-container is-dark with-title">
+      <p class="title">★ MAIN STATS</p>
+      <div class="cv-stats-grid">
+        <div class="cv-stat"><span class="stat-label">YEARS</span><span class="stat-value">14</span></div>
+        <div class="cv-stat"><span class="stat-label">NOTABLE PROJECTS</span><span class="stat-value">5</span></div>
+        <div class="cv-stat"><span class="stat-label">PEAK PROJECT BUDGET</span><span class="stat-value">$61M</span></div>
+        <div class="cv-stat"><span class="stat-label">PEAK PROJECT AREA</span><span class="stat-value">65k m²</span></div>
+        <div class="cv-stat"><span class="stat-label">TOEIC</span><span class="stat-value">755</span></div>
+        <div class="cv-stat"><span class="stat-label">CV LANG</span><span class="stat-value">EN/TH</span></div>
+      </div>
+    </div>
+
+    <div class="cv-contact">
+      <p class="cv-contact-label">▸ CONTACT</p>
+      <ul>
+        <li>📞 +66 92&middot;926&middot;5493</li>
+        <li>✉ <a href="mailto:woratat.tect9@gmail.com">woratat.tect9@gmail.com</a></li>
+        <li>👤 <a href="https://www.linkedin.com/in/woratat-saruno/" target="_blank" rel="noopener">linkedin.com/in/woratat-saruno</a></li>
+        <li>⚙ <a href="https://elegant-creponne-7ee252.netlify.app/" target="_blank" rel="noopener">Material &amp; labor cost search platform</a> (custom web app)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROFESSIONAL SUMMARY -->
+  <section class="cv-section screen">
+    <div class="section-label">&gt; CHAPTER 1 — BACKGROUND</div>
+    <h2 class="section-title">Professional Summary</h2>
+    <div class="cv-prose nes-container is-dark">
+      <p>14-year career managing landscape architecture projects from design development through construction, specializing in <strong>impactful large-scale sustainable urban design</strong>. Proven expertise in technical leadership, including coordinating complex sustainable infrastructure (drainage, waterproofing, large-scale water management) with M&amp;E and structural engineers.</p>
+      <p>Adept at full project lifecycle management, from preparing comprehensive government bidding documents (TOR, construction budgets, contracts) to resolving on-site technical construction issues — and now utilizing <strong>BIM (Revit) and AI/digital tools</strong> to streamline project delivery and documentation.</p>
+      <p>Committed to creating high-performance, user-centered public and institutional spaces.</p>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="cv-section screen">
+    <div class="section-label">&gt; CHAPTER 2 — TRAINING</div>
+    <h2 class="section-title">Education &amp; Certificates</h2>
+
+    <div class="cv-edu-grid">
+      <div class="cv-edu-card nes-container is-rounded">
+        <p class="edu-badge">DEGREE</p>
+        <h3 class="edu-title">Bachelor of Landscape Architecture</h3>
+        <p class="edu-where">Faculty of Architecture &amp; Planning, Thammasat University · Thailand</p>
+        <p class="edu-when">2007 – 2011</p>
+      </div>
+      <div class="cv-edu-card nes-container is-rounded">
+        <p class="edu-badge">CERT</p>
+        <h3 class="edu-title">Spatial Planning &amp; Strategy</h3>
+        <p class="edu-where">Summer School · Delft University of Technology · The Netherlands</p>
+        <p class="edu-when">20-day course · 2019</p>
+      </div>
+      <div class="cv-edu-card nes-container is-rounded">
+        <p class="edu-badge">CERT</p>
+        <h3 class="edu-title">Autodesk Revit for Landscape</h3>
+        <p class="edu-where">Autodesk Authorized Training Center</p>
+        <p class="edu-when">BIM workflows for landscape</p>
+      </div>
+      <div class="cv-edu-card nes-container is-rounded">
+        <p class="edu-badge">SCORE</p>
+        <h3 class="edu-title">TOEIC 755</h3>
+        <p class="edu-where">Professional English proficiency</p>
+        <p class="edu-when">Working bilingually EN/TH</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTABLE PROJECTS -->
+  <section class="cv-section screen">
+    <div class="section-label">&gt; CHAPTER 3 — MAIN CAMPAIGN</div>
+    <h2 class="section-title">Notable Projects (Completed Quests)</h2>
+    <p class="section-intro"><strong>Landprocess Co., Ltd.</strong> · Bangkok · 2011 → present · key team member since founding</p>
+
+    <div class="cv-project-grid">
+
+      <article class="cv-project-card">
+        <div class="proj-tag">Lv. 999 — Landmark Quest</div>
+        <h3 class="proj-name">Chulalongkorn University Centenary Park</h3>
+        <p class="proj-thai">อุทยานจุฬาฯ 100 ปี</p>
+        <div class="proj-stats">
+          <span class="proj-stat"><strong>46,400 m²</strong> · 29 rai</span>
+          <span class="proj-stat"><strong>$27.8M</strong> · 899M THB</span>
+        </div>
+        <ul class="proj-tasks">
+          <li>Coordinated construction drawings with structural &amp; M&amp;E engineers</li>
+          <li>Liaised with vendors for irrigation, rooftop waterproofing, drainage, lighting</li>
+          <li>Led <strong>large-scale water management, irrigation, drainage</strong> coordination</li>
+          <li>On-site issue resolution + contract administration</li>
+        </ul>
+      </article>
+
+      <article class="cv-project-card">
+        <div class="proj-tag">Lv. 850 — Design &amp; Build</div>
+        <h3 class="proj-name">Ramathibodi Hospital Rooftop Garden</h3>
+        <p class="proj-thai">สวนหลังคา รพ.รามาธิบดี · อาคารสมเด็จพระเทพฯ</p>
+        <div class="proj-stats">
+          <span class="proj-stat"><strong>1,500 m²</strong></span>
+          <span class="proj-stat"><strong>$928K</strong> · 30M THB</span>
+        </div>
+        <ul class="proj-tasks">
+          <li>Full Design &amp; Build — company owned the entire process</li>
+          <li>Managed structural / electrical / sanitary / decorative / landscape subs</li>
+          <li>Resolved on-site technical issues + contractual disputes</li>
+        </ul>
+      </article>
+
+      <article class="cv-project-card">
+        <div class="proj-tag">Lv. 850 — Sustainable Innovation</div>
+        <h3 class="proj-name">Puey Ungphakorn Centenary Hall Rooftop</h3>
+        <p class="proj-thai">สวนหลังคาอาคารป๋วย</p>
+        <div class="proj-stats">
+          <span class="proj-stat"><strong>7,000 m²</strong> · 4.4 rai</span>
+          <span class="proj-stat"><strong>$30.9M</strong> · 100M THB</span>
+        </div>
+        <ul class="proj-tasks">
+          <li>Took over technical implementation of <strong>Sustainable Urban Farming</strong> concept</li>
+          <li>Adapted plans for the building's <strong>terraced rice-paddy structure</strong></li>
+          <li>Designed <strong>drainage + waterproofing systems in BIM</strong></li>
+        </ul>
+      </article>
+
+      <article class="cv-project-card">
+        <div class="proj-tag">Lv. 999 — Government Scale</div>
+        <h3 class="proj-name">Government Complex, Chaengwattana</h3>
+        <p class="proj-thai">ปรับปรุงภูมิทัศน์ศูนย์ราชการแจ้งวัฒนะ</p>
+        <div class="proj-stats">
+          <span class="proj-stat"><strong>64,960 m²</strong> · 40.6 rai</span>
+          <span class="proj-stat"><strong>$61.6M</strong> · 1.97B THB</span>
+        </div>
+        <ul class="proj-tasks">
+          <li>Engineering coordination + construction drawings to delivery requirements</li>
+          <li>Liaised with <strong>BTS</strong> for elevated walkway → skytrain integration</li>
+          <li>Managed existing-tree handling + shop drawing review</li>
+          <li>Prepared <strong>government bidding</strong> documents per central pricing</li>
+        </ul>
+      </article>
+
+      <article class="cv-project-card">
+        <div class="proj-tag">★ Most Impressive</div>
+        <h3 class="proj-name">Bangkok School for the Blind · Pool Renovation</h3>
+        <p class="proj-thai">ปรับปรุงสระว่ายน้ำ โรงเรียนสอนคนตาบอดกรุงเทพฯ</p>
+        <div class="proj-stats">
+          <span class="proj-stat"><strong>Sensory accessibility design</strong></span>
+        </div>
+        <ul class="proj-tasks">
+          <li>Construction drawings + direct contractor coordination</li>
+          <li>One of the first projects — designed an environment specifically <strong>accessible &amp; beneficial for visually impaired students</strong></li>
+        </ul>
+      </article>
+
+    </div>
+
+    <div class="cv-additional">
+      <p class="cv-additional-label">▸ ADDITIONAL CAMPAIGNS — broader portfolio</p>
+      <div class="cv-additional-grid">
+        <div><strong>Commercial / Mixed-Use:</strong> Block 47 (Chulalongkorn Property Mgmt) · Senafest (Sena Development) · Metro Town Kalapapruek (Property Perfect)</div>
+        <div><strong>Residential:</strong> The Kith Bangkadi · Niche ID Serithai (Sena) · Life Asoke · Rhythm Rangnam (AP Thailand)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI WORKFLOW INTEGRATION -->
+  <section class="cv-section screen">
+    <div class="section-label">&gt; CHAPTER 4 — SIDE CAMPAIGN</div>
+    <h2 class="section-title">AI &amp; Digital Workflow Integration</h2>
+    <p class="section-intro">Streamlining design, documentation, and operations using AI/LLMs. Every workflow ships real time-savings on real Landprocess projects.</p>
+
+    <div class="cv-ai-grid">
+
+      <article class="cv-ai-card">
+        <div class="ai-icon">📊</div>
+        <h3 class="ai-name">AI-Powered Project Management</h3>
+        <p class="ai-stack"><span class="svc svc-gemini">Gemini</span> <span class="svc svc-notebook">NotebookLM</span> <span class="svc svc-anthropic">Claude</span></p>
+        <ul class="ai-bullets">
+          <li>Rapid analysis &amp; summarization of long technical documents</li>
+          <li>Drafting government bidding proposals aligned with TOR requirements</li>
+          <li>Quality assurance + performance review across multi-staff deliverables</li>
+        </ul>
+      </article>
+
+      <article class="cv-ai-card">
+        <div class="ai-icon">🎨</div>
+        <h3 class="ai-name">Generative Design &amp; Visualization</h3>
+        <p class="ai-stack"><span class="svc svc-comfy">ComfyUI</span> <span class="svc svc-midjourney">Midjourney</span></p>
+        <ul class="ai-bullets">
+          <li>Autonomous workflows for presentation deliverables</li>
+          <li>Design perspectives, image editing, technical workflow diagrams</li>
+          <li>LLM integration for advanced content/data handling in design</li>
+        </ul>
+      </article>
+
+      <article class="cv-ai-card">
+        <div class="ai-icon">⚙</div>
+        <h3 class="ai-name">Custom Workflow &amp; Data Solutions</h3>
+        <p class="ai-stack"><span class="svc svc-antigravity">Antigravity</span> <span class="svc svc-claude">Claude Code</span></p>
+        <ul class="ai-bullets">
+          <li>Custom web apps — centralized search platforms for material/labor cost data</li>
+          <li>Direct support for <strong>Quantity Takeoff (QTO)</strong> &amp; <strong>Value Engineering (VE)</strong></li>
+          <li>Live demo: <a href="https://elegant-creponne-7ee252.netlify.app/" target="_blank" rel="noopener">elegant-creponne-7ee252.netlify.app</a></li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- RECENT AI PROJECTS -->
+  <section class="cv-section screen">
+    <div class="section-label">&gt; CHAPTER 5 — RECENT BUILDS</div>
+    <h2 class="section-title">Recent AI Projects (Side Quests Shipped)</h2>
+    <p class="section-intro">Built using Claude Code, ChatGPT, Gemini, NotebookLM, and Antigravity — all for real Landprocess use cases. Each maps to a level on <a href="index.html#level-map">the skill tree</a>.</p>
+
+    <div class="cv-recent-grid">
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.1</p>
+        <h4 class="recent-name">Cluade-Common</h4>
+        <p class="recent-desc">My day-to-day Claude scratch-pad — quick term clarifications, jargon decoding, exploration prompts.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.5</p>
+        <h4 class="recent-name">Project Meeting Records</h4>
+        <p class="recent-desc">Summarize meeting transcripts → action items + owners + dates. 90-minute meetings become 5-bullet summaries.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude</span> <span class="svc svc-notebook">NotebookLM</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.10</p>
+        <h4 class="recent-name">Product Research &amp; Comparison</h4>
+        <p class="recent-desc">Paste vendor datasheets → AI builds side-by-side comparison (cost · spec · warranty). Standardized vendor selection across team.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude</span> <span class="svc svc-chatgpt">ChatGPT</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.15</p>
+        <h4 class="recent-name">TOR Translation</h4>
+        <p class="recent-desc">Bilingual TOR doc translation. Preserves numbered structure, flags Thai-specific technical terms with no clean equivalent.</p>
+        <p class="recent-stack"><span class="svc svc-gemini">Gemini Workspace</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.25</p>
+        <h4 class="recent-name">Concept Finder Grimoire</h4>
+        <p class="recent-desc">Thai material guide — climate resistance + cost per m² + install notes for shophouse, storage, residential builds.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude.ai</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.35</p>
+        <h4 class="recent-name">Safety Consultant</h4>
+        <p class="recent-desc">Bilingual JSA template generator with embedded Thai safety code references. Standardized safety docs across projects.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude Project</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.50</p>
+        <h4 class="recent-name">Project Scope Master</h4>
+        <p class="recent-desc">Scope-of-work generator + project mgmt templates chained into one workflow. Brief → shortlist → email → spec section, all in one chat.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.50</p>
+        <h4 class="recent-name">Quotation Comparison Tool</h4>
+        <p class="recent-desc">Multi-vendor quote PDFs → comparison sheet with formula-based comparison, vendor pricing trends, live Drive links to source documents.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.75</p>
+        <h4 class="recent-name">Project Safety Standards Library</h4>
+        <p class="recent-desc">Thai safety codes loaded as one searchable Q&amp;A library. Cross-document queries about double-skin facades, fire codes, etc.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude 200k</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.100</p>
+        <h4 class="recent-name">Project Repair Method Library</h4>
+        <p class="recent-desc">12 paint methods × 43 brand options. Custom verification pipeline: WebFetch HomePro pricing + Python validators + bilingual XLSX deliverables.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude Code</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.150</p>
+        <h4 class="recent-name">Personal Analysis</h4>
+        <p class="recent-desc">Private-data Claude Project with custom rules, persona, and voice. Knows my style, references the right docs, never hallucinates brand names.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude Project</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.250</p>
+        <h4 class="recent-name">Tree Survey Oracle</h4>
+        <p class="recent-desc">iPhone photo → EXIF GPS extraction → Sheets database → live Leaflet.js map. 400+ tree campus inventory in 2 days vs 3-week manual.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude Code</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.350</p>
+        <h4 class="recent-name">NotebookLM Transcription Workflow</h4>
+        <p class="recent-desc">YouTube/audio → NotebookLM transcribes → Q&amp;A → structured export to Claude or Excel. Long content becomes searchable knowledge.</p>
+        <p class="recent-stack"><span class="svc svc-notebook">NotebookLM</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.500</p>
+        <h4 class="recent-name">LINE Bot Alchemist</h4>
+        <p class="recent-desc">Apps Script webhook captures every LINE photo, groups bursts in 5s, embeds live thumbnails + status into Sheets tracker. +3 hrs/day reclaimed.</p>
+        <p class="recent-stack"><span class="svc svc-anthropic">Claude</span> <span class="svc svc-cron">Apps Script</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.700</p>
+        <h4 class="recent-name">BTC Strategy Research</h4>
+        <p class="recent-desc">Multi-agent Claude Code worktrees test trading hypotheses in parallel git branches. Hours of sequential work → minutes of concurrent.</p>
+        <p class="recent-stack"><span class="svc svc-claude">Claude Code</span></p>
+      </div>
+
+      <div class="cv-recent-card">
+        <p class="recent-lv">LV.999</p>
+        <h4 class="recent-name">Architect's AI Quest (this site)</h4>
+        <p class="recent-desc">Multi-agent quest extraction from chat history. Built by orchestrating Claude Code sub-agents to read, rate, and convert real workflows into pixel-art comics.</p>
+        <p class="recent-stack"><span class="svc svc-anthropic">Claude Agent SDK</span></p>
+      </div>
+
+    </div>
+
+    <p class="cv-recent-cta">▸ See each in action on <a href="library.html">the Quest Library</a> — full panels, real prompts, real outcomes.</p>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="cv-section screen">
+    <div class="section-label">&gt; CHAPTER 6 — SKILLS INVENTORY</div>
+    <h2 class="section-title">Skills</h2>
+
+    <div class="cv-skills-grid">
+
+      <div class="cv-skill-block">
+        <p class="skill-tag">SUSTAINABLE DESIGN &amp; IMPLEMENTATION</p>
+        <ul>
+          <li>Urban farming · terraced green roofs · large-scale urban parks (concept → construction)</li>
+          <li>Drainage · rooftop waterproofing · irrigation system coordination</li>
+          <li>Mature-tree preservation within active construction sites</li>
+        </ul>
+      </div>
+
+      <div class="cv-skill-block">
+        <p class="skill-tag">CONSTRUCTION &amp; ENGINEERING COORDINATION</p>
+        <ul>
+          <li>Direct coordination with structural &amp; M&amp;E engineers</li>
+          <li>On-site technical issue resolution + obstacle management</li>
+          <li>Subcontractor coordination: structural · electrical · sanitary · landscape</li>
+          <li>Vendor liaison: irrigation · waterproofing · drainage · lighting</li>
+          <li>External-agency integration (e.g., BTS skytrain)</li>
+        </ul>
+      </div>
+
+      <div class="cv-skill-block">
+        <p class="skill-tag">BIM &amp; DESIGN SOFTWARE</p>
+        <ul>
+          <li><strong>Advanced Revit</strong> · BIM workflows for complex systems</li>
+          <li><strong>Advanced AutoCAD</strong> · construction drawing prep + coordination</li>
+          <li>Microsoft Excel · Word · PowerPoint</li>
+          <li>Rhino + Grasshopper parametric design with BIM integration</li>
+        </ul>
+      </div>
+
+      <div class="cv-skill-block">
+        <p class="skill-tag">DOCUMENTATION &amp; MANAGEMENT</p>
+        <ul>
+          <li>End-to-end project lifecycle (design dev → on-site coordination)</li>
+          <li>Government bidding: proposals · contracts · construction budgets · TOR</li>
+          <li><strong>Quantity Takeoff (QTO)</strong> via BIM + AI for estimation/price-checking</li>
+          <li>Variation Orders (VO) + Value Engineering (VE) for budget alignment</li>
+          <li>Contract administration + dispute resolution</li>
+          <li>Shop drawing review · post-construction maintenance plans</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <section class="cv-footer screen">
+    <p class="cv-footer-tag">★ END OF PROFILE ★</p>
+    <p class="cv-footer-text">Want to talk projects, AI workflows, or sustainable design? Reach out via the contact info above.</p>
+    <div class="cv-footer-buttons">
+      <a href="library.html" class="cta-btn">▶ EXPLORE QUEST LIBRARY</a>
+      <a href="index.html" class="cta-btn cta-btn-secondary">▲ BACK TO MAIN</a>
+    </div>
+  </section>
+
+  <script src="script.js?v=10"></script>
+</body>
+</html>
