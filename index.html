@@ -15,33 +15,11 @@
   <link rel="stylesheet" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" />
 
   <!-- Local styles -->
-  <link rel="stylesheet" href="style.css?v=8" />
+  <link rel="stylesheet" href="style.css?v=9" />
 </head>
 <body>
 
-  <!-- ============================================ -->
-  <!-- LEVEL-UP OVERLAY (shown briefly when crossing a milestone) -->
-  <!-- ============================================ -->
-  <div id="levelup-overlay" class="levelup-overlay" aria-hidden="true">
-    <div class="lu-flash"></div>
-    <div class="lu-stars" aria-hidden="true">
-      <svg class="lu-star lu-star-1"><use href="#spr-sparkle"/></svg>
-      <svg class="lu-star lu-star-2"><use href="#spr-sparkle"/></svg>
-      <svg class="lu-star lu-star-3"><use href="#spr-sparkle"/></svg>
-      <svg class="lu-star lu-star-4"><use href="#spr-sparkle"/></svg>
-      <svg class="lu-star lu-star-5"><use href="#spr-sparkle"/></svg>
-      <svg class="lu-star lu-star-6"><use href="#spr-sparkle"/></svg>
-      <svg class="lu-star lu-star-7"><use href="#spr-sparkle"/></svg>
-      <svg class="lu-star lu-star-8"><use href="#spr-sparkle"/></svg>
-    </div>
-    <div class="lu-content">
-      <p class="lu-banner">★ TIER UNLOCKED ★</p>
-      <p class="lu-level">APPRENTICE</p>
-      <p class="lu-tier">REACHED LV.25</p>
-      <p class="lu-skill-label">&gt; NEW ABILITIES UNLOCKED</p>
-      <p class="lu-skill">Skill description here</p>
-    </div>
-  </div>
+  <!-- (the old fullscreen overlay was removed; tier-up now happens around the hero) -->
 
   <!-- ============================================ -->
   <!-- SVG SPRITE LIBRARY (defs, never visible)     -->
@@ -396,6 +374,24 @@
       <!-- Sticky walking hero — transforms as you scroll past tiers -->
       <div class="level-hero-wrap" aria-hidden="true">
         <span class="tier-label">NOVICE</span>
+
+        <!-- Compact tier-up popup (shows around hero on tier transition) -->
+        <div id="tier-popup" class="tier-popup" aria-hidden="true">
+          <p class="tp-banner">★ TIER UP ★</p>
+          <p class="tp-tier">APPRENTICE</p>
+        </div>
+        <!-- Sparkle burst around hero on tier-up -->
+        <div id="tp-burst" class="tp-burst" aria-hidden="true">
+          <svg class="tp-spark tp-spark-1"><use href="#spr-sparkle"/></svg>
+          <svg class="tp-spark tp-spark-2"><use href="#spr-sparkle"/></svg>
+          <svg class="tp-spark tp-spark-3"><use href="#spr-sparkle"/></svg>
+          <svg class="tp-spark tp-spark-4"><use href="#spr-sparkle"/></svg>
+          <svg class="tp-spark tp-spark-5"><use href="#spr-sparkle"/></svg>
+          <svg class="tp-spark tp-spark-6"><use href="#spr-sparkle"/></svg>
+          <svg class="tp-spark tp-spark-7"><use href="#spr-sparkle"/></svg>
+          <svg class="tp-spark tp-spark-8"><use href="#spr-sparkle"/></svg>
+        </div>
+
         <svg class="level-hero hero-walk" viewBox="0 0 24 30" data-tier="novice">
 
           <!-- WINGS (master tier, behind body) -->
@@ -464,6 +460,7 @@
           <p class="level-skill">Ask AI a question</p>
           <p class="level-tool"><span class="tool-tag">ChatGPT free</span></p>
           <p class="level-example">"What's the difference between EIFS and rainscreen?"</p>
+          <p class="level-anchor">★ Like my <em>Cluade-Common</em> — my everyday Claude scratch-pad for one-off questions.</p>
           <p class="level-case">↪ "Explain ISO 19650 like I'm 10" — jargon clarification</p>
           <p class="level-case">↪ "Give me 3 ways to insulate a roof" — open exploration</p>
           <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Open Claude.ai and type — "explain [a term you confuse] like I'm 10."</p>
@@ -931,38 +928,49 @@
       <div class="level-node level-expert" data-level="350">
         <div class="level-badge"><span class="level-num">LV.350</span><span class="level-tier">EXPERT</span></div>
         <div class="level-card nes-container">
-          <p class="level-skill">API integration / function calling</p>
-          <p class="level-tool"><span class="tool-tag">Claude API</span> <span class="tool-tag">webhooks</span></p>
-          <p class="level-example">"Should I bike to work?" — AI calls weather API at 7am, checks rain probability, sends a Yes/No to your phone.</p>
-          <p class="level-anchor">★ Like a daily morning agent — wires one external service into Claude's tool-use, gets a useful answer.</p>
-          <p class="level-case">↪ Hourly Notion API call → AI summarizes new pages into a digest</p>
-          <p class="level-case">↪ Stock price API + portfolio sheet → AI texts you on threshold breaches</p>
-          <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Pick one public API (weather, news, calendar). Wire it into Claude tool-use. Get one structured answer.</p>
+          <p class="level-skill">Use AI as a data-extraction pipeline</p>
+          <p class="level-tool"><span class="tool-tag">NotebookLM</span> <span class="tool-tag">Claude</span></p>
+          <p class="level-example">Drop a YouTube URL or audio file into NotebookLM → it auto-transcribes → ask cross-source questions → export structured bullets to Claude or Excel.</p>
+          <p class="level-anchor">★ Like my <em>NotebookLM Transcription Workflow</em> — meeting recordings + YouTube tutorials → searchable knowledge base used in other tools.</p>
+          <p class="level-case">↪ Drop 60-min Zoom recording → action items in 90 seconds, exported to your task tracker</p>
+          <p class="level-case">↪ Pile of YouTube design tutorials → Q&amp;A library you can paste into Claude later</p>
+          <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Take one long meeting/lecture you'd never re-listen to. Drop it in NotebookLM. Ask 3 hard questions. Export the answers.</p>
         </div>
-        <!-- DEMO: external service → AI → output -->
-        <div class="level-demo" data-demo="api" aria-hidden="true">
+        <!-- DEMO: audio/video → NotebookLM → structured export -->
+        <div class="level-demo" data-demo="notebooklm" aria-hidden="true">
           <p class="demo-caption">&gt; HOW IT LOOKS</p>
           <svg class="demo-svg" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid meet">
             <rect width="100" height="60" fill="#0f0e2a"/>
-            <rect x="4" y="14" width="22" height="14" fill="#0a3a55" stroke="#29adff" stroke-width="0.5"/>
-            <rect x="6" y="10" width="6" height="2" fill="#fff1e8"/>
-            <rect x="8" y="8" width="10" height="2" fill="#fff1e8"/>
-            <rect x="10" y="6" width="14" height="2" fill="#fff1e8"/>
-            <text x="15" y="22" text-anchor="middle" fill="#29adff" font-size="4" font-family="monospace">WEATHER</text>
-            <text x="15" y="26" text-anchor="middle" fill="#29adff" font-size="3" font-family="monospace">API</text>
-            <line class="demo-link demo-link-1" x1="26" y1="20" x2="40" y2="30" stroke="#ffd23f" stroke-width="0.6" stroke-dasharray="2 1"/>
-            <rect x="38" y="20" width="22" height="20" fill="#ab5fff" stroke="#ffd23f" stroke-width="0.6"/>
-            <text x="49" y="29" text-anchor="middle" fill="#fff1e8" font-size="5" font-family="monospace">AI</text>
-            <text x="49" y="36" text-anchor="middle" fill="#ffd23f" font-size="3" font-family="monospace">tool-use</text>
-            <line class="demo-link demo-link-2" x1="60" y1="30" x2="74" y2="30" stroke="#ffd23f" stroke-width="0.6" stroke-dasharray="2 1"/>
-            <rect x="72" y="20" width="22" height="20" fill="#1d4a2a" stroke="#51e898" stroke-width="0.5"/>
-            <text x="83" y="27" text-anchor="middle" fill="#51e898" font-size="4" font-family="monospace">DECISION</text>
-            <rect x="74" y="30" width="18" height="3" fill="#51e898"/>
-            <text x="83" y="33" text-anchor="middle" fill="#1d2b53" font-size="3.5" font-family="monospace">YES BIKE</text>
-            <text x="83" y="38" text-anchor="middle" fill="#51e898" font-size="3" font-family="monospace">2% rain · 22°C</text>
-            <text x="50" y="50" text-anchor="middle" fill="#f4e4bc" font-size="4" font-family="monospace">7am · daily · automatic</text>
-            <use class="scene-sparkle" href="#spr-sparkle" x="32" y="46" width="4" height="4"/>
-            <use class="scene-sparkle" href="#spr-sparkle" x="64" y="46" width="4" height="4"/>
+            <rect x="4" y="8" width="22" height="14" fill="#e63946" stroke="#fff1e8" stroke-width="0.5"/>
+            <polygon points="13,12 13,18 19,15" fill="#fff1e8"/>
+            <text x="15" y="28" text-anchor="middle" fill="#e63946" font-size="4" font-family="monospace">YOUTUBE</text>
+            <rect x="4" y="34" width="22" height="14" fill="#5d3a1a" stroke="#ffd23f" stroke-width="0.5"/>
+            <rect x="8" y="38" width="14" height="1" fill="#fff1e8"/>
+            <rect x="8" y="40" width="14" height="1" fill="#fff1e8"/>
+            <rect x="8" y="42" width="14" height="1" fill="#fff1e8"/>
+            <rect x="8" y="44" width="14" height="1" fill="#fff1e8"/>
+            <text x="15" y="54" text-anchor="middle" fill="#ffd23f" font-size="4" font-family="monospace">MEETING</text>
+            <line class="demo-link demo-link-1" x1="26" y1="15" x2="40" y2="22" stroke="#ffd23f" stroke-width="0.5" stroke-dasharray="2 1"/>
+            <line class="demo-link demo-link-2" x1="26" y1="41" x2="40" y2="34" stroke="#ffd23f" stroke-width="0.5" stroke-dasharray="2 1"/>
+            <rect x="38" y="18" width="24" height="22" fill="#ab5fff" stroke="#ffd23f" stroke-width="0.6"/>
+            <text x="50" y="26" text-anchor="middle" fill="#fff1e8" font-size="4" font-family="monospace">NOTEBOOK</text>
+            <text x="50" y="31" text-anchor="middle" fill="#fff1e8" font-size="4" font-family="monospace">LM</text>
+            <text x="50" y="38" text-anchor="middle" fill="#ffd23f" font-size="3" font-family="monospace">transcribes +</text>
+            <line class="demo-link demo-link-3" x1="62" y1="29" x2="74" y2="29" stroke="#51e898" stroke-width="0.6" stroke-dasharray="2 1"/>
+            <rect x="72" y="8" width="24" height="20" fill="#1d4a2a" stroke="#51e898" stroke-width="0.5"/>
+            <text x="84" y="14" text-anchor="middle" fill="#51e898" font-size="3" font-family="monospace">EXPORT TO</text>
+            <text x="84" y="19" text-anchor="middle" fill="#51e898" font-size="3" font-family="monospace">CLAUDE</text>
+            <rect x="74" y="22" width="20" height="1" fill="#fff1e8"/>
+            <rect x="74" y="24" width="18" height="1" fill="#fff1e8"/>
+            <rect x="74" y="26" width="20" height="1" fill="#fff1e8"/>
+            <rect x="72" y="30" width="24" height="20" fill="#3a1a4a" stroke="#ff77a8" stroke-width="0.5"/>
+            <text x="84" y="36" text-anchor="middle" fill="#ff77a8" font-size="3" font-family="monospace">+ EXCEL</text>
+            <rect x="74" y="38" width="6" height="2" fill="#51e898"/>
+            <rect x="80" y="38" width="6" height="2" fill="#ffd23f"/>
+            <rect x="86" y="38" width="6" height="2" fill="#29adff"/>
+            <rect x="74" y="41" width="20" height="1" fill="#fff1e8"/>
+            <rect x="74" y="43" width="18" height="1" fill="#fff1e8"/>
+            <rect x="74" y="45" width="16" height="1" fill="#fff1e8"/>
           </svg>
         </div>
       </div>
@@ -1071,13 +1079,13 @@
       <div class="level-node level-master" data-level="850">
         <div class="level-badge"><span class="level-num">LV.850</span><span class="level-tier">MASTER</span></div>
         <div class="level-card nes-container">
-          <p class="level-skill">Long-running scheduled pipelines</p>
-          <p class="level-tool"><span class="tool-tag">Agent SDK</span> <span class="tool-tag">cron</span></p>
-          <p class="level-example">Every Monday 8am: AI scrapes 10 vendor sites, builds price comparison sheet, emails it to your team — without you lifting a finger.</p>
-          <p class="level-anchor">★ The "set it and forget it" agent. Runs while you sleep. Reports when you wake up.</p>
-          <p class="level-case">↪ Daily: market digest with portfolio deltas + 3 action signals</p>
-          <p class="level-case">↪ Weekly: project meeting summarizer + auto-distribute to stakeholders</p>
-          <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Take any quest you already automated. Wrap it in <code>cron</code> or GitHub Actions. Let it run weekly.</p>
+          <p class="level-skill">Scheduled scraper + auto-pipeline</p>
+          <p class="level-tool"><span class="tool-tag">WebFetch</span> <span class="tool-tag">Python build.py</span> <span class="tool-tag">cron</span></p>
+          <p class="level-example">WebFetch scrapes HomePro pricing on schedule → Python validates specs against templates → cross-references MAT-IDs across sheets → outputs bilingual XLSX deliverable.</p>
+          <p class="level-anchor">★ Like the auto side of my <em>Repair Method Library</em> — runs <code>build.py</code>, fetches live prices, ships a verified spec sheet without me touching it.</p>
+          <p class="level-case">↪ The same project at Lv.100 was about persistence. At this level, it's about scheduled <em>execution</em>.</p>
+          <p class="level-case">↪ Reproducible: anyone in the office can re-run <code>build.py</code> and get a fresh deliverable in seconds</p>
+          <p class="level-try-today"><span class="try-label">TRY TODAY:</span> Take one Lv.100 Project you've built. Add a Python script that re-runs the pipeline. Schedule it weekly with cron or GitHub Actions.</p>
         </div>
         <!-- DEMO: scheduled timeline -->
         <div class="level-demo" data-demo="scheduled" aria-hidden="true">
@@ -1825,6 +1833,6 @@
     <p class="press-start blink">[ ^ ]&nbsp;&nbsp;SCROLL UP TO REPLAY&nbsp;&nbsp;[ ^ ]</p>
   </section>
 
-  <script src="script.js?v=8"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>

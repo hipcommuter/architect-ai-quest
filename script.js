@@ -154,17 +154,16 @@
     btn.addEventListener('click', () => setHero(btn.dataset.hero));
   });
 
-  /* ---------- 7a. Locked level reveal + tier-unlock overlay ---------- */
-  const levelUpOverlay = document.getElementById('levelup-overlay');
-  const luBanner = levelUpOverlay?.querySelector('.lu-banner');
-  const luLevel = levelUpOverlay?.querySelector('.lu-level');
-  const luTier = levelUpOverlay?.querySelector('.lu-tier');
-  const luSkill = levelUpOverlay?.querySelector('.lu-skill');
+  /* ---------- 7a. Locked level reveal + compact tier-up popup ---------- */
+  const tierPopup = document.getElementById('tier-popup');
+  const tpBurst = document.getElementById('tp-burst');
+  const tpTier = tierPopup?.querySelector('.tp-tier');
   const reachedLevels = new Set();
   let userHasScrolled = false;
   let tierUnlockQueue = [];
   let tierUnlockPlaying = false;
   let lastUnlockedTier = null;
+  let pageLoadedAt = Date.now();
 
   // Tier copy — fires once per tier transition. Skill-list summarizes what the tier unlocks.
   const TIER_COPY = {
@@ -217,30 +216,36 @@
   }
 
   function processTierUnlockQueue() {
-    if (tierUnlockPlaying || tierUnlockQueue.length === 0 || !levelUpOverlay) return;
+    if (tierUnlockPlaying || tierUnlockQueue.length === 0 || !tierPopup) return;
+    // Suppress popups during the first 1500ms of page load (defense-in-depth — also gated by userHasScrolled)
+    if (Date.now() - pageLoadedAt < 1500) {
+      tierUnlockQueue = [];
+      return;
+    }
     const tierKey = tierUnlockQueue.shift();
     const copy = TIER_COPY[tierKey];
     if (!copy) return;
     tierUnlockPlaying = true;
-    if (luLevel) luLevel.textContent = copy.headline;
-    if (luTier)  luTier.textContent  = copy.sub;
-    if (luSkill) luSkill.textContent = copy.summary;
-    levelUpOverlay.classList.remove('is-active');
-    void levelUpOverlay.offsetWidth;
-    levelUpOverlay.classList.add('is-active');
-    // Tier-up chime — pitch climbs per tier
+    if (tpTier) tpTier.textContent = copy.headline;
+    // Restart popup animation
+    tierPopup.classList.remove('is-active');
+    if (tpBurst) tpBurst.classList.remove('is-active');
+    void tierPopup.offsetWidth;
+    tierPopup.classList.add('is-active');
+    if (tpBurst) tpBurst.classList.add('is-active');
+    // Tier-up chime — pitch climbs per tier (kept; sound is short)
     if (typeof chime === 'function' && audioReady) {
       const tierFreq = { novice: 330, apprentice: 440, adept: 550, expert: 660, master: 880 };
       const f = tierFreq[tierKey] || 440;
-      chime(f, 0.22);
-      setTimeout(() => chime(f * 1.5, 0.18), 220);
-      setTimeout(() => chime(f * 2, 0.18), 440);
+      chime(f, 0.18);
+      setTimeout(() => chime(f * 1.5, 0.14), 180);
     }
     setTimeout(() => {
-      levelUpOverlay.classList.remove('is-active');
+      tierPopup.classList.remove('is-active');
+      if (tpBurst) tpBurst.classList.remove('is-active');
       tierUnlockPlaying = false;
       processTierUnlockQueue();
-    }, 2800);
+    }, 1700);
   }
 
   // Initial pass: mark already-visible nodes as reached without animation

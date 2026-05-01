@@ -525,9 +525,111 @@ section.screen {
 }
 
 /* ============================================================
-   LEVEL-UP OVERLAY — fullscreen JRPG-style flash
+   COMPACT TIER-UP POPUP (around hero, not fullscreen)
+   ============================================================ */
+.tier-popup {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) scale(0);
+  background: var(--bg-deep);
+  border: 3px solid var(--gold);
+  padding: 6px 14px 8px;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 12;
+  white-space: nowrap;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+}
+.tier-popup.is-active {
+  animation: tier-popup-anim 1.6s ease-out forwards;
+}
+@keyframes tier-popup-anim {
+  0%   { transform: translateX(-50%) translateY(20px) scale(0); opacity: 0; }
+  18%  { transform: translateX(-50%) translateY(-8px) scale(1.2); opacity: 1; }
+  35%  { transform: translateX(-50%) translateY(-12px) scale(1); opacity: 1; }
+  75%  { transform: translateX(-50%) translateY(-22px) scale(1); opacity: 1; }
+  100% { transform: translateX(-50%) translateY(-40px) scale(0.9); opacity: 0; }
+}
+.tp-banner {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  margin: 0 0 4px;
+  text-shadow: 1px 1px 0 var(--bg-deep);
+}
+.tp-tier {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: var(--ink-white);
+  letter-spacing: 0.1em;
+  margin: 0;
+  text-shadow: 2px 2px 0 var(--gold-dark);
+}
+
+/* Sparkle burst around hero on tier-up */
+.tp-burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 11;
+}
+.tp-spark {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  opacity: 0;
+  image-rendering: pixelated;
+}
+.tp-burst.is-active .tp-spark {
+  animation: tp-spark-fly 1.4s ease-out forwards;
+}
+.tp-burst.is-active .tp-spark-1 { animation-delay: 0.00s; }
+.tp-burst.is-active .tp-spark-2 { animation-delay: 0.06s; }
+.tp-burst.is-active .tp-spark-3 { animation-delay: 0.12s; }
+.tp-burst.is-active .tp-spark-4 { animation-delay: 0.18s; }
+.tp-burst.is-active .tp-spark-5 { animation-delay: 0.24s; }
+.tp-burst.is-active .tp-spark-6 { animation-delay: 0.30s; }
+.tp-burst.is-active .tp-spark-7 { animation-delay: 0.36s; }
+.tp-burst.is-active .tp-spark-8 { animation-delay: 0.42s; }
+@keyframes tp-spark-fly {
+  0%   { opacity: 0; transform: translate(0, 0) scale(0.4); }
+  18%  { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; }
+}
+/* 8 sparkle directions */
+.tp-burst.is-active .tp-spark-1 { animation-name: tp-fly-up; }
+.tp-burst.is-active .tp-spark-2 { animation-name: tp-fly-up-right; }
+.tp-burst.is-active .tp-spark-3 { animation-name: tp-fly-right; }
+.tp-burst.is-active .tp-spark-4 { animation-name: tp-fly-down-right; }
+.tp-burst.is-active .tp-spark-5 { animation-name: tp-fly-down; }
+.tp-burst.is-active .tp-spark-6 { animation-name: tp-fly-down-left; }
+.tp-burst.is-active .tp-spark-7 { animation-name: tp-fly-left; }
+.tp-burst.is-active .tp-spark-8 { animation-name: tp-fly-up-left; }
+@keyframes tp-fly-up        { 0%{opacity:0;transform:translate(0,0) scale(0.4)} 18%{opacity:1;transform:translate(0,-4px) scale(1.4)} 100%{opacity:0;transform:translate(0,-50px) scale(0.6)} }
+@keyframes tp-fly-up-right  { 0%{opacity:0;transform:translate(0,0) scale(0.4)} 18%{opacity:1;transform:translate(8px,-4px) scale(1.4)} 100%{opacity:0;transform:translate(40px,-40px) scale(0.6)} }
+@keyframes tp-fly-right     { 0%{opacity:0;transform:translate(0,0) scale(0.4)} 18%{opacity:1;transform:translate(8px,0) scale(1.4)} 100%{opacity:0;transform:translate(50px,0) scale(0.6)} }
+@keyframes tp-fly-down-right{ 0%{opacity:0;transform:translate(0,0) scale(0.4)} 18%{opacity:1;transform:translate(8px,4px) scale(1.4)} 100%{opacity:0;transform:translate(40px,40px) scale(0.6)} }
+@keyframes tp-fly-down      { 0%{opacity:0;transform:translate(0,0) scale(0.4)} 18%{opacity:1;transform:translate(0,4px) scale(1.4)} 100%{opacity:0;transform:translate(0,50px) scale(0.6)} }
+@keyframes tp-fly-down-left { 0%{opacity:0;transform:translate(0,0) scale(0.4)} 18%{opacity:1;transform:translate(-8px,4px) scale(1.4)} 100%{opacity:0;transform:translate(-40px,40px) scale(0.6)} }
+@keyframes tp-fly-left      { 0%{opacity:0;transform:translate(0,0) scale(0.4)} 18%{opacity:1;transform:translate(-8px,0) scale(1.4)} 100%{opacity:0;transform:translate(-50px,0) scale(0.6)} }
+@keyframes tp-fly-up-left   { 0%{opacity:0;transform:translate(0,0) scale(0.4)} 18%{opacity:1;transform:translate(-8px,-4px) scale(1.4)} 100%{opacity:0;transform:translate(-40px,-40px) scale(0.6)} }
+
+/* ============================================================
+   (Old fullscreen overlay styles retained below for reference,
+   but no longer used since we switched to .tier-popup)
    ============================================================ */
 .levelup-overlay {
+  display: none !important;
+}
+.levelup-overlay-OLD {
   position: fixed;
   inset: 0;
   z-index: 9999;
