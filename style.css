@@ -1532,8 +1532,86 @@ section.screen {
 .cv-guild-thanks {
   font-size: 18px;
   color: var(--gold);
-  margin: 0;
+  margin: 24px 0 0;
   letter-spacing: 0.04em;
+}
+
+/* Guild Masters — boss tributes inside the GUILD HOME card */
+.cv-guild-masters {
+  margin: 28px 0 4px;
+  padding: 24px 0 8px;
+  border-top: 2px dashed rgba(255, 210, 63, 0.35);
+}
+.cv-guild-masters-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  margin: 0 0 22px;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+}
+.cv-guild-masters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  text-align: left;
+}
+@media (max-width: 720px) { .cv-guild-masters-grid { grid-template-columns: 1fr; } }
+.cv-guild-master {
+  background: var(--bg-deep);
+  border: 3px solid var(--ink-cream);
+  padding: 20px 22px;
+  position: relative;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+}
+.cv-guild-master::before {
+  content: '★';
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  background: var(--bg-deep);
+  padding: 0 6px;
+}
+.master-role {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(255, 210, 63, 0.3);
+}
+.master-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  color: var(--ink-white);
+  margin: 0 0 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+}
+.master-tribute {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-cream);
+  margin: 0;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .master-name { font-size: 12px; }
+  .master-tribute { font-size: 16px; }
+}
+@media (max-width: 600px) {
+  .cv-guild-masters { padding: 18px 0 4px; margin-top: 22px; }
+  .cv-guild-masters-label { font-size: 9px; letter-spacing: 0.12em; margin-bottom: 16px; }
+  .cv-guild-master { padding: 16px 16px; }
+  .master-role { font-size: 8px; letter-spacing: 0.1em; }
+  .master-name { font-size: 11px; }
+  .master-tribute { font-size: 15px; }
 }
 
 @media (max-width: 900px) {
