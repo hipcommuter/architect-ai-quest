@@ -228,13 +228,17 @@ section.screen {
 /* ---------- 5. SECTION 2 — TUTORIAL ---------- */
 #tutorial { background: var(--bg-screen); }
 
-.tutorial-panel { margin: 30px 0 50px; }
+.tutorial-panel {
+  margin: 30px auto 50px;
+  max-width: 1000px;
+}
 
 .tutorial-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-  margin-top: 12px;
+  margin: 12px auto 0;
+  max-width: 880px;
 }
 @media (max-width: 720px) {
   .tutorial-grid { grid-template-columns: 1fr; }
