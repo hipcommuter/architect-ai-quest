@@ -1395,17 +1395,23 @@ section.screen {
   margin: 0 auto 30px;
 }
 .cv-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 14px;
   margin-top: 14px;
 }
-@media (max-width: 720px) { .cv-stats-grid { grid-template-columns: repeat(2, 1fr); } }
 .cv-stat {
+  flex: 1 1 calc(33.333% - 14px);
+  min-width: 150px;
+  max-width: 260px;
   background: var(--bg-card);
   border: 3px solid var(--gold);
   padding: 14px 10px;
   text-align: center;
+}
+@media (max-width: 720px) {
+  .cv-stat { flex: 1 1 calc(50% - 14px); }
 }
 .stat-label {
   display: block;
