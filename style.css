@@ -93,6 +93,7 @@ section.screen {
   color: var(--gold);
   margin-bottom: 18px;
   letter-spacing: 0.1em;
+  text-align: center;
 }
 
 .section-title {
@@ -100,13 +101,19 @@ section.screen {
   color: var(--ink-white);
   margin: 0 0 14px;
   text-shadow: 3px 3px 0 var(--bg-deep);
+  text-align: center;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .section-intro {
   font-size: 24px;
   max-width: 760px;
   color: var(--ink-cream);
-  margin: 0 0 40px;
+  margin: 0 auto 40px;
+  text-align: center;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* ---------- 4. SECTION 1 — TITLE SCREEN ---------- */
@@ -422,6 +429,20 @@ section.screen {
   padding: 18px !important;
   text-align: left;
 }
+.level-card .level-skill,
+.level-card .level-example,
+.level-card .level-anchor,
+.level-card .level-case,
+.level-card .level-try-today {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+.level-card code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 
 .level-skill {
   font-family: 'Press Start 2P', monospace;
@@ -465,8 +486,10 @@ section.screen {
 }
 .level-node:not(.is-reached) .level-card .level-skill,
 .level-node:not(.is-reached) .level-card .level-tool,
+.level-node:not(.is-reached) .level-card .level-services,
 .level-node:not(.is-reached) .level-card .level-example,
 .level-node:not(.is-reached) .level-card .level-anchor,
+.level-node:not(.is-reached) .level-card .level-case,
 .level-node:not(.is-reached) .level-card .level-try-today {
   opacity: 0;
   visibility: hidden;
@@ -2181,6 +2204,8 @@ section.screen {
   max-width: 600px;
   margin: 0 auto 24px;
   line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .cta-btn {
   display: inline-block;
@@ -2395,6 +2420,76 @@ section.screen {
 .battle-arena .scene-sparkle:nth-of-type(2) { animation-delay: 0.2s; }
 .battle-arena .scene-sparkle:nth-of-type(3) { animation-delay: 0.4s; }
 
+/* ----- Party members in action — each slot gets a distinct pose ----- */
+.battle-arena .party-member {
+  transform-origin: center bottom;
+  transform-box: fill-box;
+}
+/* Slot 0 = leader: lunges forward with the weapon */
+.battle-arena .party-member-0 { animation: party-lunge 0.9s steps(4) infinite; }
+/* Slot 1: bobs up while casting */
+.battle-arena .party-member-1 { animation: party-cast 1.1s steps(4) infinite; animation-delay: 0.1s; }
+/* Slot 2: pulses while buffing the team */
+.battle-arena .party-member-2 { animation: party-buff 1.3s steps(3) infinite; animation-delay: 0.25s; }
+/* Slot 3: tilts back, scouting/reading */
+.battle-arena .party-member-3 { animation: party-scout 1s steps(4) infinite; animation-delay: 0.4s; }
+
+/* Leader's swung sword — already lives mid-arena. Now it swings. */
+.battle-arena .party-effect-sword {
+  transform-origin: center bottom;
+  transform-box: fill-box;
+  animation: weapon-swing 0.9s steps(4) infinite;
+}
+
+/* Action overlays per slot — sparkles, heart, scroll */
+.battle-arena .party-action use { transform-origin: center; transform-box: fill-box; }
+.battle-arena .party-action-1 use { animation: sparkle-twinkle 0.6s steps(2) infinite; }
+.battle-arena .party-action-1 use:nth-child(2) { animation-delay: 0.2s; }
+.battle-arena .party-action-1 use:nth-child(3) { animation-delay: 0.4s; }
+.battle-arena .party-action-2 use { animation: buff-pulse 1.2s steps(3) infinite; }
+.battle-arena .party-action-2 use:nth-child(2) { animation-delay: 0.3s; }
+.battle-arena .party-action-2 use:nth-child(3) { animation-delay: 0.6s; }
+.battle-arena .party-action-3 use { animation: scout-bob 1.4s steps(3) infinite; }
+
+@keyframes party-lunge {
+  0%, 100% { transform: translate(0, 0); }
+  40%      { transform: translate(-2px, -1px); }
+  60%      { transform: translate(-3px, 0); }
+}
+@keyframes party-cast {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px) scale(1.04); }
+}
+@keyframes party-buff {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-1px) scale(1.06); }
+}
+@keyframes party-scout {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  50%      { transform: translate(0, -1px) rotate(-3deg); }
+}
+@keyframes weapon-swing {
+  0%, 100% { transform: rotate(0); }
+  30%      { transform: rotate(-12deg) translateY(-1px); }
+  60%      { transform: rotate(8deg); }
+}
+@keyframes buff-pulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.7; }
+  50%      { transform: scale(1.2); opacity: 1; }
+}
+@keyframes scout-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px) rotate(8deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .battle-arena .party-member,
+  .battle-arena .party-effect-sword,
+  .battle-arena .party-action use {
+    animation: none !important;
+  }
+}
+
 .battle-legend {
   display: flex;
   justify-content: space-between;
@@ -2554,7 +2649,21 @@ section.screen {
   margin: 30px auto 50px;
   text-align: left;
 }
-.credits-block .nes-list li { margin-bottom: 12px; font-size: 21px; line-height: 1.4; }
+.credits-block .nes-list { margin: 0 0 8px; }
+.credits-block .nes-list li { margin-bottom: 10px; font-size: 21px; line-height: 1.4; }
+.credits-cat {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  margin: 18px 0 8px;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+}
+.credits-cat:first-of-type { margin-top: 4px; }
+@media (max-width: 600px) {
+  .credits-cat { font-size: 9px; }
+  .credits-block .nes-list li { font-size: 18px; }
+}
 
 .end-message { margin: 40px 0; }
 .end-thanks {
@@ -2570,6 +2679,8 @@ section.screen {
   margin: 0 auto 18px;
   color: var(--ink-cream);
   line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .end-signature {
   font-family: 'Press Start 2P', monospace;
