@@ -1454,6 +1454,106 @@ section.screen {
 .cv-contact a { color: var(--gold); }
 .cv-contact a:hover { color: var(--ink-white); }
 
+/* ============================================================
+   GUILD HOME — Landprocess tribute card
+   Placed between hero and Chapter 1; high visual weight.
+   ============================================================ */
+.cv-guild-section {
+  padding: 60px 6vw 70px;
+  background:
+    radial-gradient(ellipse at center, rgba(255, 210, 63, 0.08) 0%, transparent 70%),
+    var(--bg-deep);
+  border-bottom: 4px dashed rgba(244,228,188,0.15);
+  text-align: center;
+}
+.cv-guild {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 36px;
+  background: var(--bg-card);
+  border: 4px solid var(--gold);
+  box-shadow:
+    8px 8px 0 var(--bg-deep),
+    inset 0 0 0 2px rgba(255, 210, 63, 0.2);
+  position: relative;
+}
+.cv-guild::before,
+.cv-guild::after {
+  content: '★';
+  position: absolute;
+  top: -14px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: var(--gold);
+  background: var(--bg-card);
+  padding: 0 8px;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+}
+.cv-guild::before { left: 24px; }
+.cv-guild::after  { right: 24px; }
+.cv-guild-banner {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  margin: 0 0 18px;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+  animation: cta-glow 2.6s ease-in-out infinite;
+}
+.cv-guild-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 26px;
+  color: var(--ink-white);
+  letter-spacing: 0.08em;
+  margin: 0 0 14px;
+  line-height: 1.4;
+  text-shadow:
+    3px 3px 0 var(--gold-dark),
+    6px 6px 0 var(--bg-deep);
+}
+.cv-guild-meta {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: var(--ink-cream);
+  letter-spacing: 0.12em;
+  margin: 0 0 22px;
+  line-height: 1.7;
+}
+.cv-guild-tribute {
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--ink-cream);
+  margin: 0 0 18px;
+  font-style: italic;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cv-guild-thanks {
+  font-size: 18px;
+  color: var(--gold);
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .cv-guild-section { padding: 50px 5vw 60px; }
+  .cv-guild { padding: 28px 26px; }
+  .cv-guild-name { font-size: 22px; }
+  .cv-guild-tribute { font-size: 19px; }
+}
+@media (max-width: 600px) {
+  .cv-guild-section { padding: 40px 5vw 50px; }
+  .cv-guild { padding: 24px 18px; box-shadow: 5px 5px 0 var(--bg-deep), inset 0 0 0 2px rgba(255, 210, 63, 0.2); }
+  .cv-guild::before,
+  .cv-guild::after { font-size: 13px; top: -10px; }
+  .cv-guild-banner { font-size: 9px; letter-spacing: 0.15em; }
+  .cv-guild-name { font-size: 16px; letter-spacing: 0.05em; }
+  .cv-guild-meta { font-size: 8px; letter-spacing: 0.08em; }
+  .cv-guild-tribute { font-size: 16px; line-height: 1.55; }
+  .cv-guild-thanks { font-size: 15px; }
+}
+
 /* CV Sections */
 .cv-section {
   padding: 70px 6vw 90px;
