@@ -172,6 +172,48 @@
   let tierUnlockPlaying = false;
   let lastUnlockedTier = null;
   let pageLoadedAt = Date.now();
+  let masterOverlayShown = false;
+
+  /* Master-tier mega overlay — fires once when MASTER tier is first reached. */
+  const masterOverlay = document.getElementById('master-levelup');
+  const masterOverlayClose = document.getElementById('ml-close');
+  function closeMasterOverlay() {
+    if (!masterOverlay) return;
+    masterOverlay.classList.remove('is-active');
+    masterOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  function openMasterOverlay() {
+    if (!masterOverlay || masterOverlayShown) return;
+    masterOverlayShown = true;
+    masterOverlay.classList.add('is-active');
+    masterOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (masterOverlayClose) {
+      try { masterOverlayClose.focus({ preventScroll: true }); } catch (e) {}
+    }
+    // Triumphant chime ladder — only when audio is unlocked
+    if (typeof chime === 'function' && audioReady) {
+      chime(660, 0.14);
+      setTimeout(() => chime(880, 0.14), 140);
+      setTimeout(() => chime(1100, 0.22), 280);
+    }
+  }
+  if (masterOverlayClose) {
+    masterOverlayClose.addEventListener('click', closeMasterOverlay);
+  }
+  if (masterOverlay) {
+    // Click backdrop (not the card) closes
+    masterOverlay.addEventListener('click', (e) => {
+      if (e.target === masterOverlay) closeMasterOverlay();
+    });
+    // Escape closes
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && masterOverlay.classList.contains('is-active')) {
+        closeMasterOverlay();
+      }
+    });
+  }
 
   // Tier copy — fires once per tier transition. Skill-list summarizes what the tier unlocks.
   const TIER_COPY = {
@@ -252,6 +294,8 @@
       tierPopup.classList.remove('is-active');
       if (tpBurst) tpBurst.classList.remove('is-active');
       tierUnlockPlaying = false;
+      // After the compact popup finishes, fire the mega overlay for MASTER
+      if (tierKey === 'master') openMasterOverlay();
       processTierUnlockQueue();
     }, 1700);
   }
