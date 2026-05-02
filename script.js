@@ -131,6 +131,8 @@
   }
 
   const swappableUses = document.querySelectorAll('.swappable-hero');
+  const partyOtherSlots = Array.from(document.querySelectorAll('.party-other'))
+    .sort((a, b) => Number(a.dataset.otherSlot) - Number(b.dataset.otherSlot));
   const partyButtons = document.querySelectorAll('.class-card[data-hero]');
   const rosterCurrent = document.querySelector('.roster-current');
 
@@ -138,6 +140,12 @@
     if (!VALID_HEROES.includes(id)) return;
     const href = '#spr-hero-' + id;
     swappableUses.forEach((u) => u.setAttribute('href', href));
+    // Boss-battle party: fill the other 3 slots with the remaining classes
+    // so we never render the same character twice on the field.
+    const others = VALID_HEROES.filter((h) => h !== id);
+    partyOtherSlots.forEach((el, i) => {
+      if (others[i]) el.setAttribute('href', '#spr-hero-' + others[i]);
+    });
     partyButtons.forEach((btn) => {
       btn.classList.toggle('is-recruited', btn.dataset.hero === id);
     });

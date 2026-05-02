@@ -1281,12 +1281,26 @@
         <use class="scene-sparkle" href="#spr-sparkle" x="100" y="14" width="6" height="6"/>
         <use class="scene-sparkle" href="#spr-sparkle" x="116" y="22" width="5" height="5"/>
         <use class="scene-sparkle" href="#spr-sparkle" x="98" y="28" width="5" height="5"/>
-        <use href="#spr-sword" x="108" y="14" width="10" height="18"/>
-        <!-- RIGHT SIDE: 4-character party -->
-        <use class="swappable-hero" href="#spr-hero-drafter" x="132" y="14" width="14" height="20"/>
-        <use href="#spr-hero-designer" x="150" y="11" width="14" height="20"/>
-        <use href="#spr-hero-communicator" x="166" y="14" width="14" height="20"/>
-        <use href="#spr-hero-researcher" x="174" y="22" width="14" height="20"/>
+        <use class="party-effect-sword" href="#spr-sword" x="108" y="14" width="10" height="18"/>
+        <!-- RIGHT SIDE: 4-character party — slot 0 = chosen leader, slots 1-3 = remaining classes (filled by JS, no dupes) -->
+        <use class="swappable-hero party-member party-member-0" href="#spr-hero-drafter" x="132" y="14" width="14" height="20"/>
+        <use class="party-other party-member party-member-1" data-other-slot="0" href="#spr-hero-designer" x="150" y="11" width="14" height="20"/>
+        <use class="party-other party-member party-member-2" data-other-slot="1" href="#spr-hero-communicator" x="166" y="14" width="14" height="20"/>
+        <use class="party-other party-member party-member-3" data-other-slot="2" href="#spr-hero-researcher" x="174" y="22" width="14" height="20"/>
+        <!-- Per-member action overlays: leader swings, slot 1 casts, slot 2 buffs, slot 3 reads/scouts -->
+        <g class="party-action party-action-1" aria-hidden="true">
+          <use href="#spr-sparkle" x="142" y="6" width="5" height="5"/>
+          <use href="#spr-sparkle" x="156" y="9" width="4" height="4"/>
+          <use href="#spr-sparkle" x="146" y="14" width="3" height="3"/>
+        </g>
+        <g class="party-action party-action-2" aria-hidden="true">
+          <use href="#spr-heart" x="166" y="4" width="6" height="5"/>
+          <use href="#spr-sparkle" x="162" y="8" width="3" height="3"/>
+          <use href="#spr-sparkle" x="174" y="8" width="3" height="3"/>
+        </g>
+        <g class="party-action party-action-3" aria-hidden="true">
+          <use href="#spr-scroll" x="180" y="18" width="6" height="6"/>
+        </g>
         <!-- Party HP/MP bars (bottom right) -->
         <rect x="128" y="44" width="60" height="2" fill="#0f0e2a"/>
         <rect x="128" y="44" width="48" height="2" fill="#51e898"/>
@@ -1406,12 +1420,47 @@
 
     <div class="credits-block nes-container is-dark with-title">
       <p class="title">★ TOOLS MENTIONED</p>
+
+      <p class="credits-cat">CHAT — talk to AI</p>
       <ul class="nes-list is-disc">
-        <li><a href="https://claude.ai" target="_blank">Claude.ai</a> — conversation, projects, long-context reasoning</li>
-        <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a> — entry-level conversation + image gen</li>
-        <li><a href="https://www.midjourney.com" target="_blank">Midjourney</a> — moodboards and reference images</li>
-        <li><a href="https://claude.com/product/claude-code" target="_blank">Claude Code</a> — agent in your terminal/IDE</li>
-        <li><a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Claude Agent SDK</a> — build custom agents and MCPs</li>
+        <li><a href="https://claude.ai" target="_blank">Claude</a> — my daily driver. Long memory, Projects, reads big docs</li>
+        <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a> — easiest place to start; also makes images</li>
+        <li><a href="https://gemini.google.com" target="_blank">Gemini</a> — Google's chat AI; very long memory window</li>
+      </ul>
+
+      <p class="credits-cat">IMAGES — moodboards &amp; references</p>
+      <ul class="nes-list is-disc">
+        <li><a href="https://www.midjourney.com" target="_blank">Midjourney</a> — best look for moodboards and refs</li>
+        <li>DALL-E — image gen baked into ChatGPT</li>
+        <li>ComfyUI — local, hackable image gen for the geek crowd</li>
+      </ul>
+
+      <p class="credits-cat">AUDIO / VIDEO — notes from recordings</p>
+      <ul class="nes-list is-disc">
+        <li><a href="https://notebooklm.google.com" target="_blank">NotebookLM</a> — turns long audio + video into searchable notes</li>
+        <li>Whisper — open-source transcription, runs on your laptop</li>
+      </ul>
+
+      <p class="credits-cat">CODE &amp; AGENTS — AI that does, not just talks</p>
+      <ul class="nes-list is-disc">
+        <li><a href="https://claude.com/product/claude-code" target="_blank">Claude Code</a> — AI that writes and runs code with you</li>
+        <li>GitHub Copilot — autocomplete-on-steroids inside your editor</li>
+        <li>Cursor — AI-first code editor</li>
+        <li><a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Claude Agent SDK</a> — build your own agents; connects via MCP</li>
+        <li>OpenAI Agents — same idea, OpenAI's flavor</li>
+      </ul>
+
+      <p class="credits-cat">SCHEDULE — run things on a timer</p>
+      <ul class="nes-list is-disc">
+        <li>GitHub Actions — free scheduled jobs in the cloud (for small stuff)</li>
+        <li>cron — the classic way to run a script on a timer</li>
+      </ul>
+
+      <p class="credits-cat">MADE WITH — what's under the hood of this page</p>
+      <ul class="nes-list is-disc">
+        <li>NES.css — pixel-art component library for the JRPG vibe</li>
+        <li>VT323 + Press Start 2P — Google fonts for the retro look</li>
+        <li>Claude Code — yes, this site was largely built by AI agents (Lv.999 in action)</li>
       </ul>
     </div>
 
