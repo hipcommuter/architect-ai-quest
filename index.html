@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" />
 
   <!-- Local styles -->
-  <link rel="stylesheet" href="style.css?v=17" />
+  <link rel="stylesheet" href="style.css?v=18" />
 </head>
 <body>
 
@@ -1463,6 +1463,43 @@
     <p class="press-start blink">[ ^ ]&nbsp;&nbsp;SCROLL UP TO REPLAY&nbsp;&nbsp;[ ^ ]</p>
   </section>
 
-  <script src="script.js?v=17"></script>
+  <!-- ============================================ -->
+  <!-- MASTER-TIER MEGA LEVEL-UP OVERLAY            -->
+  <!-- Fires once per session when user first       -->
+  <!-- crosses into LV.700+ (MASTER tier).          -->
+  <!-- ============================================ -->
+  <div id="master-levelup" class="master-levelup" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ml-headline">
+    <div class="master-levelup-flash" aria-hidden="true"></div>
+    <div class="master-levelup-card" role="document">
+      <p class="ml-banner">★ ★ ★&nbsp;&nbsp;L E V E L&nbsp;&nbsp;U P !&nbsp;&nbsp;★ ★ ★</p>
+      <p class="ml-tier">FINAL TIER UNLOCKED · LV.700+</p>
+      <h2 id="ml-headline" class="ml-headline">YOU ARE BEYOND<br/>HUMAN BEING</h2>
+      <p class="ml-flavor">Mortals tap out at LV.500.<br/>You broke through.</p>
+      <ul class="ml-stats">
+        <li>+999 INT  ·  +∞ PATIENCE</li>
+        <li>HP regenerates while you sleep</li>
+        <li>Coffee is now optional</li>
+        <li>You speak fluent prompt</li>
+      </ul>
+      <p class="ml-warning">⚠ WARNING — clients may now ask:<br/>"are you secretly using AI for everything?"<br/>(yes.)</p>
+      <button type="button" class="ml-continue" id="ml-close">▶ CONTINUE THE QUEST</button>
+    </div>
+    <div class="master-levelup-confetti" aria-hidden="true">
+      <span class="ml-conf ml-conf-1">★</span>
+      <span class="ml-conf ml-conf-2">◆</span>
+      <span class="ml-conf ml-conf-3">▲</span>
+      <span class="ml-conf ml-conf-4">●</span>
+      <span class="ml-conf ml-conf-5">★</span>
+      <span class="ml-conf ml-conf-6">◆</span>
+      <span class="ml-conf ml-conf-7">▲</span>
+      <span class="ml-conf ml-conf-8">●</span>
+      <span class="ml-conf ml-conf-9">★</span>
+      <span class="ml-conf ml-conf-10">◆</span>
+      <span class="ml-conf ml-conf-11">▲</span>
+      <span class="ml-conf ml-conf-12">●</span>
+    </div>
+  </div>
+
+  <script src="script.js?v=18"></script>
 </body>
 </html>
