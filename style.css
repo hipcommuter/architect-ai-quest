@@ -230,22 +230,22 @@ section.screen {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  margin-top: 28px;
-  padding: 14px 22px 16px;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 20px 32px 22px;
   font-family: 'Press Start 2P', monospace;
   text-decoration: none;
   color: var(--ink-cream, #f4e4bc);
   background: rgba(0, 0, 0, 0.32);
-  border: 3px dashed rgba(244, 196, 48, 0.55);
-  box-shadow: 4px 4px 0 var(--bg-deep, #0d0823);
+  border: 4px dashed rgba(244, 196, 48, 0.65);
+  box-shadow: 5px 5px 0 var(--bg-deep, #0d0823);
   transition: transform 0.15s steps(2), box-shadow 0.15s, border-color 0.15s, color 0.15s;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 .title-cv-btn:hover,
 .title-cv-btn:focus-visible {
   transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--bg-deep, #0d0823);
+  box-shadow: 7px 7px 0 var(--bg-deep, #0d0823);
   border-color: var(--gold, #f4c430);
   color: var(--ink-white, #fff);
   outline: none;
@@ -256,20 +256,25 @@ section.screen {
 }
 .cv-btn-arrow {
   color: var(--gold, #f4c430);
-  font-size: 12px;
+  font-size: 18px;
   letter-spacing: 0;
 }
-.cv-btn-line-1 { font-size: 11px; letter-spacing: 0.18em; }
+.cv-btn-line-1 { font-size: 18px; letter-spacing: 0.18em; }
 .cv-btn-line-2 {
-  font-size: 9px;
+  font-size: 14px;
   letter-spacing: 0.15em;
   color: var(--gold, #f4c430);
-  opacity: 0.9;
+}
+@media (max-width: 720px) {
+  .cv-btn-arrow  { font-size: 15px; }
+  .cv-btn-line-1 { font-size: 14px; }
+  .cv-btn-line-2 { font-size: 11px; }
 }
 @media (max-width: 600px) {
-  .title-cv-btn { padding: 12px 14px 14px; }
-  .cv-btn-line-1 { font-size: 9px; }
-  .cv-btn-line-2 { font-size: 8px; }
+  .title-cv-btn { padding: 14px 18px 16px; gap: 8px; }
+  .cv-btn-arrow  { font-size: 13px; }
+  .cv-btn-line-1 { font-size: 12px; }
+  .cv-btn-line-2 { font-size: 10px; }
 }
 
 /* ---------- 5. SECTION 2 — TUTORIAL ---------- */
@@ -2701,12 +2706,44 @@ section.screen {
 /* Slot 3: tilts back, scouting/reading */
 .battle-arena .party-member-3 { animation: party-scout 1s steps(4) infinite; animation-delay: 0.4s; }
 
-/* Leader's swung sword — already lives mid-arena. Now it swings. */
-.battle-arena .party-effect-sword {
-  transform-origin: center bottom;
+/* Mid-arena impact burst (replaced the floating sword). The bright core
+   pops/scales when the leader's strike "lands" and 4 streaks radiate
+   outward from it. */
+.battle-arena .impact-core {
+  transform-origin: center;
   transform-box: fill-box;
-  animation: weapon-swing 0.9s steps(4) infinite;
+  animation: impact-core-pop 0.9s steps(3) infinite;
 }
+@keyframes impact-core-pop {
+  0%, 100% { transform: scale(0.5); opacity: 0.4; }
+  30%      { transform: scale(1.4); opacity: 1; }
+  60%      { transform: scale(1);   opacity: 0.85; }
+}
+.battle-arena .impact-streak {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: impact-streak-shoot 0.9s steps(3) infinite;
+  opacity: 0;
+}
+.battle-arena .impact-streak-l { animation-delay: 0s;    }
+.battle-arena .impact-streak-r { animation-delay: 0.05s; }
+.battle-arena .impact-streak-u { animation-delay: 0.1s;  }
+.battle-arena .impact-streak-d { animation-delay: 0.15s; }
+@keyframes impact-streak-shoot {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  35%      { opacity: 1; transform: scale(1.2); }
+  60%      { opacity: 0.6; transform: scale(1); }
+}
+
+/* Lightning impact splash where each bolt strikes the boss row */
+.battle-arena .lightning-impact {
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: lightning-strike 5.5s ease-out infinite;
+}
+.battle-arena .lightning-impact-1 { animation-delay: 1.2s; }
+.battle-arena .lightning-impact-2 { animation-delay: 3.4s; }
 
 /* Action overlays per slot — sparkles, heart, scroll */
 .battle-arena .party-action use { transform-origin: center; transform-box: fill-box; }
@@ -2735,11 +2772,6 @@ section.screen {
   0%, 100% { transform: translate(0, 0) rotate(0); }
   50%      { transform: translate(0, -1px) rotate(-3deg); }
 }
-@keyframes weapon-swing {
-  0%, 100% { transform: rotate(0); }
-  30%      { transform: rotate(-12deg) translateY(-1px); }
-  60%      { transform: rotate(8deg); }
-}
 @keyframes buff-pulse {
   0%, 100% { transform: scale(0.9); opacity: 0.7; }
   50%      { transform: scale(1.2); opacity: 1; }
@@ -2753,15 +2785,17 @@ section.screen {
   .battle-arena-wrap,
   .battle-caption,
   .battle-arena .party-member,
-  .battle-arena .party-effect-sword,
   .battle-arena .party-action use,
   .battle-arena .aurora,
   .battle-arena .lightning,
+  .battle-arena .lightning-impact,
   .battle-arena .boss-scream,
   .battle-arena .boss-hp-flash,
   .battle-arena .dmg-num,
   .battle-arena .critical-banner,
   .battle-arena .slash-arc,
+  .battle-arena .impact-core,
+  .battle-arena .impact-streak,
   .battle-arena .leader-aura,
   .battle-arena .hp-tip,
   .battle-arena .mp-tip,
@@ -2769,12 +2803,15 @@ section.screen {
     animation: none !important;
   }
   .battle-arena .lightning,
+  .battle-arena .lightning-impact,
   .battle-arena .boss-scream,
   .battle-arena .boss-hp-flash,
   .battle-arena .dmg-num,
-  .battle-arena .slash-arc { opacity: 0; }
+  .battle-arena .slash-arc,
+  .battle-arena .impact-streak { opacity: 0; }
   .battle-arena .critical-banner { opacity: 1; }
-  .battle-arena .leader-aura { opacity: 0.5; }
+  .battle-arena .leader-aura,
+  .battle-arena .impact-core { opacity: 0.7; }
 }
 
 .battle-legend {
@@ -3117,49 +3154,55 @@ section.screen {
   animation: hero-walk 1.6s steps(4) infinite;
 }
 
-/* ----- Party trail: 3 companions march behind the leader ----- */
+/* ----- Party trail: 3 companions stacked above the leader, smaller as
+        they recede into the distance (JRPG party formation). ----- */
 .party-trail-row {
   position: absolute;
-  top: -55px;
+  /* Leader's top edge sits at y=-45 inside the 0-height wrap. Stack the
+     trail column directly above that point. */
+  top: -160px;
   left: 50%;
-  transform: translateX(calc(-50% - 70px));
+  transform: translateX(-50%);
   display: flex;
-  align-items: flex-end;
-  gap: 4px;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
   z-index: 0;
   pointer-events: none;
 }
 .party-trail {
-  filter: drop-shadow(2px 3px 0 rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(1px 2px 0 rgba(0, 0, 0, 0.45));
   animation: hero-walk 1.6s steps(4) infinite;
 }
+/* trail-1 is largest + nearest the leader (bottom of column).
+   trail-3 is smallest + furthest away (top of column). */
 .party-trail.trail-1 {
-  width: 42px;
-  height: 56px;
+  width: 38px;
+  height: 50px;
   opacity: 0.92;
   animation-delay: -0.2s;
 }
 .party-trail.trail-2 {
-  width: 36px;
-  height: 48px;
-  opacity: 0.75;
+  width: 30px;
+  height: 40px;
+  opacity: 0.78;
   animation-delay: -0.4s;
 }
 .party-trail.trail-3 {
-  width: 30px;
-  height: 40px;
+  width: 24px;
+  height: 32px;
   opacity: 0.6;
   animation-delay: -0.6s;
 }
 @media (max-width: 720px) {
-  .party-trail-row { transform: translateX(calc(-50% - 52px)); gap: 3px; }
-  .party-trail.trail-1 { width: 32px; height: 44px; }
-  .party-trail.trail-2 { width: 28px; height: 38px; }
-  .party-trail.trail-3 { width: 24px; height: 32px; }
+  .party-trail-row { top: -130px; gap: 1px; }
+  .party-trail.trail-1 { width: 32px; height: 42px; }
+  .party-trail.trail-2 { width: 26px; height: 34px; }
+  .party-trail.trail-3 { width: 20px; height: 28px; }
 }
 @media (max-width: 480px) {
+  .party-trail-row { top: -100px; }
   .party-trail.trail-3 { display: none; }
-  .party-trail-row { transform: translateX(calc(-50% - 42px)); }
 }
 
 /* ----- Hero transformation overlays per tier ----- */
