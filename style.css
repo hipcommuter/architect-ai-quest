@@ -1362,6 +1362,22 @@ section.screen {
 .quest-class.class-communicator { color: var(--c-communicator); border-color: var(--c-communicator); }
 .quest-class.class-researcher   { color: var(--c-researcher);   border-color: var(--c-researcher); }
 
+/* "WORKS WITH:" tool tags shown on each quest card */
+.quest-tools {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  line-height: 1.7;
+  background: rgba(15, 14, 42, 0.55);
+  border-left: 3px solid var(--gold);
+}
+@media (max-width: 600px) {
+  .quest-tools { padding: 8px 10px; gap: 4px; }
+}
+
 .bonus-tag {
   display: inline-block;
   margin-left: 8px;
@@ -1415,6 +1431,8 @@ section.screen {
 .svc-cron       { color: #ffd23f; border-color: #c9a227; }
 .svc-whisper    { color: #ff77a8; border-color: #ff77a8; }
 .svc-antigravity{ color: #ff8a3a; border-color: #ff8a3a; }
+.svc-python     { color: #ffd23f; border-color: #4a89dc; background: #0f1a2a; }
+.svc-script     { color: #ffd23f; border-color: #4285f4; background: #0a1a2a; }
 
 @media (max-width: 600px) {
   .svc, .services-label { font-size: 7px; }
