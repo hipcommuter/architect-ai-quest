@@ -1357,6 +1357,19 @@ section.screen {
   min-height: 0;
 }
 
+/* Flex-column layout reliably centers all CV section children regardless
+   of NES.css inherited display rules — the previous margin: 0 auto
+   approach wasn't winning consistently against the .nes-container
+   classes on .cv-statbar / .cv-prose. */
+.cv-hero,
+.cv-section,
+.cv-guild-section,
+.cv-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .cv-hero {
   text-align: center;
   background: radial-gradient(ellipse at center, #1d2b53 0%, #0f0e2a 80%);
@@ -1484,6 +1497,7 @@ section.screen {
   text-align: center;
 }
 .cv-guild {
+  width: 100%;
   max-width: 880px;
   margin: 0 auto;
   padding: 32px 36px;
@@ -1666,6 +1680,25 @@ section.screen {
   margin-left: auto;
   margin-right: auto;
 }
+/* Responsive section title — long headings like "Notable Projects
+   (Completed Quests)" overflow at 32px on medium viewports. clamp()
+   scales between 20px and 30px without manual breakpoints. */
+.cv-section .section-title {
+  font-size: clamp(20px, 2.6vw, 30px);
+  line-height: 1.35;
+}
+/* Section grids and prose need width: 100% inside the flex column so they
+   actually use their max-widths instead of shrinking to content. */
+.cv-section > .cv-prose,
+.cv-section > .cv-edu-grid,
+.cv-section > .cv-project-grid,
+.cv-section > .cv-additional,
+.cv-section > .cv-ai-grid,
+.cv-section > .cv-recent-grid,
+.cv-section > .cv-recent-cta,
+.cv-section > .cv-skills-grid {
+  width: 100%;
+}
 .cv-section .cv-prose,
 .cv-section .cv-prose * {
   text-align: left;
@@ -1683,8 +1716,8 @@ section.screen {
 .cv-section:nth-child(odd) { background: var(--bg-screen); }
 .cv-section:nth-child(even) { background: var(--bg-deep); }
 
-/* Hero stat-bar + contact panel must center horizontally on every viewport
-   regardless of inherited NES.css display rules. */
+/* Hero stat-bar + contact panel — explicit widths inside the flex parent
+   so they don't shrink to content size. */
 .cv-statbar,
 .cv-contact {
   width: 100%;
