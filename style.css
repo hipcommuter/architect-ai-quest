@@ -2335,6 +2335,27 @@ section.screen {
   text-shadow: 2px 2px 0 var(--bg-deep);
 }
 
+/* ---------- QUEST LOG TEASERS (index.html quest log) ---------- */
+.quest-teasers {
+  list-style: none;
+  padding: 0;
+  margin: 24px auto 0;
+  max-width: 760px;
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--ink-cream);
+}
+.quest-teasers li {
+  padding: 6px 0;
+  border-bottom: 2px dotted rgba(244, 228, 188, 0.25);
+}
+.quest-teasers li:last-child { border-bottom: 0; }
+.quest-teasers strong {
+  color: var(--gold);
+  font-weight: normal;
+}
+
 /* ---------- EXPLORE LIBRARY CTA (bottom of index.html quest log) ---------- */
 .library-cta {
   margin-top: 30px;
@@ -2956,6 +2977,13 @@ section.screen {
   font-size: 64px;
   margin: 8px 0 16px;
   filter: drop-shadow(3px 3px 0 var(--bg-deep));
+}
+.boss-portrait svg {
+  display: block;
+  margin: 0 auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  shape-rendering: crispEdges;
 }
 
 .boss-name {
