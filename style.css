@@ -2651,27 +2651,37 @@ section.screen {
   50%      { opacity: 1; }
 }
 
-/* ----- HUD strip below arena: TURN / HP / MP / LIMIT BREAK ----- */
+/* ----- HUD strip below arena: TURN / HP / MP / LIMIT BREAK -----
+   Each .hud-label is `inline-block` + `nowrap` so the text inside
+   (e.g. "PARTY HP 9999/9999") never breaks mid-label. The parent
+   .battle-hud uses flex-wrap so on narrow viewports each whole label
+   sits on its own line cleanly. */
 .battle-hud {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 18px;
-  margin-top: 14px;
-  padding: 14px 18px;
+  gap: 22px;
+  margin-top: 16px;
+  padding: 18px 22px;
   background: rgba(0, 0, 0, 0.4);
   border: 3px dashed rgba(244, 196, 48, 0.6);
   font-family: 'Press Start 2P', monospace;
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 0.15em;
   color: var(--ink-cream);
   text-align: center;
-  line-height: 1.4;
+  line-height: 1.5;
 }
-.battle-hud .hud-label { display: inline-flex; align-items: center; gap: 6px; }
+.battle-hud .hud-label {
+  display: inline-block;
+  white-space: nowrap;
+}
 .battle-hud .hud-label strong { color: var(--gold); font-weight: normal; }
-.battle-hud .hud-divider { color: rgba(244, 196, 48, 0.5); font-size: 16px; }
+.battle-hud .hud-divider {
+  color: rgba(244, 196, 48, 0.5);
+  font-size: 22px;
+}
 .battle-hud .hud-status {
   color: var(--gold);
   text-shadow: 0 0 8px rgba(244, 196, 48, 0.7);
@@ -2680,13 +2690,17 @@ section.screen {
 @keyframes hud-status-blink {
   50% { opacity: 0.3; }
 }
+@media (max-width: 900px) {
+  .battle-hud { font-size: 16px; gap: 18px; padding: 16px 18px; }
+  .battle-hud .hud-divider { font-size: 18px; }
+}
 @media (max-width: 720px) {
-  .battle-hud { font-size: 12px; gap: 14px; padding: 12px 14px; }
-  .battle-hud .hud-divider { font-size: 14px; }
+  .battle-hud { font-size: 14px; gap: 14px; padding: 14px 14px; }
+  .battle-hud .hud-divider { font-size: 16px; }
 }
 @media (max-width: 600px) {
-  .battle-hud { font-size: 10px; gap: 10px; padding: 10px 12px; }
-  .battle-hud .hud-divider { font-size: 12px; }
+  .battle-hud { font-size: 12px; gap: 10px; padding: 12px 12px; }
+  .battle-hud .hud-divider { display: none; }
 }
 .battle-arena .swappable-hero {
   animation: hero-bob 0.7s steps(3) infinite;
