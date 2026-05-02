@@ -83,8 +83,38 @@ section.screen {
   position: relative;
   z-index: 2;
   padding: 80px 6vw 100px;
-  min-height: 100vh;
   border-bottom: 4px dashed rgba(244,228,188,0.15);
+}
+
+/* Index sections (except #title-screen which sets its own min-height): use
+   flex-column-center so children (.credits-block, .library-cta, the grids)
+   center horizontally even when their content is narrower than the page. */
+#tutorial,
+#level-map,
+#quest-comics,
+#boss-battles,
+#starter-pack,
+#credits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Children that should span full width inside the centered flex column,
+   so their internal grid still uses the full page width instead of
+   shrinking to content. */
+#tutorial > .tutorial-panel,
+#tutorial > .party-roster,
+#level-map > .section-intro,
+#level-map > .level-track,
+#quest-comics > .section-intro,
+#quest-comics > .library-cta,
+#boss-battles > .battle-arena-wrap,
+#boss-battles > .boss-grid,
+#starter-pack > .section-intro,
+#starter-pack > .starter-grid,
+#credits > .credits-block,
+#credits > .end-message {
+  width: 100%;
 }
 
 .section-label {
@@ -451,18 +481,6 @@ section.screen {
   margin: 0 0 12px;
   line-height: 1.5;
 }
-.level-tool {
-  margin: 0 0 12px;
-}
-.tool-tag {
-  display: inline-block;
-  padding: 4px 9px;
-  margin-right: 5px;
-  font-size: 11px;
-  background: var(--bg-deep);
-  color: var(--gold);
-  border: 2px solid var(--gold);
-}
 .level-example {
   font-size: 21px;
   color: var(--ink-cream);
@@ -485,7 +503,6 @@ section.screen {
   transition: opacity 0.5s steps(4), filter 0.5s;
 }
 .level-node:not(.is-reached) .level-card .level-skill,
-.level-node:not(.is-reached) .level-card .level-tool,
 .level-node:not(.is-reached) .level-card .level-services,
 .level-node:not(.is-reached) .level-card .level-example,
 .level-node:not(.is-reached) .level-card .level-anchor,
@@ -2645,9 +2662,11 @@ section.screen {
 }
 
 .credits-block {
+  width: 100%;
   max-width: 800px;
   margin: 30px auto 50px;
   text-align: left;
+  box-sizing: border-box;
 }
 .credits-block .nes-list { margin: 0 0 8px; }
 .credits-block .nes-list li { margin-bottom: 10px; font-size: 21px; line-height: 1.4; }
