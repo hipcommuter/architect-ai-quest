@@ -1703,6 +1703,20 @@ section.screen {
   font-size: 21px;
   color: var(--ink-cream);
 }
+/* In-grid tier subdividers — span all columns of .cv-recent-grid */
+.recent-tier-divider {
+  grid-column: 1 / -1;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 0.16em;
+  margin: 18px 0 0;
+  padding: 12px 4px 10px;
+  border-bottom: 2px dashed rgba(255, 210, 63, 0.4);
+  text-shadow: 2px 2px 0 var(--bg-deep);
+  line-height: 1.5;
+}
+.recent-tier-divider:first-child { margin-top: 0; }
 
 /* Skills grid */
 .cv-skills-grid {
@@ -1774,6 +1788,20 @@ section.screen {
   border-color: var(--gold) !important;
 }
 
+/* Long URLs / emails in the contact panel must wrap on narrow viewports
+   instead of pushing the layout wider than the screen. */
+.cv-contact li { overflow-wrap: anywhere; word-break: break-word; }
+
+/* Intermediate breakpoint — covers tablets / small laptops where the
+   desktop 40px hero name would otherwise wrap awkwardly. */
+@media (max-width: 900px) {
+  .cv-name { font-size: 32px; }
+  .cv-hero { padding: 50px 5vw 60px; }
+  .cv-section { padding: 56px 5vw 70px; }
+  .cv-footer { padding: 56px 5vw 70px; }
+  .recent-tier-divider { font-size: 12px; }
+}
+
 @media (max-width: 600px) {
   .cv-name { font-size: 26px; }
   .cv-tagline { font-size: 9px; }
@@ -1785,6 +1813,13 @@ section.screen {
   .recent-name { font-size: 9px; }
   .skill-tag { font-size: 9px; }
   .cv-footer-tag { font-size: 14px; }
+  .cv-hero { padding: 40px 5vw 50px; }
+  .cv-section { padding: 44px 5vw 56px; }
+  .cv-footer { padding: 44px 5vw 56px; }
+  .recent-tier-divider { font-size: 10px; letter-spacing: 0.12em; padding: 10px 2px 8px; }
+  .cv-contact li { font-size: 17px; }
+  .cv-recent-cta { font-size: 17px; }
+  .cv-prose p { font-size: 18px; }
 }
 
 /* ---------- LIBRARY PAGE NAV (top of library.html) ---------- */
