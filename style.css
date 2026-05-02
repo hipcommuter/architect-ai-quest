@@ -225,20 +225,67 @@ section.screen {
 .blink { animation: blink-keys 1.2s steps(2) infinite; }
 @keyframes blink-keys { 50% { opacity: 0.25; } }
 
+/* "Who is the guy that made this silly thing?" CV link below press-start */
+.title-cv-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 28px;
+  padding: 14px 22px 16px;
+  font-family: 'Press Start 2P', monospace;
+  text-decoration: none;
+  color: var(--ink-cream, #f4e4bc);
+  background: rgba(0, 0, 0, 0.32);
+  border: 3px dashed rgba(244, 196, 48, 0.55);
+  box-shadow: 4px 4px 0 var(--bg-deep, #0d0823);
+  transition: transform 0.15s steps(2), box-shadow 0.15s, border-color 0.15s, color 0.15s;
+  line-height: 1.5;
+}
+.title-cv-btn:hover,
+.title-cv-btn:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--bg-deep, #0d0823);
+  border-color: var(--gold, #f4c430);
+  color: var(--ink-white, #fff);
+  outline: none;
+}
+.title-cv-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--bg-deep, #0d0823);
+}
+.cv-btn-arrow {
+  color: var(--gold, #f4c430);
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.cv-btn-line-1 { font-size: 11px; letter-spacing: 0.18em; }
+.cv-btn-line-2 {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--gold, #f4c430);
+  opacity: 0.9;
+}
+@media (max-width: 600px) {
+  .title-cv-btn { padding: 12px 14px 14px; }
+  .cv-btn-line-1 { font-size: 9px; }
+  .cv-btn-line-2 { font-size: 8px; }
+}
+
 /* ---------- 5. SECTION 2 — TUTORIAL ---------- */
 #tutorial { background: var(--bg-screen); }
 
 .tutorial-panel {
   margin: 30px auto 50px;
-  max-width: 1000px;
+  max-width: 1280px;
 }
 
 .tutorial-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 48px;
   margin: 12px auto 0;
-  max-width: 880px;
+  max-width: 1180px;
 }
 @media (max-width: 720px) {
   .tutorial-grid { grid-template-columns: 1fr; }
@@ -2406,10 +2453,26 @@ section.screen {
 .battle-arena-wrap {
   margin: 30px 0 60px;
   padding: 16px;
-  background: #0a0520;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(244, 196, 48, 0.1), transparent 60%),
+    #0a0520;
   border: 4px solid var(--gold);
-  box-shadow: 8px 8px 0 var(--bg-deep);
+  box-shadow:
+    0 0 0 4px var(--bg-deep),
+    0 0 0 8px rgba(244, 196, 48, 0.35),
+    8px 8px 0 var(--bg-deep),
+    0 0 40px rgba(244, 196, 48, 0.18);
   position: relative;
+  animation: arena-shake 6.5s ease-in-out infinite;
+}
+@keyframes arena-shake {
+  0%, 92%, 100% { transform: translate(0, 0); }
+  93% { transform: translate(-1px, 1px); }
+  94% { transform: translate(2px, -1px); }
+  95% { transform: translate(-2px, -2px); }
+  96% { transform: translate(1px, 2px); }
+  97% { transform: translate(-1px, 1px); }
+  98% { transform: translate(1px, -1px); }
 }
 .battle-caption {
   font-family: 'Press Start 2P', monospace;
@@ -2417,18 +2480,201 @@ section.screen {
   font-size: 13px;
   color: var(--gold);
   margin: 0 0 14px;
-  letter-spacing: 0.18em;
-  text-shadow: 2px 2px 0 var(--bg-deep);
+  letter-spacing: 0.22em;
+  text-shadow:
+    2px 2px 0 var(--bg-deep),
+    0 0 12px rgba(244, 196, 48, 0.6);
+  animation: caption-flicker 3s ease-in-out infinite;
+}
+@keyframes caption-flicker {
+  0%, 100% {
+    text-shadow: 2px 2px 0 var(--bg-deep), 0 0 12px rgba(244, 196, 48, 0.6);
+  }
+  35% {
+    text-shadow: 2px 2px 0 var(--bg-deep), 0 0 24px rgba(244, 196, 48, 0.95);
+    color: var(--ink-white);
+  }
+  37% {
+    text-shadow: 2px 2px 0 var(--bg-deep);
+    color: var(--gold);
+  }
 }
 .battle-arena {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 360px;
+  max-height: 420px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   shape-rendering: crispEdges;
   border: 2px solid var(--ink-cream);
+}
+
+/* ----- Aurora band drifting across the sky ----- */
+.battle-arena .aurora {
+  transform-origin: center;
+  animation: aurora-drift 7s ease-in-out infinite;
+}
+.battle-arena .aurora-2 { animation-duration: 9s; animation-delay: -1.5s; opacity: 0.55; }
+@keyframes aurora-drift {
+  0%, 100% { transform: translateX(-6px); opacity: 0.45; }
+  50%      { transform: translateX(6px);  opacity: 0.85; }
+}
+
+/* ----- Lightning bolts strike on a stagger ----- */
+.battle-arena .lightning {
+  opacity: 0;
+  transform-origin: top center;
+  transform-box: fill-box;
+  animation: lightning-strike 5.5s ease-out infinite;
+}
+.battle-arena .lightning-1 { animation-delay: 1.2s; }
+.battle-arena .lightning-2 { animation-delay: 3.4s; }
+@keyframes lightning-strike {
+  0%, 6%, 100% { opacity: 0; }
+  1%           { opacity: 1; transform: scaleY(1); }
+  3%           { opacity: 0.6; }
+  4%           { opacity: 1; transform: scaleY(1.05); }
+  5%           { opacity: 0; }
+}
+
+/* ----- Boss "scream" red impact spikes pulse on hit ----- */
+.battle-arena .boss-scream {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: boss-scream-pulse 1.4s steps(2) infinite;
+}
+.battle-arena .boss-scream-1 { animation-delay: 0s;    }
+.battle-arena .boss-scream-2 { animation-delay: 0.4s;  }
+.battle-arena .boss-scream-3 { animation-delay: 0.8s;  }
+@keyframes boss-scream-pulse {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  20%      { opacity: 1; transform: scale(1.2); }
+  40%      { opacity: 0.6; transform: scale(0.9); }
+  60%      { opacity: 0; transform: scale(0.6); }
+}
+
+/* ----- HP damage flash overlay (white blink atop the red bar) ----- */
+.battle-arena .boss-hp-flash {
+  opacity: 0;
+  animation: hp-damage-flash 2.2s ease-out infinite;
+}
+.battle-arena .boss-hpbar:nth-of-type(2) .boss-hp-flash { animation-delay: 0.6s; }
+.battle-arena .boss-hpbar:nth-of-type(3) .boss-hp-flash { animation-delay: 1.2s; }
+@keyframes hp-damage-flash {
+  0%, 12%, 100% { opacity: 0; }
+  3%           { opacity: 0.95; }
+  8%           { opacity: 0.4; }
+  10%          { opacity: 0.7; }
+}
+
+/* ----- Floating damage numbers rise from bosses ----- */
+.battle-arena .dmg-num {
+  font-weight: bold;
+  paint-order: stroke;
+  stroke: #1a0810;
+  stroke-width: 0.6;
+  opacity: 0;
+  animation: dmg-float 2.8s ease-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.battle-arena .dmg-num-1 { animation-delay: 0.2s; }
+.battle-arena .dmg-num-2 { animation-delay: 1.1s; }
+.battle-arena .dmg-num-3 { animation-delay: 1.9s; }
+@keyframes dmg-float {
+  0%   { opacity: 0; transform: translateY(2px) scale(0.6); }
+  10%  { opacity: 1; transform: translateY(0)   scale(1.1); }
+  25%  { opacity: 1; transform: translateY(-2px) scale(1); }
+  60%  { opacity: 0.9; transform: translateY(-6px) scale(1); }
+  100% { opacity: 0; transform: translateY(-10px) scale(0.95); }
+}
+
+/* ----- "CRITICAL!" banner flashes ----- */
+.battle-arena .critical-banner {
+  font-weight: bold;
+  paint-order: stroke;
+  stroke: #1a0810;
+  stroke-width: 0.7;
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: crit-flash 4s ease-out infinite;
+}
+@keyframes crit-flash {
+  0%, 28%, 100% { opacity: 0; transform: scale(0.7); }
+  6%            { opacity: 1; transform: scale(1.2); }
+  10%           { opacity: 0.9; transform: scale(1); }
+  18%           { opacity: 1;   transform: scale(1.05); }
+  24%           { opacity: 0.6; transform: scale(1); }
+}
+
+/* ----- Slash arcs flicker like sword sparks ----- */
+.battle-arena .slash-arc {
+  opacity: 0;
+  animation: slash-spark 0.9s steps(2) infinite;
+}
+.battle-arena .slash-arc-1 { animation-delay: 0s;    }
+.battle-arena .slash-arc-2 { animation-delay: 0.3s;  }
+.battle-arena .slash-arc-3 { animation-delay: 0.6s;  }
+@keyframes slash-spark {
+  0%, 100% { opacity: 0; }
+  40%      { opacity: 1; }
+  60%      { opacity: 0.6; }
+}
+
+/* ----- Leader aura pulses behind the chosen hero ----- */
+.battle-arena .leader-aura {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: leader-aura-pulse 2.2s ease-in-out infinite;
+}
+@keyframes leader-aura-pulse {
+  0%, 100% { transform: scale(0.85); opacity: 0.7; }
+  50%      { transform: scale(1.15); opacity: 1; }
+}
+
+/* ----- HP/MP bar tip blinkers ----- */
+.battle-arena .hp-tip,
+.battle-arena .mp-tip {
+  opacity: 0;
+  animation: tip-blink 1s steps(2) infinite;
+}
+.battle-arena .mp-tip { animation-delay: 0.5s; }
+@keyframes tip-blink {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
+
+/* ----- HUD strip below arena: TURN / HP / MP / LIMIT BREAK ----- */
+.battle-hud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px dashed rgba(244, 196, 48, 0.55);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: var(--ink-cream);
+  text-align: center;
+}
+.battle-hud .hud-label { display: inline-flex; align-items: center; gap: 4px; }
+.battle-hud .hud-label strong { color: var(--gold); font-weight: normal; }
+.battle-hud .hud-divider { color: rgba(244, 196, 48, 0.5); }
+.battle-hud .hud-status {
+  color: var(--gold);
+  text-shadow: 0 0 8px rgba(244, 196, 48, 0.7);
+  animation: hud-status-blink 1s steps(2) infinite;
+}
+@keyframes hud-status-blink {
+  50% { opacity: 0.3; }
+}
+@media (max-width: 600px) {
+  .battle-hud { font-size: 7px; gap: 8px; padding: 6px 8px; }
 }
 .battle-arena .swappable-hero {
   animation: hero-bob 0.7s steps(3) infinite;
@@ -2504,11 +2750,31 @@ section.screen {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .battle-arena-wrap,
+  .battle-caption,
   .battle-arena .party-member,
   .battle-arena .party-effect-sword,
-  .battle-arena .party-action use {
+  .battle-arena .party-action use,
+  .battle-arena .aurora,
+  .battle-arena .lightning,
+  .battle-arena .boss-scream,
+  .battle-arena .boss-hp-flash,
+  .battle-arena .dmg-num,
+  .battle-arena .critical-banner,
+  .battle-arena .slash-arc,
+  .battle-arena .leader-aura,
+  .battle-arena .hp-tip,
+  .battle-arena .mp-tip,
+  .battle-hud .hud-status {
     animation: none !important;
   }
+  .battle-arena .lightning,
+  .battle-arena .boss-scream,
+  .battle-arena .boss-hp-flash,
+  .battle-arena .dmg-num,
+  .battle-arena .slash-arc { opacity: 0; }
+  .battle-arena .critical-banner { opacity: 1; }
+  .battle-arena .leader-aura { opacity: 0.5; }
 }
 
 .battle-legend {
@@ -2849,6 +3115,51 @@ section.screen {
 }
 .hero-walk {
   animation: hero-walk 1.6s steps(4) infinite;
+}
+
+/* ----- Party trail: 3 companions march behind the leader ----- */
+.party-trail-row {
+  position: absolute;
+  top: -55px;
+  left: 50%;
+  transform: translateX(calc(-50% - 70px));
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  z-index: 0;
+  pointer-events: none;
+}
+.party-trail {
+  filter: drop-shadow(2px 3px 0 rgba(0, 0, 0, 0.45));
+  animation: hero-walk 1.6s steps(4) infinite;
+}
+.party-trail.trail-1 {
+  width: 42px;
+  height: 56px;
+  opacity: 0.92;
+  animation-delay: -0.2s;
+}
+.party-trail.trail-2 {
+  width: 36px;
+  height: 48px;
+  opacity: 0.75;
+  animation-delay: -0.4s;
+}
+.party-trail.trail-3 {
+  width: 30px;
+  height: 40px;
+  opacity: 0.6;
+  animation-delay: -0.6s;
+}
+@media (max-width: 720px) {
+  .party-trail-row { transform: translateX(calc(-50% - 52px)); gap: 3px; }
+  .party-trail.trail-1 { width: 32px; height: 44px; }
+  .party-trail.trail-2 { width: 28px; height: 38px; }
+  .party-trail.trail-3 { width: 24px; height: 32px; }
+}
+@media (max-width: 480px) {
+  .party-trail.trail-3 { display: none; }
+  .party-trail-row { transform: translateX(calc(-50% - 42px)); }
 }
 
 /* ----- Hero transformation overlays per tier ----- */

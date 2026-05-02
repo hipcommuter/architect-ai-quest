@@ -140,11 +140,15 @@
     if (!VALID_HEROES.includes(id)) return;
     const href = '#spr-hero-' + id;
     swappableUses.forEach((u) => u.setAttribute('href', href));
-    // Boss-battle party: fill the other 3 slots with the remaining classes
-    // so we never render the same character twice on the field.
+    // Fill every `.party-other[data-other-slot=N]` slot with the Nth non-leader class
+    // so any number of trailing-companion graphics (boss arena, level-map party trail,
+    // etc.) all stay in sync without duplicating the leader.
     const others = VALID_HEROES.filter((h) => h !== id);
-    partyOtherSlots.forEach((el, i) => {
-      if (others[i]) el.setAttribute('href', '#spr-hero-' + others[i]);
+    partyOtherSlots.forEach((el) => {
+      const slot = Number(el.dataset.otherSlot);
+      if (Number.isFinite(slot) && others[slot]) {
+        el.setAttribute('href', '#spr-hero-' + others[slot]);
+      }
     });
     partyButtons.forEach((btn) => {
       btn.classList.toggle('is-recruited', btn.dataset.hero === id);
@@ -275,6 +279,14 @@
     const tierKey = tierUnlockQueue.shift();
     const copy = TIER_COPY[tierKey];
     if (!copy) return;
+    // MASTER tier skips the compact popup entirely — fire the mega overlay
+    // immediately so the unlock feels sudden, not delayed.
+    if (tierKey === 'master') {
+      openMasterOverlay();
+      // Drain any remaining tier transitions that piled up — master is terminal.
+      tierUnlockQueue = [];
+      return;
+    }
     tierUnlockPlaying = true;
     if (tpTier) tpTier.textContent = copy.headline;
     // Restart popup animation
@@ -294,8 +306,6 @@
       tierPopup.classList.remove('is-active');
       if (tpBurst) tpBurst.classList.remove('is-active');
       tierUnlockPlaying = false;
-      // After the compact popup finishes, fire the mega overlay for MASTER
-      if (tierKey === 'master') openMasterOverlay();
       processTierUnlockQueue();
     }, 1700);
   }
