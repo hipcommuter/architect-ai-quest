@@ -93,6 +93,7 @@ section.screen {
   color: var(--gold);
   margin-bottom: 18px;
   letter-spacing: 0.1em;
+  text-align: center;
 }
 
 .section-title {
@@ -100,13 +101,19 @@ section.screen {
   color: var(--ink-white);
   margin: 0 0 14px;
   text-shadow: 3px 3px 0 var(--bg-deep);
+  text-align: center;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .section-intro {
   font-size: 24px;
   max-width: 760px;
   color: var(--ink-cream);
-  margin: 0 0 40px;
+  margin: 0 auto 40px;
+  text-align: center;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* ---------- 4. SECTION 1 — TITLE SCREEN ---------- */
@@ -421,6 +428,20 @@ section.screen {
   border-color: var(--ink-cream) !important;
   padding: 18px !important;
   text-align: left;
+}
+.level-card .level-skill,
+.level-card .level-example,
+.level-card .level-anchor,
+.level-card .level-case,
+.level-card .level-try-today {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+.level-card code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .level-skill {
@@ -2181,6 +2202,8 @@ section.screen {
   max-width: 600px;
   margin: 0 auto 24px;
   line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .cta-btn {
   display: inline-block;
@@ -2570,6 +2593,8 @@ section.screen {
   margin: 0 auto 18px;
   color: var(--ink-cream);
   line-height: 1.45;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .end-signature {
   font-family: 'Press Start 2P', monospace;
