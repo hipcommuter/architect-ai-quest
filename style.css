@@ -1225,6 +1225,39 @@ section.screen {
   opacity: 0.6;
 }
 
+/* ---------- SIDE QUESTS divider (separates main vs side quests in library) ---------- */
+.side-quests-divider {
+  margin: 36px auto 30px;
+  padding: 28px 24px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-deep) 100%);
+  border-top: 4px dashed var(--gold);
+  border-bottom: 4px dashed var(--gold);
+  position: relative;
+}
+.side-quests-banner {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  margin: 0 0 12px;
+  text-shadow: 3px 3px 0 var(--bg-deep);
+  animation: cta-glow 2.4s ease-in-out infinite;
+}
+.side-quests-sub {
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  color: var(--ink-cream);
+  margin: 0 auto;
+  max-width: 640px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 700px) {
+  .side-quests-banner { font-size: 13px; letter-spacing: 0.12em; }
+  .side-quests-sub { font-size: 18px; }
+}
+
 /* ---------- Quest scene banner (pixel-art dungeon) ---------- */
 .quest-scene {
   margin: 0 -24px 22px;
@@ -1254,12 +1287,13 @@ section.screen {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 220px;
+  max-height: 260px;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   shape-rendering: crispEdges;
   filter: drop-shadow(0 2px 0 rgba(0,0,0,0.4));
 }
+.quest-scene .scene-sparkle:nth-of-type(5) { animation-delay: 1.6s; }
 /* Vignette fade on edges */
 .quest-scene::before, .quest-scene::after {
   content: "";
@@ -2208,6 +2242,19 @@ section.screen {
   letter-spacing: 0.18em;
   margin: 0 0 18px;
   text-shadow: 3px 3px 0 var(--bg-deep);
+}
+.cv-footer-next {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  margin: 0 auto 22px;
+  max-width: 700px;
+  line-height: 1.7;
+  padding: 14px 18px;
+  border: 2px dashed var(--gold);
+  text-shadow: 2px 2px 0 var(--bg-deep);
+  animation: cta-glow 2.4s ease-in-out infinite;
 }
 .cv-footer-text {
   font-size: 22px;
