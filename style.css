@@ -1346,10 +1346,21 @@ section.screen {
 /* ============================================================
    CV PAGE (cv.html) — JRPG-styled player profile
    ============================================================ */
+/* CV pages don't follow the index.html "one screen per section" framing,
+   so cancel the inherited min-height: 100vh from section.screen — that
+   was forcing every CV chapter to fill the viewport and creating huge
+   empty space below short sections. */
+.cv-hero.screen,
+.cv-section.screen,
+.cv-guild-section.screen,
+.cv-footer.screen {
+  min-height: 0;
+}
+
 .cv-hero {
   text-align: center;
   background: radial-gradient(ellipse at center, #1d2b53 0%, #0f0e2a 80%);
-  padding: 60px 6vw 80px;
+  padding: 50px 6vw 60px;
 }
 .cv-portrait {
   display: inline-block;
@@ -1638,13 +1649,51 @@ section.screen {
   .cv-guild-thanks { font-size: 15px; }
 }
 
-/* CV Sections */
+/* CV Sections — center the section heading + intro on every chapter so
+   they align with the centered card grids beneath. Body copy inside
+   cards stays left-aligned for readability. */
 .cv-section {
-  padding: 70px 6vw 90px;
+  padding: 56px 6vw 70px;
   border-bottom: 4px dashed rgba(244,228,188,0.15);
+  text-align: center;
+}
+.cv-section > .section-label,
+.cv-section > .section-title,
+.cv-section > .section-intro {
+  /* Centered headings keep a comfortable max-width so they don't stretch
+     wall-to-wall on ultrawide displays. */
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cv-section .cv-prose,
+.cv-section .cv-prose * {
+  text-align: left;
+}
+.cv-section .proj-tasks,
+.cv-section .ai-bullets,
+.cv-section .cv-skill-block ul,
+.cv-section .cv-additional-grid,
+.cv-section .cv-project-card,
+.cv-section .cv-ai-card,
+.cv-section .cv-recent-card,
+.cv-section .cv-skill-block {
+  text-align: left;
 }
 .cv-section:nth-child(odd) { background: var(--bg-screen); }
 .cv-section:nth-child(even) { background: var(--bg-deep); }
+
+/* Hero stat-bar + contact panel must center horizontally on every viewport
+   regardless of inherited NES.css display rules. */
+.cv-statbar,
+.cv-contact {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+.cv-statbar { max-width: 880px; }
+.cv-contact { max-width: 720px; }
 
 .cv-prose {
   max-width: 880px;
@@ -1943,7 +1992,7 @@ section.screen {
 .cv-footer {
   text-align: center;
   background: radial-gradient(ellipse at center, #1d2b53 0%, #0f0e2a 80%);
-  padding: 70px 6vw 90px;
+  padding: 56px 6vw 70px;
 }
 .cv-footer-tag {
   font-family: 'Press Start 2P', monospace;
