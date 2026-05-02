@@ -1506,7 +1506,20 @@ section.screen {
   font-size: 11px;
   color: var(--ink-cream);
   letter-spacing: 0.1em;
-  margin: 0 0 36px;
+  margin: 0 0 18px;
+}
+.cv-quest-status {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  line-height: 1.7;
+  max-width: 880px;
+  margin: 0 auto 30px;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border: 3px solid var(--gold);
+  box-shadow: 4px 4px 0 var(--bg-deep);
 }
 
 /* Stats grid */
@@ -2188,6 +2201,7 @@ section.screen {
   .cv-name { font-size: 22px; letter-spacing: 0.04em; }
   .cv-tagline { font-size: 9px; letter-spacing: 0.1em; }
   .cv-subtitle { font-size: 9px; letter-spacing: 0.04em; line-height: 1.6; }
+  .cv-quest-status { font-size: 9px; letter-spacing: 0.06em; padding: 12px 14px; }
   .stat-value { font-size: 14px; }
   .stat-label { font-size: 7px; }
   .proj-name { font-size: 11px; }
