@@ -1976,6 +1976,26 @@ section.screen {
    instead of pushing the layout wider than the screen. */
 .cv-contact li { overflow-wrap: anywhere; word-break: break-word; }
 
+/* Notable Projects: when there's an odd number of project cards (e.g. 5),
+   the last one would otherwise sit alone in the left column. Spanning it
+   full-width turns that orphan into an emphasis row — perfect for the
+   "★ Most Impressive" callout. */
+@media (min-width: 901px) {
+  .cv-project-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 13px);
+    justify-self: center;
+  }
+}
+
+/* Tablet breakpoint — Press Start 2P labels with 0.2em letter-spacing
+   start to push the layout at this width; tighten letter-spacing before
+   font sizes drop further at 600px. */
+@media (max-width: 768px) {
+  .cv-tagline { letter-spacing: 0.14em; }
+  .cv-subtitle { letter-spacing: 0.06em; }
+}
+
 /* Intermediate breakpoint — covers tablets / small laptops where the
    desktop 40px hero name would otherwise wrap awkwardly. */
 @media (max-width: 900px) {
@@ -1987,9 +2007,9 @@ section.screen {
 }
 
 @media (max-width: 600px) {
-  .cv-name { font-size: 26px; }
-  .cv-tagline { font-size: 9px; }
-  .cv-subtitle { font-size: 9px; }
+  .cv-name { font-size: 22px; letter-spacing: 0.04em; }
+  .cv-tagline { font-size: 9px; letter-spacing: 0.1em; }
+  .cv-subtitle { font-size: 9px; letter-spacing: 0.04em; line-height: 1.6; }
   .stat-value { font-size: 14px; }
   .stat-label { font-size: 7px; }
   .proj-name { font-size: 11px; }
@@ -2004,6 +2024,13 @@ section.screen {
   .cv-contact li { font-size: 17px; }
   .cv-recent-cta { font-size: 17px; }
   .cv-prose p { font-size: 18px; }
+  .section-intro { font-size: 18px; line-height: 1.55; }
+  /* Box shadows scaled down so they don't push past the 5vw safe margin
+     and trigger horizontal scroll on narrow phones. */
+  .cv-project-card { box-shadow: 3px 3px 0 var(--bg-deep); padding: 18px; }
+  .cv-ai-card { box-shadow: 2px 2px 0 var(--bg-deep); padding: 18px; }
+  .cv-guild-master { box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4); }
+  .cv-recent-card { padding: 14px 14px; }
 }
 
 /* ---------- LIBRARY PAGE NAV (top of library.html) ---------- */
