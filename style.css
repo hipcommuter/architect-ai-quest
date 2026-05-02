@@ -486,8 +486,10 @@ section.screen {
 }
 .level-node:not(.is-reached) .level-card .level-skill,
 .level-node:not(.is-reached) .level-card .level-tool,
+.level-node:not(.is-reached) .level-card .level-services,
 .level-node:not(.is-reached) .level-card .level-example,
 .level-node:not(.is-reached) .level-card .level-anchor,
+.level-node:not(.is-reached) .level-card .level-case,
 .level-node:not(.is-reached) .level-card .level-try-today {
   opacity: 0;
   visibility: hidden;
