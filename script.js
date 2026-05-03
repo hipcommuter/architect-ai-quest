@@ -474,7 +474,51 @@
     });
   }
 
-  /* ---------- 9. Konami-style easter egg (optional fun) ---------- */
+  /* ---------- 9. GA4 click tracking (delegated) ---------- */
+  // Send a 'button_click' event to Google Analytics 4 for every button or link click.
+  // Captures section, label, destination, and quest/hero/level data-* attributes
+  // so the GA dashboard can show which CTAs and party choices visitors actually pick.
+  // Capture phase + safe gtag check so it survives navigation and missing analytics.
+  function gaSectionId(el) {
+    const section = el.closest('section, header, footer');
+    return section ? (section.id || section.tagName.toLowerCase()) : '';
+  }
+  function gaPageName() {
+    const p = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    return p.endsWith('.html') ? p : (p ? p + '.html' : 'index.html');
+  }
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('button, a');
+    if (!el) return;
+    if (typeof window.gtag !== 'function') return;
+    const rawLabel = el.getAttribute('aria-label')
+      || el.textContent
+      || el.getAttribute('title')
+      || '';
+    const label = rawLabel.trim().replace(/\s+/g, ' ').slice(0, 100);
+    const params = {
+      page: gaPageName(),
+      section: gaSectionId(el),
+      element: el.tagName.toLowerCase(),
+      label: label,
+    };
+    if (el.id) params.element_id = el.id;
+    if (el.className) {
+      params.classes = String(el.className).trim().slice(0, 100);
+    }
+    if (el.tagName === 'A' && el.href) {
+      params.href = el.href;
+      try {
+        params.outbound = new URL(el.href, location.href).host !== location.host;
+      } catch (err) {}
+    }
+    if (el.dataset.hero) params.hero = el.dataset.hero;
+    if (el.dataset.questId) params.quest_id = el.dataset.questId;
+    if (el.dataset.level) params.level = el.dataset.level;
+    try { window.gtag('event', 'button_click', params); } catch (err) {}
+  }, { capture: true, passive: true });
+
+  /* ---------- 10. Konami-style easter egg (optional fun) ---------- */
   const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let pos = 0;
   window.addEventListener('keydown', (e) => {
