@@ -1,0 +1,17 @@
+{
+  "name": "drive-scheduler-actions",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Scheduled folder copy from personal Google Drive to work Google Drive, run via GitHub Actions.",
+  "type": "module",
+  "scripts": {
+    "sync": "node sync.js",
+    "get-token": "node get-refresh-token.js"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
