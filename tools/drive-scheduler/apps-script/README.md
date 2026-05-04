@@ -2,7 +2,14 @@
 
 Runs in your **personal** Google account. The destination folder lives in your work account but is shared back to personal with Editor access, so the script writes into it as the personal user.
 
-## One-time setup (~5 min)
+## Two ways to install
+
+- **Path 1 — `clasp` from your PC** (recommended): push these files directly from this repo to a new Apps Script project. Closer to "real code".
+- **Path 2 — Browser copy-paste**: open script.google.com, paste each file's contents. Use this if you don't want to install Node.js / clasp.
+
+Both paths share steps 1–3 below (the Drive folder side of the setup).
+
+## Steps 1–3: Drive side (do these first, both paths)
 
 1. **Test that you can share a work folder with personal**
    In your work Drive, right-click any folder → Share → paste your personal Gmail → Editor. If you see "Sharing outside your organization is disabled", stop here and use Option C instead.
@@ -11,27 +18,59 @@ Runs in your **personal** Google account. The destination folder lives in your w
 
 3. **Find the source folder ID** in your personal Drive. Same trick: copy the part of the URL after `/folders/`.
 
+## Path 1 — `clasp` from your PC
+
+Prereqs: **Node.js ≥ 18**. Check with `node --version`. Install from <https://nodejs.org> if missing.
+
+```bash
+# 1. Install clasp globally
+npm install -g @google/clasp
+
+# 2. Sign in with your personal Google account (opens a browser)
+clasp login
+
+# 3. Enable the Apps Script API for your account (one-time)
+#    Visit https://script.google.com/home/usersettings and toggle "Apps Script API" ON.
+
+# 4. From this directory:
+cd tools/drive-scheduler/apps-script
+
+# 5. Create a new standalone Apps Script project
+clasp create --type standalone --title "Drive Scheduler" --rootDir .
+#    This writes .clasp.json (gitignored) with the new script's ID.
+
+# 6. Push the files from this folder
+clasp push -f
+
+# 7. Open the project in your browser
+clasp open
+```
+
+In the browser tab that opens:
+
+- Editor sidebar → **Services** (+) → add **Drive API** (matches the manifest)
+- Edit `Config.gs` → fill in `PAIRS` with the IDs from steps 2–3 → save
+- Run `clasp push -f` again locally if you edited `Config.gs` on your PC
+- Function dropdown → **`syncAllNow`** → **Run** → approve the OAuth scopes → check the **Executions** tab for `copied=… skipped=…`
+- Function dropdown → **`installTriggers`** → **Run** → the **Triggers** tab now shows the daily/weekly/monthly schedules
+
+Iterating later: edit `Code.gs` / `Config.gs` locally, `clasp push -f`, re-run.
+
+## Path 2 — Browser copy-paste
+
 4. **Create the Apps Script project**
-   - Go to <https://script.google.com> while logged in as your personal account
-   - Click **New project**
+   - <https://script.google.com> (signed into personal) → **New project**
    - Delete the boilerplate `Code.gs`
-   - Create three files matching this directory: `Code.gs`, `Config.gs`, and (via the gear icon → "Show appsscript.json manifest file") replace `appsscript.json` with the one in this folder
+   - Create three files matching this directory: `Code.gs`, `Config.gs`, and (gear icon → "Show appsscript.json manifest file") replace `appsscript.json`
 
 5. **Enable the Drive Advanced Service**
-   - Editor sidebar → **Services** (+) → **Drive API** → Add (it should already be referenced by the manifest, but click Add to confirm authorization)
+   - Editor sidebar → **Services** (+) → **Drive API** → Add
 
-6. **Edit `Config.gs`**
-   - Fill in `PAIRS` with one entry per folder you want to sync
-   - Adjust `WEEKLY_DAY`, `MONTHLY_DAY`, `TRIGGER_HOUR`, and `timeZone` in `appsscript.json` to your liking
+6. **Edit `Config.gs`** — fill in `PAIRS`, adjust `WEEKLY_DAY`, `MONTHLY_DAY`, `TRIGGER_HOUR` and the `timeZone` in `appsscript.json`.
 
-7. **Authorize and test**
-   - Select `syncAllNow` from the function dropdown → **Run**
-   - Approve the OAuth scopes (Drive read/write, trigger management)
-   - Watch **Executions** tab — you should see counts of copied/skipped/replaced
+7. **Authorize and test** — run `syncAllNow`, approve scopes, watch Executions.
 
-8. **Install the schedules**
-   - Select `installTriggers` → **Run**
-   - Triggers tab should now show daily / weekly / monthly entries (only the ones you actually use, based on the `frequency` values in `PAIRS`)
+8. **Install schedules** — run `installTriggers`. Confirm in the Triggers tab.
 
 ## What it does
 
