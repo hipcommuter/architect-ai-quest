@@ -4257,10 +4257,48 @@ a.em-link:focus-visible {
 .jp-inst-quote em { color: var(--ink-white); font-style: normal; }
 .jp-actions {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
   margin-top: 6px;
+}
+
+/* PRIMARY: the "DM me now" button — bright neon-pink, glowing, pulsing.
+   Forces this to be the most clickable thing in the popup. */
+.jp-fb-primary {
+  background: #ff2a8e !important;
+  color: var(--ink-white) !important;
+  border-color: var(--ink-white) !important;
+  font-size: 14px !important;
+  letter-spacing: 0.12em;
+  padding: 16px 24px !important;
+  text-shadow: 2px 2px 0 #5a0a3a;
+  box-shadow:
+    6px 6px 0 var(--bg-deep),
+    0 0 18px rgba(255, 42, 142, 0.7),
+    0 0 38px rgba(255, 42, 142, 0.45) !important;
+  animation: fb-cta-pulse 1.4s ease-in-out infinite;
+}
+.jp-fb-primary:hover,
+.jp-fb-primary:focus-visible {
+  background: #ff5cb3 !important;
+  transform: translate(-2px, -2px);
+  box-shadow:
+    8px 8px 0 var(--bg-deep),
+    0 0 24px rgba(255, 92, 179, 1),
+    0 0 60px rgba(255, 42, 142, 0.7) !important;
+  outline: none;
+}
+@keyframes fb-cta-pulse {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.18);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jp-fb-primary { animation: none !important; }
 }
 .jp-close {
   position: absolute;

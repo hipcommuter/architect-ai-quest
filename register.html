@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" />
-  <link rel="stylesheet" href="style.css?v=55" />
+  <link rel="stylesheet" href="style.css?v=56" />
 
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQXVYTWM51"></script>
@@ -368,8 +368,8 @@
       </div>
 
       <div class="jp-actions">
-        <button type="button" id="jp-copy-msg" class="cta-btn cta-btn-secondary" data-label="copy-fb-msg">📋 COPY THE MESSAGE</button>
-        <a href="[FB_PAGE_URL]" target="_blank" rel="noopener" class="cta-btn jp-fb-btn" id="jp-fb-link" data-label="message-ai-bro">▶ MESSAGE THIS AI BRO</a>
+        <a href="https://m.me/korkeng.tanaphosai" target="_blank" rel="noopener" class="cta-btn jp-fb-btn jp-fb-primary" id="jp-fb-link" data-label="message-ai-bro">💬 OPEN MESSENGER &amp; DM ME NOW ▶</a>
+        <button type="button" id="jp-copy-msg" class="cta-btn cta-btn-secondary" data-label="copy-fb-msg">📋 COPY THE MESSAGE FIRST</button>
       </div>
     </div>
     <div class="journey-popup-sparkles" aria-hidden="true">
@@ -392,8 +392,9 @@
     // ====== CONFIG ======
     // Deployed Apps Script Web App — saves to "Architect AI Quest — Registrations" sheet.
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxedVZusY5sQ5R8kw4aqmSrvtv9KtewwpbLLsNPzXB4LGkUx73NFXKRhYXL2942qM3l/exec';
-    // Used for the popup's "MESSAGE THE GUILDMASTER" button.
-    const FB_PAGE_URL    = 'https://www.facebook.com/korkeng.tanaphosai';
+    // Messenger deep-link — opens straight into the DM thread (m.me redirects
+    // to the Messenger app on mobile, web Messenger on desktop).
+    const FB_PAGE_URL    = 'https://m.me/korkeng.tanaphosai';
 
     const VALID_CHARACTERS = ['drafter', 'designer', 'communicator', 'researcher'];
     const FB_CONFIGURED = !!FB_PAGE_URL && FB_PAGE_URL.indexOf('[FB_') === -1;
@@ -550,7 +551,12 @@
       popup.classList.add('is-visible');
       popup.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      try { popupClose.focus({ preventScroll: true }); } catch (e) {}
+      // Auto-focus the FB button so Enter sends them straight to Messenger.
+      // Falls back to close button if FB link is hidden (FB not configured).
+      try {
+        const focusTarget = (popupFbLink && !popupFbLink.hidden) ? popupFbLink : popupClose;
+        focusTarget.focus({ preventScroll: true });
+      } catch (e) {}
 
       if (audioReady) {
         chime(660, 0.14);
