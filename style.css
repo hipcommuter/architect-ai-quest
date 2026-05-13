@@ -4691,11 +4691,12 @@ body.register-body {
   overflow: hidden;
   z-index: 0;
 }
-/* Anything in document flow needs to sit above .arcade-bg */
+/* Anything in document flow needs to sit above .arcade-bg.
+   Exclude #journey-popup (needs position:fixed for the modal overlay). */
 body.register-body > nav,
 body.register-body > header,
 body.register-body > section,
-body.register-body > div:not(.arcade-bg):not(#sprite-defs) {
+body.register-body > div:not(.arcade-bg):not(#sprite-defs):not(#journey-popup) {
   position: relative;
   z-index: 2;
 }
