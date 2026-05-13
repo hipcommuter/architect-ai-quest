@@ -4155,11 +4155,14 @@ a.em-link:focus-visible {
 .submit-status.is-error   { color: var(--red); }
 .submit-status.is-loading { color: var(--gold); }
 
-/* ---- Journey popup ---- */
+/* ---- Journey popup ----
+   !important on position/inset/z-index so the fixed-overlay layout
+   can't be accidentally overridden by .register-body > div rules
+   that add z-index/position to top-level children. */
 .journey-popup {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
   display: none;
   align-items: center;
   justify-content: center;
@@ -4170,7 +4173,7 @@ a.em-link:focus-visible {
   overflow: hidden;
 }
 .journey-popup.is-visible {
-  display: flex;
+  display: flex !important;
   animation: ml-fade-in 0.35s ease-out;
 }
 .journey-popup-flash {
