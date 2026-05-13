@@ -3893,3 +3893,1460 @@ section.screen {
   .master-levelup-card { transform: none; opacity: 1; }
   .master-levelup-flash { display: none; }
 }
+
+/* ============================================================
+   REGISTER PAGE (register.html)
+   Event signup teaser. Reuses keyframes ml-fade-in, ml-flash,
+   ml-card-pop, ml-banner-pulse, cta-glow, hero-bob, tp-spark-fly,
+   tp-fly-up/right/down/left/up-right/down-right/down-left/up-left.
+   Zero new keyframes.
+   ============================================================ */
+
+/* ---- Hero / event banner ---- */
+.register-hero {
+  text-align: center;
+  background: radial-gradient(ellipse at center, #1d2b53 0%, #0f0e2a 80%);
+  padding: 50px 6vw 60px;
+  min-height: 0;
+}
+.event-banner-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-shadow: 2px 2px 0 var(--bg-deep);
+  margin: 0 0 18px;
+  animation: cta-glow 2s ease-in-out infinite;
+}
+.event-headline {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 28px;
+  line-height: 1.4;
+  color: var(--ink-white);
+  margin: 0 0 16px;
+  text-shadow: 4px 4px 0 var(--gold-dark), 0 0 22px rgba(255, 210, 63, 0.45);
+  letter-spacing: 0.04em;
+}
+.event-tagline {
+  font-size: 22px;
+  color: var(--ink-cream);
+  margin: 0 auto 28px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+.event-card {
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto 22px;
+}
+.event-card .title { letter-spacing: 0.15em; }
+.event-meta {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: var(--ink-cream);
+  text-align: left;
+}
+.event-meta li {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 8px 14px;
+  padding: 8px 0;
+  border-bottom: 1px dotted rgba(244, 228, 188, 0.22);
+  align-items: baseline;
+}
+.event-meta li:last-child { border-bottom: 0; }
+.em-key {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+}
+.em-val { color: var(--ink-white); }
+.em-thai { color: var(--ink-dim); font-size: 18px; }
+
+/* Clickable place link — same em-val font/color, gold-underline cue */
+a.em-link {
+  color: var(--ink-white);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--gold);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s, text-shadow 0.15s;
+}
+a.em-link:hover,
+a.em-link:focus-visible {
+  color: var(--gold);
+  border-bottom-color: var(--ink-white);
+  text-shadow: 0 0 8px rgba(255, 210, 63, 0.6);
+  outline: none;
+}
+.live-count {
+  color: var(--gold);
+  font-weight: bold;
+  font-size: 22px;
+}
+.event-flavor {
+  margin: 22px auto 0;
+  max-width: 560px;
+  font-size: 20px;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+
+/* ---- Character pick grid ---- */
+.character-pick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  max-width: 1080px;
+  width: 100%;
+  margin: 30px auto 0;
+}
+.character-pick-card {
+  position: relative;
+  padding: 22px 14px 16px;
+  border: 4px solid var(--ink-cream);
+  text-align: center;
+  background: var(--bg-card);
+  cursor: pointer;
+  font: inherit;
+  color: var(--ink-cream);
+  transition: transform 0.2s steps(3), box-shadow 0.2s, border-color 0.2s, background 0.2s;
+}
+.character-pick-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 6px 0 rgba(0, 0, 0, 0.5);
+}
+.character-pick-card:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+.character-pick-card.is-selected {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--bg-deep), 0 0 22px rgba(255, 210, 63, 0.6);
+  background: linear-gradient(180deg, var(--bg-card) 0%, rgba(255, 210, 63, 0.10) 100%);
+  transform: translateY(-4px);
+}
+.character-pick-card.is-selected::before {
+  content: "★ SELECTED";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--bg-deep);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  padding: 4px 8px;
+  letter-spacing: 0.1em;
+  border: 2px solid var(--bg-deep);
+  white-space: nowrap;
+  z-index: 2;
+}
+.character-pick-card .class-sprite {
+  display: block;
+  width: 60px;
+  height: 80px;
+  margin: 0 auto 8px;
+  image-rendering: pixelated;
+  shape-rendering: crispEdges;
+  filter: drop-shadow(2px 3px 0 rgba(0, 0, 0, 0.55));
+  animation: hero-bob 0.8s steps(4) infinite;
+}
+.character-pick-card:nth-child(2) .class-sprite { animation-delay: 0.2s; }
+.character-pick-card:nth-child(3) .class-sprite { animation-delay: 0.4s; }
+.character-pick-card:nth-child(4) .class-sprite { animation-delay: 0.6s; }
+.character-pick-card .class-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-white);
+  margin: 6px 0 4px;
+}
+.character-pick-card .class-desc {
+  font-size: 17px;
+  color: var(--ink-dim);
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+.count-badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 10px;
+  background: var(--bg-deep);
+  border: 2px solid var(--gold-dark);
+  color: var(--gold);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+.character-pick-card.is-selected .count-badge {
+  border-color: var(--gold);
+  color: var(--ink-white);
+  background: var(--gold-dark);
+}
+
+/* ---- Name input + submit ---- */
+.register-form {
+  max-width: 560px;
+  width: 100%;
+  margin: 24px auto 0;
+  text-align: center;
+}
+.name-input-wrapper {
+  display: block;
+  text-align: left;
+  margin: 0 0 26px;
+}
+.name-input-label {
+  display: block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin: 0 0 10px;
+}
+.name-input {
+  width: 100%;
+  font-family: 'VT323', monospace;
+  font-size: 22px;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  color: var(--ink-white);
+  border: 4px solid var(--ink-cream);
+  box-shadow: 4px 4px 0 var(--bg-deep);
+  caret-color: var(--gold);
+  box-sizing: border-box;
+}
+.name-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 4px 4px 0 var(--bg-deep), 0 0 18px rgba(255, 210, 63, 0.4);
+}
+.name-input-hint {
+  display: block;
+  margin-top: 8px;
+  font-size: 16px;
+  color: var(--ink-dim);
+}
+.submit-btn[disabled],
+.submit-btn:disabled {
+  background: var(--bg-card-alt);
+  color: var(--ink-dim);
+  border-color: var(--ink-dim);
+  box-shadow: 4px 4px 0 var(--bg-deep);
+  cursor: not-allowed;
+  text-shadow: none;
+}
+.submit-btn[disabled]:hover,
+.submit-btn:disabled:hover {
+  transform: none;
+  box-shadow: 4px 4px 0 var(--bg-deep);
+  background: var(--bg-card-alt);
+}
+.submit-status {
+  margin-top: 16px;
+  min-height: 24px;
+  font-size: 18px;
+  color: var(--ink-dim);
+}
+.submit-status.is-error   { color: var(--red); }
+.submit-status.is-loading { color: var(--gold); }
+
+/* ---- Journey popup ---- */
+.journey-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(13, 8, 35, 0.92);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  overflow: hidden;
+}
+.journey-popup.is-visible {
+  display: flex;
+  animation: ml-fade-in 0.35s ease-out;
+}
+.journey-popup-flash {
+  position: absolute;
+  inset: 0;
+  background: var(--ink-white, #f4e4bc);
+  opacity: 0;
+  pointer-events: none;
+}
+.journey-popup.is-visible .journey-popup-flash {
+  animation: ml-flash 0.55s ease-out forwards;
+}
+.journey-popup-card {
+  position: relative;
+  z-index: 2;
+  max-width: 580px;
+  width: 100%;
+  padding: 32px 28px 26px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-deep) 100%);
+  border: 4px solid var(--gold);
+  box-shadow:
+    0 0 0 4px var(--bg-deep),
+    0 0 0 8px var(--gold),
+    12px 12px 0 var(--bg-deep),
+    0 0 60px rgba(244, 196, 48, 0.5);
+  transform: scale(0.4);
+  opacity: 0;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.journey-popup.is-visible .journey-popup-card {
+  animation: ml-card-pop 0.7s cubic-bezier(0.16, 1.2, 0.4, 1) 0.18s forwards;
+}
+.jp-banner {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin: 0 0 14px;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+  animation: ml-banner-pulse 1.2s ease-in-out infinite;
+}
+.jp-portrait {
+  display: block;
+  width: 72px;
+  height: 96px;
+  margin: 4px auto 12px;
+  image-rendering: pixelated;
+  shape-rendering: crispEdges;
+  filter: drop-shadow(3px 4px 0 rgba(0, 0, 0, 0.6));
+  animation: hero-bob 0.8s steps(4) infinite;
+}
+.jp-headline {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink-white);
+  margin: 0 0 14px;
+  text-shadow: 3px 3px 0 var(--bg-deep), 0 0 18px rgba(244, 196, 48, 0.7);
+}
+.jp-flavor { font-size: 20px; color: var(--ink-cream); margin: 0 0 8px; }
+.jp-flavor #jp-name { color: var(--gold); font-weight: bold; }
+.jp-stats {
+  font-size: 18px;
+  color: var(--ink-cream);
+  margin: 0 0 18px;
+}
+.jp-stats strong { color: var(--gold); font-size: 22px; }
+.jp-instructions {
+  margin: 0 auto 18px;
+  max-width: 480px;
+  text-align: left;
+}
+.jp-inst-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin: 0 0 8px;
+}
+.jp-inst-body { font-size: 18px; color: var(--ink-cream); margin: 0 0 8px; line-height: 1.45; }
+.jp-inst-quote { font-size: 17px; color: var(--ink-dim); margin: 0; line-height: 1.4; }
+.jp-inst-quote em { color: var(--ink-white); font-style: normal; }
+.jp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+.jp-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: 0;
+  color: var(--ink-cream);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px 10px;
+  z-index: 3;
+}
+.jp-close:hover { color: var(--gold); }
+
+/* Sparkles around popup card — reuses tp-fly-* keyframes (8 directions) */
+.journey-popup-sparkles {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.jp-spark {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  margin-top: -7px;
+  opacity: 0;
+  image-rendering: pixelated;
+}
+.journey-popup.is-visible .jp-spark-1 { animation: tp-fly-up        1.4s ease-out 0.20s forwards; }
+.journey-popup.is-visible .jp-spark-2 { animation: tp-fly-up-right  1.4s ease-out 0.26s forwards; }
+.journey-popup.is-visible .jp-spark-3 { animation: tp-fly-right     1.4s ease-out 0.32s forwards; }
+.journey-popup.is-visible .jp-spark-4 { animation: tp-fly-down-right 1.4s ease-out 0.38s forwards; }
+.journey-popup.is-visible .jp-spark-5 { animation: tp-fly-down      1.4s ease-out 0.44s forwards; }
+.journey-popup.is-visible .jp-spark-6 { animation: tp-fly-down-left 1.4s ease-out 0.50s forwards; }
+.journey-popup.is-visible .jp-spark-7 { animation: tp-fly-left      1.4s ease-out 0.56s forwards; }
+.journey-popup.is-visible .jp-spark-8 { animation: tp-fly-up-left   1.4s ease-out 0.62s forwards; }
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .character-pick-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .event-headline { font-size: 22px; }
+  .event-tagline  { font-size: 18px; }
+  .event-meta li  { grid-template-columns: 80px 1fr; }
+  .em-thai        { grid-column: 1 / -1; padding-left: 0; color: var(--ink-dim); }
+}
+@media (max-width: 600px) {
+  .register-hero       { padding: 36px 5vw 48px; }
+  .event-headline      { font-size: 18px; line-height: 1.5; }
+  .event-tagline       { font-size: 17px; }
+  .event-meta          { font-size: 18px; }
+  .em-val              { font-size: 16px; }
+  .em-thai             { font-size: 16px; }
+  .character-pick-grid { grid-template-columns: 1fr; gap: 14px; }
+  .name-input          { font-size: 19px; }
+  .jp-headline         { font-size: 16px; }
+  .jp-portrait         { width: 56px; height: 76px; }
+  .jp-flavor           { font-size: 17px; }
+  .jp-stats            { font-size: 16px; }
+  .jp-inst-body        { font-size: 16px; }
+  .jp-inst-quote       { font-size: 15px; }
+  .journey-popup-card  { padding: 24px 16px 20px; }
+  .count-badge         { font-size: 8px; padding: 3px 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-popup.is-visible,
+  .journey-popup.is-visible .journey-popup-flash,
+  .journey-popup.is-visible .journey-popup-card,
+  .journey-popup.is-visible .jp-spark,
+  .jp-banner,
+  .jp-portrait,
+  .character-pick-card .class-sprite {
+    animation: none !important;
+  }
+  .journey-popup-card  { transform: none; opacity: 1; }
+  .journey-popup-flash { display: none; }
+}
+
+/* ============================================================
+   REGISTER PAGE v2 — layout from user mockup
+   Title block at top, 4-card row, member-count badges BELOW
+   each card, name input, event details + 2 QR codes, submit.
+   ============================================================ */
+
+/* ---- Top nav adjustments for register page ---- */
+.register-nav-spacer {
+  display: inline-block;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+/* ---- Page title block ---- */
+.page-title-block {
+  text-align: center;
+  padding: 42px 6vw 28px;
+  background: radial-gradient(ellipse at center, #1d2b53 0%, #0f0e2a 80%);
+  min-height: 0;
+}
+.page-title-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-shadow: 2px 2px 0 var(--bg-deep);
+  margin: 0 0 16px;
+  animation: cta-glow 2s ease-in-out infinite;
+}
+.page-title-headline {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 32px;
+  line-height: 1.4;
+  color: var(--ink-white);
+  margin: 0 0 12px;
+  text-shadow: 4px 4px 0 var(--gold-dark), 0 0 22px rgba(255, 210, 63, 0.45);
+  letter-spacing: 0.04em;
+}
+.page-title-subtitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: var(--ink-cream);
+  margin: 0;
+}
+
+/* ---- Character pick row (4 columns) with count badge below ---- */
+.character-pick-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1080px;
+  width: 100%;
+  margin: 26px auto 0;
+}
+.character-pick-col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+}
+.character-pick-col .character-pick-card {
+  margin: 0;
+  flex: 1 1 auto;
+}
+.member-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 12px 10px;
+  background: var(--bg-card-alt);
+  border: 3px solid var(--gold-dark);
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.member-count .mc-num {
+  font-size: 22px;
+  color: var(--ink-white);
+  letter-spacing: 0.02em;
+  text-shadow: 2px 2px 0 var(--bg-deep);
+}
+.member-count .mc-label {
+  font-size: 9px;
+  color: var(--gold);
+}
+.character-pick-col.is-selected .member-count {
+  border-color: var(--gold);
+  background: var(--gold-dark);
+  box-shadow: 0 0 18px rgba(255, 210, 63, 0.4);
+  transform: translateY(-2px);
+}
+.character-pick-col.is-selected .member-count .mc-label {
+  color: var(--ink-white);
+}
+
+/* ---- Event info + QR codes row ---- */
+.event-info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 20px;
+  max-width: 1080px;
+  width: 100%;
+  margin: 24px auto 0;
+}
+.event-info-card {
+  flex: 1 1 460px;
+  min-width: 280px;
+  margin: 0;
+}
+.event-info-card .title { letter-spacing: 0.15em; }
+.qr-stack {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  align-items: stretch;
+}
+.qr-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 14px 12px 14px;
+  background: var(--bg-card);
+  border: 4px solid var(--ink-cream);
+  text-decoration: none;
+  color: var(--ink-cream);
+  /* Equal-width sibling boxes via flex: 1 1 0 (basis 0 + grow equally) */
+  flex: 1 1 0;
+  min-width: 168px;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.qr-block:hover,
+.qr-block:focus-visible {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 4px 6px 0 rgba(0, 0, 0, 0.45);
+  outline: none;
+}
+.qr-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--ink-cream);
+  border: 3px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  box-sizing: border-box;
+}
+.qr-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+.qr-placeholder {
+  display: none;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4px;
+  box-sizing: border-box;
+}
+.qr-ph-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--bg-deep);
+  line-height: 1.7;
+}
+/* Old gold "QR · MY xx" label retained as a hook but unused on the page now */
+.qr-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-top: 4px;
+}
+/* qr-sub is now the primary QR label — promoted to gold pixel font */
+.qr-sub {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  color: var(--gold);
+  margin-top: 8px;
+  text-shadow: 1px 1px 0 var(--bg-deep);
+  text-align: center;
+}
+
+/* ---- Submit wrap (legacy; .form-row supersedes) ---- */
+.submit-wrap {
+  text-align: center;
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+}
+.submit-help {
+  margin-top: 10px;
+  font-size: 17px;
+  color: var(--ink-dim);
+}
+
+/* ---- Form row: submit button (left) + name input (right) ---- */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 760px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+.form-row .submit-btn {
+  width: 100%;
+  white-space: normal;
+  line-height: 1.35;
+}
+.form-row .name-input-wrapper {
+  display: block;
+  margin: 0;
+  flex: 1 1 auto;
+}
+.form-row .name-input { width: 100%; box-sizing: border-box; }
+.register-footer {
+  padding-top: 40px !important;
+  padding-bottom: 56px !important;
+}
+
+/* ---- Accessibility helper ---- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .character-pick-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .page-title-headline { font-size: 22px; }
+  .page-title-subtitle { font-size: 12px; }
+  .qr-stack { width: 100%; justify-content: center; }
+}
+@media (max-width: 600px) {
+  .page-title-block    { padding: 28px 5vw 22px; }
+  .page-title-headline { font-size: 18px; }
+  .page-title-subtitle { font-size: 11px; }
+  .page-title-tag      { font-size: 10px; }
+  .character-pick-row  { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .member-count .mc-num   { font-size: 19px; }
+  .member-count .mc-label { font-size: 8px; }
+  .qr-frame  { width: 120px; height: 120px; }
+  .qr-block  { min-width: 142px; padding: 12px 10px; }
+  .qr-label  { font-size: 9px; }
+  .qr-sub    { font-size: 14px; }
+}
+
+/* ============================================================
+   REGISTER PAGE — SYNTHWAVE ARCADE BACKGROUND (90s vibe)
+   Vertical sky/floor split with neon-pink horizon, perspective
+   grid floor + ceiling, sparse stars, glow halo, scanlines.
+   ============================================================ */
+body.register-body {
+  background:
+    linear-gradient(
+      180deg,
+      #0a0420 0%,
+      #1a0a3d 22%,
+      #2d0d4d 38%,
+      #4a1a5e 47%,
+      #ff2a8e 50%,
+      #4a1a5e 53%,
+      #1d0d3d 64%,
+      #0a0420 100%
+    );
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* ============ SYNTHWAVE BACKGROUND LAYERS ============ */
+.arcade-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+/* Anything in document flow needs to sit above .arcade-bg */
+body.register-body > nav,
+body.register-body > header,
+body.register-body > section,
+body.register-body > div:not(.arcade-bg):not(#sprite-defs) {
+  position: relative;
+  z-index: 2;
+}
+
+/* SPARSE STARS in the upper sky portion only */
+.arcade-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background:
+    radial-gradient(1.5px 1.5px at 5% 12%,  rgba(255,255,255,0.95), transparent 60%),
+    radial-gradient(1px 1px   at 12% 38%, rgba(255,255,255,0.7),  transparent 60%),
+    radial-gradient(2px 2px   at 18% 62%, rgba(255,255,255,0.95), transparent 60%),
+    radial-gradient(1px 1px   at 24% 22%, rgba(255,255,255,0.6),  transparent 60%),
+    radial-gradient(1.5px 1.5px at 31% 78%, rgba(255,255,255,0.85), transparent 60%),
+    radial-gradient(1px 1px   at 38% 30%, rgba(255,255,255,0.55), transparent 60%),
+    radial-gradient(2px 2px   at 45% 8%,  rgba(255,255,255,0.95), transparent 60%),
+    radial-gradient(1.5px 1.5px at 52% 56%, rgba(255,255,255,0.7),  transparent 60%),
+    radial-gradient(1px 1px   at 58% 40%, rgba(255,255,255,0.6),  transparent 60%),
+    radial-gradient(2px 2px   at 65% 72%, rgba(255,255,255,0.9),  transparent 60%),
+    radial-gradient(1px 1px   at 72% 18%, rgba(255,255,255,0.55), transparent 60%),
+    radial-gradient(1.5px 1.5px at 78% 44%, rgba(255,255,255,0.75), transparent 60%),
+    radial-gradient(2px 2px   at 84% 88%, rgba(255,255,255,0.85), transparent 60%),
+    radial-gradient(1px 1px   at 90% 32%, rgba(255,255,255,0.6),  transparent 60%),
+    radial-gradient(1.5px 1.5px at 95% 14%, rgba(255,255,255,0.85), transparent 60%);
+  animation: arcade-twinkle 3.5s ease-in-out infinite alternate;
+}
+@keyframes arcade-twinkle {
+  0%   { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* SUN/RETROWAVE CIRCLE behind the horizon (radial halo) */
+.arcade-sun {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60vmin;
+  height: 60vmin;
+  margin-left: -30vmin;
+  margin-top: -30vmin;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 42, 142, 0.7) 0%,
+    rgba(255, 42, 142, 0.3) 30%,
+    transparent 70%
+  );
+  filter: blur(8px);
+}
+
+/* HORIZON GLOW band — thick blurred pink stripe at the seam */
+.arcade-horizon-glow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 18%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 42, 142, 0.55) 0%,
+    rgba(255, 42, 142, 0.2) 40%,
+    transparent 70%
+  );
+  transform: translateY(-50%);
+  filter: blur(12px);
+}
+
+/* HORIZON LINE — sharp neon-pink stripe across the middle */
+.arcade-horizon {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background: #ff5cb3;
+  box-shadow:
+    0 0 8px 1px rgba(255, 92, 179, 1),
+    0 0 22px 4px rgba(255, 42, 142, 0.7),
+    0 0 60px 12px rgba(255, 42, 142, 0.3);
+  transform: translateY(-1px);
+}
+
+/* PERSPECTIVE GRIDS — pink floor + blue ceiling */
+.arcade-grid {
+  position: absolute;
+  left: -50%;
+  width: 200%;
+  height: 50%;
+  perspective: 220px;
+  transform-style: preserve-3d;
+}
+.arcade-grid-floor {
+  bottom: 0;
+}
+.arcade-grid-ceiling {
+  top: 0;
+}
+.arcade-grid-inner {
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 42, 142, 0.85) 0,
+      rgba(255, 42, 142, 0.85) 2px,
+      transparent 2px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(255, 42, 142, 0.7) 0,
+      rgba(255, 42, 142, 0.7) 2px,
+      transparent 2px,
+      transparent 40px
+    );
+  transform-origin: 50% 0%;
+  transform: rotateX(58deg);
+  animation: arcade-grid-scroll 1.4s linear infinite;
+}
+.arcade-grid-floor .arcade-grid-inner {
+  transform-origin: 50% 0%;
+  transform: rotateX(58deg);
+}
+.arcade-grid-ceiling .arcade-grid-inner {
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(41, 173, 255, 0.7) 0,
+      rgba(41, 173, 255, 0.7) 2px,
+      transparent 2px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(41, 173, 255, 0.55) 0,
+      rgba(41, 173, 255, 0.55) 2px,
+      transparent 2px,
+      transparent 40px
+    );
+  transform-origin: 50% 100%;
+  transform: rotateX(-58deg);
+  animation: arcade-grid-scroll-up 1.6s linear infinite;
+}
+@keyframes arcade-grid-scroll {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 0 40px, 0 0; }
+}
+@keyframes arcade-grid-scroll-up {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 0 -40px, 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .arcade-grid-inner,
+  .arcade-grid-ceiling .arcade-grid-inner,
+  .arcade-stars {
+    animation: none !important;
+  }
+}
+
+/* CRT scanlines only (vignette removed for a cleaner synthwave look) */
+body.register-body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.32) 3px,
+    transparent 4px
+  );
+  mix-blend-mode: multiply;
+  opacity: 1;
+}
+
+@keyframes starfield-twinkle {
+  0%   { filter: brightness(0.9) saturate(1); }
+  100% { filter: brightness(1.15) saturate(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.register-body { animation: none !important; }
+}
+
+/* ---- 90s arcade glow on the title headline — multi-color neon ---- */
+.page-title-headline {
+  letter-spacing: 0.06em !important;
+  text-shadow:
+    /* hard pixel-shadow */
+    4px 4px 0 var(--gold-dark),
+    /* gold inner glow */
+    0 0 6px rgba(255, 210, 63, 0.85),
+    0 0 14px rgba(255, 210, 63, 0.6),
+    0 0 26px rgba(255, 210, 63, 0.4),
+    /* neon-pink outer halo (synthwave accent) */
+    0 0 38px rgba(255, 92, 179, 0.55),
+    0 0 60px rgba(255, 42, 142, 0.35) !important;
+  animation: title-flicker 3.5s ease-in-out infinite, title-pulse 2.4s ease-in-out infinite;
+}
+@keyframes title-flicker {
+  0%, 100% { filter: brightness(1); }
+  47%      { filter: brightness(1); }
+  48%      { filter: brightness(1.45); }
+  49%      { filter: brightness(0.85); }
+  50%      { filter: brightness(1); }
+}
+@keyframes title-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.025); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-title-headline { animation: none !important; transform: none !important; }
+}
+
+/* ---- Bevel + scanline-on-cards for SNES menu vibe ---- */
+.character-pick-card {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.18) 100%),
+    var(--bg-card);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.35),
+    4px 4px 0 rgba(0, 0, 0, 0.5);
+}
+.character-pick-card.is-selected {
+  background:
+    linear-gradient(180deg, rgba(255, 210, 63, 0.18) 0%, transparent 50%, rgba(255, 210, 63, 0.08) 100%),
+    var(--bg-card);
+}
+
+/* QR blocks — same treatment */
+.qr-block {
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.35),
+    4px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Event card — bevel + neon-accent border */
+.event-info-card {
+  box-shadow:
+    inset 0 2px 0 rgba(255, 210, 63, 0.25),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.4),
+    4px 4px 0 rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(255, 210, 63, 0.15);
+}
+
+/* ---- Hand-pointer ("PICK ME!") indicator above selected card ---- */
+.character-pick-col { position: relative; }
+.hand-pointer {
+  position: absolute;
+  left: 50%;
+  top: -36px;
+  width: 32px;
+  height: 27px;
+  margin-left: -16px;
+  pointer-events: none;
+  opacity: 0;
+  scale: 0.4;
+  translate: 0 6px;
+  transition: opacity 0.25s ease-out, scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), translate 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 5;
+}
+.hand-pointer svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(2px 3px 0 rgba(0, 0, 0, 0.6))
+          drop-shadow(0 0 6px rgba(255, 210, 63, 0.55));
+  image-rendering: pixelated;
+  shape-rendering: crispEdges;
+}
+.character-pick-col.has-hand .hand-pointer {
+  opacity: 1;
+  scale: 1;
+  animation: hand-bob 0.8s steps(4) 0.35s infinite;
+}
+@keyframes hand-bob {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -6px; }
+}
+
+/* Stronger glow / pulse on selected card border for extra epic */
+.character-pick-card.is-selected {
+  animation: card-pulse 1.6s ease-in-out infinite;
+}
+@keyframes card-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 2px var(--bg-deep), 0 0 22px rgba(255, 210, 63, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 2px var(--bg-deep), 0 0 32px rgba(255, 210, 63, 0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hand-pointer { animation: none !important; }
+  .character-pick-card.is-selected { animation: none !important; }
+}
+
+/* ============================================================
+   REGISTER PAGE — FIT TO VIEWPORT (desktop, no scroll)
+   On screens >= 900×680: viewport-locked layout, everything
+   visible at once, fonts kept readable, content centered.
+   Smaller screens keep their normal scrolling stack.
+   ============================================================ */
+@media (min-width: 900px) and (min-height: 680px) {
+  body.register-body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Slim slabs */
+  .register-body > .library-nav      { flex: 0 0 auto; padding: 6px 3vw !important; }
+  .register-body > .page-title-block { flex: 0 0 auto; padding: 10px 3vw 8px !important; min-height: 0; }
+  .register-body > #character-pick   { flex: 0 1 auto; padding: 8px 3vw 6px !important; border-bottom: 0 !important; }
+  .register-body > #signup-form      { flex: 0 0 auto; padding: 8px 3vw 6px !important; border-bottom: 0 !important; }
+  .register-body > #event-info       { flex: 0 1 auto; padding: 6px 3vw 8px !important; border-bottom: 0 !important; }
+  .register-body > .register-footer  { display: none !important; }
+
+  /* Top nav */
+  .register-body .library-nav { gap: 8px; }
+  .library-nav-title          { font-size: 12px; }
+  .library-back-btn           { font-size: 10px; padding: 8px 12px; }
+
+  /* Title — readable, two-line headline */
+  .page-title-tag      { font-size: 12px; margin: 0 0 8px; }
+  .page-title-headline { font-size: 44px; line-height: 1.1; margin: 0 0 8px; }
+  .page-title-subtitle { font-size: 14px; letter-spacing: 0.18em; }
+
+  /* Section titles — keep "Select Your Character", hide the others
+     (form has placeholder text, event card has its own "TIME & PLACE" title) */
+  .register-body .section-title { font-size: 18px; margin: 0 0 6px; }
+  .register-body .section-label { display: none !important; }
+  .register-body #signup-form .section-title,
+  .register-body #event-info .section-title { display: none !important; }
+
+  /* CHARACTER CARDS — readable, bumped fonts. margin-top reserves
+     space for the floating hand-pointer above the active card. */
+  .character-pick-row { grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 44px auto 0; max-width: 1100px; }
+  .character-pick-col { gap: 8px; }
+  .character-pick-card { padding: 10px 8px 8px; }
+  .character-pick-card .class-sprite {
+    width: 48px; height: 64px; margin: 0 auto 4px;
+  }
+  .character-pick-card .class-icon { font-size: 16px; margin: 2px 0 4px; line-height: 1; }
+  .character-pick-card .class-name { font-size: 13px; margin: 4px 0 5px; }
+  .character-pick-card .class-desc { font-size: 16px; margin: 0; line-height: 1.3; }
+  .character-pick-card.is-selected::before { font-size: 9px; padding: 3px 7px; top: -11px; }
+  .member-count { padding: 8px 10px 7px; gap: 4px; }
+  .member-count .mc-num { font-size: 26px; }
+  .member-count .mc-label { font-size: 13px; letter-spacing: 0.14em; }
+
+  /* FORM ROW — visually: submit (left) + name input (right).
+     Source order is input-then-button (so Tab hits input first); row-reverse
+     paints them in the other order. align-items:center keeps button and
+     input the same visual height. */
+  .form-row {
+    flex-direction: row-reverse !important;
+    align-items: center !important;
+    gap: 14px !important;
+    max-width: 760px !important;
+    margin: 0 auto !important;
+  }
+  .form-row .submit-btn {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    font-size: 11px;
+    line-height: 1.2;
+    padding: 12px 20px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 0 var(--bg-deep);
+    white-space: nowrap;
+  }
+  .form-row .name-input-wrapper {
+    flex: 1 1 auto !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+  .name-input { font-size: 20px; padding: 10px 14px; box-shadow: 3px 3px 0 var(--bg-deep); }
+  .name-input-hint { font-size: 15px; margin-top: 4px; }
+  .submit-status { font-size: 15px; margin-top: 4px; min-height: 0; text-align: center; }
+  .submit-status:empty { display: none; }
+  .form-row .submit-btn { font-size: 13px !important; padding: 12px 22px !important; }
+
+  /* EVENT INFO + QR — centered group, event card narrow */
+  .event-info-grid {
+    gap: 14px;
+    margin: 0 auto !important;
+    align-items: stretch !important;
+    max-width: 920px !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+  }
+  .event-info-card {
+    flex: 0 1 540px !important;
+    min-width: 320px !important;
+    padding: 8px 14px !important;
+  }
+  .event-info-card .title { font-size: 14px; margin: 0 0 6px; letter-spacing: 0.12em; }
+  .event-meta { font-size: 22px; margin-top: 4px; }
+  .event-meta li {
+    grid-template-columns: 90px 1fr;
+    padding: 5px 0;
+    gap: 2px 14px;
+    border-bottom: 1px dotted rgba(244, 228, 188, 0.18);
+  }
+  .event-meta li:last-child { border-bottom: 0; }
+  .em-key  { font-size: 14px; }
+  .em-val  { font-size: 20px; }
+  .live-count { font-size: 22px; }
+  .qr-stack { gap: 10px; }
+  .qr-block { flex: 1 1 0; min-width: 140px; padding: 10px 10px 12px; gap: 6px; }
+  .qr-frame { width: 100%; max-width: 150px; aspect-ratio: 1 / 1; height: auto; padding: 4px; border-width: 2px; }
+  .qr-sub   { font-size: 12px; margin-top: 8px; line-height: 1.3; }
+}
+
+/* Slightly tighter on shorter screens (e.g. 1366×768 with browser chrome).
+   Still readable. */
+@media (min-width: 900px) and (min-height: 680px) and (max-height: 780px) {
+  .register-body > .page-title-block { padding: 4px 3vw 2px !important; }
+  .register-body > #character-pick   { padding: 4px 3vw 2px !important; }
+  .register-body > #event-info       { padding: 2px 3vw 4px !important; }
+  .register-body > #signup-form      { padding: 2px 3vw 2px !important; }
+
+  .page-title-tag      { font-size: 11px; margin: 0 0 5px; }
+  .page-title-headline { font-size: 34px; line-height: 1.05; margin: 0 0 4px; }
+  .page-title-subtitle { font-size: 12px; }
+
+  .register-body .section-title { font-size: 15px; margin: 0 0 4px; }
+
+  .character-pick-row { margin-top: 30px !important; }
+  .character-pick-card { padding: 8px 6px 6px; }
+  .character-pick-card .class-sprite { width: 44px; height: 58px; margin-bottom: 2px; }
+  .character-pick-card .class-icon   { font-size: 15px; margin: 0 0 3px; }
+  .character-pick-card .class-name   { font-size: 14px; margin: 2px 0 4px; color: var(--ink-white); }
+  .character-pick-card .class-desc   { font-size: 16px; line-height: 1.25; color: var(--ink-cream); }
+  .member-count { padding: 7px 8px 6px; gap: 3px; }
+  .member-count .mc-num   { font-size: 24px; color: var(--ink-white); }
+  .member-count .mc-label { font-size: 12px; letter-spacing: 0.14em; color: var(--gold); }
+  .character-pick-col { gap: 6px; }
+  .hand-pointer { top: -28px; width: 28px; height: 23px; margin-left: -14px; }
+
+  .event-info-card { padding: 4px 12px 6px; }
+  .event-info-card .title { font-size: 11px; margin: 0 0 2px; color: var(--gold); }
+  .event-meta { font-size: 18px; margin-top: 1px; color: var(--ink-cream); line-height: 1.2; }
+  .event-meta li { padding: 1px 0; grid-template-columns: 78px 1fr; gap: 1px 10px; }
+  .em-key  { font-size: 12px; color: var(--gold); }
+  .em-val  { font-size: 17px; color: var(--ink-white); line-height: 1.2; }
+  .live-count { font-size: 19px; color: var(--gold); }
+  .member-count { padding: 6px 8px 5px; gap: 3px; }
+  .member-count .mc-num   { font-size: 22px; }
+  .member-count .mc-label { font-size: 11px; }
+  .qr-frame { width: 100%; max-width: 130px; aspect-ratio: 1 / 1; height: auto; }
+  .qr-block { flex: 1 1 0; min-width: 130px; padding: 7px 8px 10px; }
+  .qr-sub   { font-size: 12px; margin-top: 6px; line-height: 1.3; }
+
+  .name-input { font-size: 20px; padding: 8px 14px; color: var(--ink-white); }
+  .name-input-hint { font-size: 14px; margin-top: 4px; color: var(--ink-cream); }
+  .form-row .submit-btn { font-size: 12px !important; padding: 11px 18px !important; }
+  .submit-status { font-size: 14px; }
+}
+
+/* ============================================================
+   REGISTER PAGE — PRINT MODE (A4 portrait poster, single page)
+   ============================================================ */
+@page {
+  size: A4 portrait;
+  margin: 6mm;
+}
+
+@media print {
+  /* Force the dark palette to actually print (don't strip background colors) */
+  html, body, .register-body {
+    background: var(--bg-deep) !important;
+    color: var(--ink-cream) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 198mm !important;       /* A4 width 210mm − 2×6mm margin */
+    min-height: 0 !important;
+  }
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: 1px 1px 0 var(--bg-deep) !important;
+  }
+
+  /* Hide everything that doesn't belong on a paper poster */
+  .register-nav,
+  .library-nav,
+  #signup-form,
+  #signup-submit,
+  .register-footer,
+  .journey-popup,
+  .submit-status,
+  .submit-help,
+  .name-input-hint,
+  .name-input-wrapper,
+  .submit-btn,
+  .section-label,
+  .visually-hidden {
+    display: none !important;
+  }
+
+  /* Single-page wrapper: each section is a tight slab */
+  .screen {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    min-height: 0 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* ---- TITLE (compact) ---- */
+  .page-title-block {
+    padding: 3mm 4mm 2mm !important;
+    background: var(--bg-deep) !important;
+    border-bottom: 1.5px dashed var(--gold) !important;
+    text-align: center;
+  }
+  .page-title-tag {
+    font-size: 8pt !important;
+    margin: 0 0 1.5mm !important;
+    color: var(--gold) !important;
+  }
+  .page-title-headline {
+    font-size: 18pt !important;
+    line-height: 1.2 !important;
+    color: var(--ink-white) !important;
+    margin: 0 0 1mm !important;
+  }
+  .page-title-subtitle {
+    font-size: 9pt !important;
+    color: var(--ink-cream) !important;
+    margin: 0 !important;
+  }
+
+  /* ---- SHARED section title for the two slab headings ---- */
+  .section-title {
+    font-size: 11pt !important;
+    margin: 0 0 2mm !important;
+    color: var(--ink-white) !important;
+    text-align: center !important;
+  }
+
+  /* ---- CHARACTER PICK ---- */
+  #character-pick {
+    padding: 3mm 4mm 2mm !important;
+    border-bottom: 1.5px dashed rgba(244, 228, 188, 0.3) !important;
+  }
+  .character-pick-row {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 3mm !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+  .character-pick-col { gap: 1.5mm !important; }
+  .character-pick-card {
+    padding: 2mm 1.5mm !important;
+    border: 1.5px solid var(--ink-cream) !important;
+    background: var(--bg-card) !important;
+    transform: none !important;
+  }
+  .character-pick-card .class-sprite {
+    width: 14mm !important;
+    height: 19mm !important;
+    margin: 0 auto 0.5mm !important;
+  }
+  .character-pick-card .class-icon {
+    font-size: 9pt !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+  .character-pick-card .class-name {
+    font-size: 7pt !important;
+    margin: 0.5mm 0 0.5mm !important;
+    color: var(--ink-white) !important;
+    letter-spacing: 0.05em !important;
+  }
+  .character-pick-card .class-desc {
+    font-size: 7pt !important;
+    color: var(--ink-cream) !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+  }
+  .member-count {
+    padding: 1.5mm 1mm !important;
+    border: 1.5px solid var(--gold) !important;
+    background: var(--bg-card-alt) !important;
+  }
+  .member-count .mc-num {
+    font-size: 12pt !important;
+    color: var(--ink-white) !important;
+  }
+  .member-count .mc-label {
+    font-size: 6pt !important;
+    color: var(--gold) !important;
+  }
+
+  /* ---- EVENT INFO + QR (single row: card | QR | QR) ---- */
+  #event-info { padding: 3mm 4mm !important; }
+  .event-info-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 3mm !important;
+    margin: 0 !important;
+    align-items: stretch !important;
+  }
+  .event-info-card {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    padding: 2.5mm 3mm !important;
+    background: var(--bg-card) !important;
+    border: 1.5px solid var(--gold) !important;
+    color: var(--ink-cream) !important;
+  }
+  .event-info-card .title {
+    font-size: 8pt !important;
+    color: var(--gold) !important;
+    margin: 0 0 1mm !important;
+  }
+  .event-meta {
+    font-size: 9pt !important;
+    color: var(--ink-cream) !important;
+    margin: 0 !important;
+  }
+  .event-meta li {
+    grid-template-columns: 14mm 1fr !important;
+    padding: 0.8mm 0 !important;
+    gap: 1mm 3mm !important;
+    border-bottom: 1px dotted rgba(244, 228, 188, 0.3) !important;
+  }
+  .event-meta li:last-child { border-bottom: 0 !important; }
+  .em-key  { font-size: 6.5pt !important; color: var(--gold) !important; }
+  .em-val  { font-size: 9pt !important; color: var(--ink-white) !important; }
+  .em-thai {
+    font-size: 8pt !important;
+    color: var(--ink-cream) !important;
+    grid-column: 2 / -1 !important;
+  }
+  .live-count { font-size: 10pt !important; color: var(--gold) !important; }
+
+  /* QR codes side-by-side on the right */
+  .qr-stack {
+    flex: 0 0 auto !important;
+    flex-direction: row !important;
+    gap: 2.5mm !important;
+    align-items: stretch !important;
+  }
+  .qr-block {
+    padding: 1.5mm !important;
+    border: 1.5px solid var(--ink-cream) !important;
+    background: var(--bg-card) !important;
+    min-width: 0 !important;
+    width: 32mm !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    text-align: center;
+  }
+  .qr-frame {
+    width: 28mm !important;
+    height: 28mm !important;
+    background: var(--ink-cream) !important;
+    border: 1.5px solid var(--gold) !important;
+    padding: 1mm !important;
+    margin: 0 auto !important;
+  }
+  .qr-img { width: 100% !important; height: 100% !important; }
+  .qr-label {
+    font-size: 7pt !important;
+    color: var(--gold) !important;
+    margin-top: 1mm !important;
+  }
+  .qr-sub {
+    font-size: 7pt !important;
+    color: var(--ink-cream) !important;
+  }
+}

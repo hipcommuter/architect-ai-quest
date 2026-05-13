@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register · The Architect's AI Quest · 17 May 2026</title>
+  <meta name="description" content="Free in-person AI-for-architects meetup · Sun 17 May 2026 · 13:00 · Summer Rain Cafe · Ngamwongwan 47" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" />
+  <link rel="stylesheet" href="style.css?v=55" />
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQXVYTWM51"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TQXVYTWM51');
+  </script>
+</head>
+<body class="register-body">
+
+  <!-- ============================================ -->
+  <!-- SVG SPRITE LIBRARY (subset for register.html) -->
+  <!-- Copied verbatim from index.html lines 41-185  -->
+  <!-- ============================================ -->
+  <svg id="sprite-defs" width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="spr-hero-drafter" viewBox="0 0 12 16">
+        <rect x="3" y="1" width="6" height="2" fill="#ffd23f"/>
+        <rect x="2" y="2" width="8" height="1" fill="#ffd23f"/>
+        <rect x="1" y="3" width="10" height="1" fill="#c9a227"/>
+        <rect x="3" y="4" width="6" height="3" fill="#ffccaa"/>
+        <rect x="4" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="5" y="6" width="2" height="1" fill="#e63946"/>
+        <rect x="3" y="7" width="6" height="1" fill="#ffccaa"/>
+        <rect x="2" y="8" width="8" height="4" fill="#29adff"/>
+        <rect x="3" y="9" width="6" height="1" fill="#ffd23f"/>
+        <rect x="1" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="10" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="3" y="12" width="2" height="3" fill="#1d2b53"/>
+        <rect x="7" y="12" width="2" height="3" fill="#1d2b53"/>
+        <rect x="2" y="15" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="15" width="3" height="1" fill="#0f0e2a"/>
+      </symbol>
+
+      <symbol id="spr-hero-designer" viewBox="0 0 12 16">
+        <rect x="2" y="1" width="6" height="1" fill="#29adff"/>
+        <rect x="1" y="2" width="8" height="2" fill="#29adff"/>
+        <rect x="0" y="3" width="2" height="1" fill="#1d2b53"/>
+        <rect x="9" y="3" width="2" height="1" fill="#5d3a1a"/>
+        <rect x="3" y="4" width="6" height="3" fill="#ffccaa"/>
+        <rect x="4" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="5" y="6" width="2" height="1" fill="#e63946"/>
+        <rect x="3" y="7" width="6" height="1" fill="#ffccaa"/>
+        <rect x="2" y="8" width="8" height="4" fill="#f4e4bc"/>
+        <rect x="4" y="10" width="1" height="1" fill="#e63946"/>
+        <rect x="6" y="9" width="1" height="1" fill="#29adff"/>
+        <rect x="7" y="11" width="1" height="1" fill="#51e898"/>
+        <rect x="1" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="10" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="11" y="11" width="1" height="2" fill="#5d3a1a"/>
+        <rect x="11" y="13" width="1" height="1" fill="#e63946"/>
+        <rect x="3" y="12" width="2" height="3" fill="#1d2b53"/>
+        <rect x="7" y="12" width="2" height="3" fill="#1d2b53"/>
+        <rect x="2" y="15" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="15" width="3" height="1" fill="#0f0e2a"/>
+      </symbol>
+
+      <symbol id="spr-hero-communicator" viewBox="0 0 12 16">
+        <rect x="3" y="1" width="6" height="1" fill="#5d3a1a"/>
+        <rect x="2" y="2" width="8" height="2" fill="#5d3a1a"/>
+        <rect x="3" y="4" width="6" height="3" fill="#ffccaa"/>
+        <rect x="3" y="5" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="6" y="5" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="4" y="5" width="1" height="1" fill="#fff1e8"/>
+        <rect x="7" y="5" width="1" height="1" fill="#fff1e8"/>
+        <rect x="5" y="6" width="2" height="1" fill="#e63946"/>
+        <rect x="3" y="7" width="6" height="1" fill="#ffccaa"/>
+        <rect x="2" y="8" width="8" height="4" fill="#e63946"/>
+        <rect x="4" y="8" width="1" height="2" fill="#fff1e8"/>
+        <rect x="7" y="8" width="1" height="2" fill="#fff1e8"/>
+        <rect x="5" y="8" width="2" height="1" fill="#fff1e8"/>
+        <rect x="5" y="9" width="2" height="2" fill="#1d2b53"/>
+        <rect x="1" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="10" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="0" y="10" width="2" height="2" fill="#fff1e8"/>
+        <rect x="0" y="11" width="2" height="1" fill="#c9a227"/>
+        <rect x="3" y="12" width="2" height="3" fill="#0f0e2a"/>
+        <rect x="7" y="12" width="2" height="3" fill="#0f0e2a"/>
+        <rect x="2" y="15" width="3" height="1" fill="#5d3a1a"/>
+        <rect x="7" y="15" width="3" height="1" fill="#5d3a1a"/>
+      </symbol>
+
+      <symbol id="spr-hero-researcher" viewBox="0 0 12 16">
+        <rect x="3" y="0" width="6" height="1" fill="#51e898"/>
+        <rect x="2" y="1" width="8" height="2" fill="#51e898"/>
+        <rect x="2" y="3" width="8" height="1" fill="#1d4a2a"/>
+        <rect x="3" y="4" width="6" height="3" fill="#ffccaa"/>
+        <rect x="4" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="5" width="1" height="1" fill="#0f0e2a"/>
+        <rect x="5" y="6" width="2" height="1" fill="#e63946"/>
+        <rect x="3" y="7" width="6" height="1" fill="#ffccaa"/>
+        <rect x="2" y="8" width="8" height="4" fill="#fff1e8"/>
+        <rect x="3" y="9" width="2" height="2" fill="#51e898"/>
+        <rect x="3" y="10" width="2" height="1" fill="#1d4a2a"/>
+        <rect x="1" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="10" y="9" width="1" height="3" fill="#ffccaa"/>
+        <rect x="11" y="9" width="1" height="2" fill="#c9a227"/>
+        <rect x="10" y="11" width="1" height="1" fill="#c9a227"/>
+        <rect x="9" y="12" width="3" height="1" fill="#c9a227"/>
+        <rect x="9" y="13" width="3" height="1" fill="#c9a227"/>
+        <rect x="10" y="13" width="1" height="1" fill="#29adff"/>
+        <rect x="3" y="12" width="2" height="3" fill="#1d4a2a"/>
+        <rect x="7" y="12" width="2" height="3" fill="#1d4a2a"/>
+        <rect x="2" y="15" width="3" height="1" fill="#0f0e2a"/>
+        <rect x="7" y="15" width="3" height="1" fill="#0f0e2a"/>
+      </symbol>
+
+      <symbol id="spr-sparkle" viewBox="0 0 5 5">
+        <rect x="2" y="0" width="1" height="5" fill="#fff1e8"/>
+        <rect x="0" y="2" width="5" height="1" fill="#fff1e8"/>
+        <rect x="2" y="2" width="1" height="1" fill="#ffd23f"/>
+      </symbol>
+
+      <symbol id="spr-heart" viewBox="0 0 8 7">
+        <rect x="1" y="0" width="2" height="1" fill="#e63946"/>
+        <rect x="5" y="0" width="2" height="1" fill="#e63946"/>
+        <rect x="0" y="1" width="8" height="2" fill="#e63946"/>
+        <rect x="1" y="3" width="6" height="1" fill="#e63946"/>
+        <rect x="2" y="4" width="4" height="1" fill="#e63946"/>
+        <rect x="3" y="5" width="2" height="1" fill="#e63946"/>
+        <rect x="1" y="1" width="1" height="1" fill="#ff8a8a"/>
+      </symbol>
+
+      <!-- POINTING ARROW (down chevron). Gold with darker right-side shading. -->
+      <symbol id="spr-hand-down" viewBox="0 0 12 10">
+        <!-- shaft -->
+        <rect x="4" y="0" width="4" height="3" fill="#ffd23f"/>
+        <!-- chevron body, fading down to a point -->
+        <rect x="0" y="3" width="12" height="2" fill="#ffd23f"/>
+        <rect x="1" y="5" width="10" height="1" fill="#ffd23f"/>
+        <rect x="2" y="6" width="8" height="1" fill="#ffd23f"/>
+        <rect x="3" y="7" width="6" height="1" fill="#ffd23f"/>
+        <rect x="4" y="8" width="4" height="1" fill="#ffd23f"/>
+        <rect x="5" y="9" width="2" height="1" fill="#ffd23f"/>
+        <!-- right-side shadow (darker gold for chunky 3D feel) -->
+        <rect x="7" y="0" width="1" height="3" fill="#c9a227"/>
+        <rect x="11" y="3" width="1" height="2" fill="#c9a227"/>
+        <rect x="10" y="5" width="1" height="1" fill="#c9a227"/>
+        <rect x="9" y="6" width="1" height="1" fill="#c9a227"/>
+        <rect x="8" y="7" width="1" height="1" fill="#c9a227"/>
+        <rect x="7" y="8" width="1" height="1" fill="#c9a227"/>
+        <rect x="6" y="9" width="1" height="1" fill="#c9a227"/>
+        <!-- top-left highlight (white) -->
+        <rect x="4" y="0" width="2" height="1" fill="#fff1e8"/>
+        <rect x="0" y="3" width="2" height="1" fill="#fff1e8"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ SYNTHWAVE ARCADE BACKGROUND ============ -->
+  <div class="arcade-bg" aria-hidden="true">
+    <div class="arcade-stars"></div>
+    <div class="arcade-sun"></div>
+    <div class="arcade-horizon-glow"></div>
+    <div class="arcade-grid arcade-grid-floor">
+      <div class="arcade-grid-inner"></div>
+    </div>
+    <div class="arcade-grid arcade-grid-ceiling">
+      <div class="arcade-grid-inner"></div>
+    </div>
+    <div class="arcade-horizon"></div>
+  </div>
+
+  <!-- ============ PAGE TITLE ============ -->
+  <header id="page-title" class="screen page-title-block" data-section="page-title">
+    <p class="page-title-tag">★ SIDE QUEST · IN-PERSON RAID ★</p>
+    <h1 class="page-title-headline">FROM LV.1<br/>TO LV.999</h1>
+    <p class="page-title-subtitle">THE ARCHITECT'S AI QUEST</p>
+  </header>
+
+  <!-- ============ CHARACTER PICK ============ -->
+  <section id="character-pick" class="screen" data-section="character-pick">
+    <div class="section-label">&gt; STEP 1</div>
+    <h2 class="section-title">Select Your Character</h2>
+
+    <div class="character-pick-row">
+
+      <div class="character-pick-col has-hand">
+        <div class="hand-pointer" aria-hidden="true">
+          <svg viewBox="0 0 12 10"><use href="#spr-hand-down"/></svg>
+        </div>
+        <button class="character-pick-card class-designer" type="button" data-character="designer" data-label="pick-designer" aria-pressed="false">
+          <svg class="class-sprite"><use href="#spr-hero-designer"/></svg>
+          <span class="class-icon">◆</span>
+          <p class="class-name">DESIGNER</p>
+          <p class="class-desc">moodboards, concept, render</p>
+        </button>
+        <div class="member-count" data-count="designer">
+          <span class="mc-num">0</span>
+          <span class="mc-label">MEMBERS</span>
+        </div>
+      </div>
+
+      <div class="character-pick-col">
+        <div class="hand-pointer" aria-hidden="true">
+          <svg viewBox="0 0 12 10"><use href="#spr-hand-down"/></svg>
+        </div>
+        <button class="character-pick-card class-drafter" type="button" data-character="drafter" data-label="pick-drafter" aria-pressed="false">
+          <svg class="class-sprite"><use href="#spr-hero-drafter"/></svg>
+          <span class="class-icon">▤</span>
+          <p class="class-name">DRAFTER</p>
+          <p class="class-desc">drawings, specs, docs</p>
+        </button>
+        <div class="member-count" data-count="drafter">
+          <span class="mc-num">0</span>
+          <span class="mc-label">MEMBERS</span>
+        </div>
+      </div>
+
+      <div class="character-pick-col">
+        <div class="hand-pointer" aria-hidden="true">
+          <svg viewBox="0 0 12 10"><use href="#spr-hand-down"/></svg>
+        </div>
+        <button class="character-pick-card class-communicator" type="button" data-character="communicator" data-label="pick-communicator" aria-pressed="false">
+          <svg class="class-sprite"><use href="#spr-hero-communicator"/></svg>
+          <span class="class-icon">✉</span>
+          <p class="class-name">COMMUNICATOR</p>
+          <p class="class-desc">client decks, emails, reports</p>
+        </button>
+        <div class="member-count" data-count="communicator">
+          <span class="mc-num">0</span>
+          <span class="mc-label">MEMBERS</span>
+        </div>
+      </div>
+
+      <div class="character-pick-col">
+        <div class="hand-pointer" aria-hidden="true">
+          <svg viewBox="0 0 12 10"><use href="#spr-hand-down"/></svg>
+        </div>
+        <button class="character-pick-card class-researcher" type="button" data-character="researcher" data-label="pick-researcher" aria-pressed="false">
+          <svg class="class-sprite"><use href="#spr-hero-researcher"/></svg>
+          <span class="class-icon">⌕</span>
+          <p class="class-name">RESEARCHER</p>
+          <p class="class-desc">vendors, materials, methods</p>
+        </button>
+        <div class="member-count" data-count="researcher">
+          <span class="mc-num">0</span>
+          <span class="mc-label">MEMBERS</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ NAME + SUBMIT (one row) ============ -->
+  <section id="signup-form" class="screen" data-section="signup-form">
+    <div class="section-label">&gt; STEP 2</div>
+    <h2 class="section-title">Enter Your Name</h2>
+
+    <form id="register-form" class="register-form" autocomplete="off" novalidate>
+      <div class="form-row">
+        <label class="name-input-wrapper">
+          <span class="visually-hidden">Adventurer name</span>
+          <input
+            id="name-input"
+            name="name"
+            type="text"
+            maxlength="60"
+            minlength="1"
+            required
+            placeholder="e.g. Tat the Brave, นิค, etc."
+            class="name-input nes-input"
+            aria-describedby="name-input-hint"
+          />
+        </label>
+        <button
+          id="submit-btn"
+          type="submit"
+          class="cta-btn submit-btn"
+          data-label="join-guildbook"
+          aria-label="Join the guildbook"
+          disabled
+        >▶ JOIN THE GUILDBOOK</button>
+      </div>
+      <p id="name-input-hint" class="name-input-hint">1–60 chars · nickname is fine</p>
+      <p id="submit-status" class="submit-status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <!-- ============ EVENT INFO + QR ============ -->
+  <section id="event-info" class="screen" data-section="event-info">
+    <div class="section-label">★ DETAILS</div>
+    <h2 class="section-title">When &amp; Where</h2>
+
+    <div class="event-info-grid">
+      <div class="event-info-card nes-container is-dark with-title">
+        <p class="title">▸ TIME &amp; PLACE</p>
+        <ul class="event-meta">
+          <li>
+            <span class="em-key">DATE</span>
+            <span class="em-val">SUN · 17 MAY 2026</span>
+          </li>
+          <li>
+            <span class="em-key">TIME</span>
+            <span class="em-val">13:00 · 1 PM</span>
+          </li>
+          <li>
+            <span class="em-key">PLACE</span>
+            <a class="em-val em-link" href="https://maps.app.goo.gl/FxCfwNA1gZfw9Urq8" target="_blank" rel="noopener" data-label="map-link">📍 SUMMER RAIN CAFE &amp; RESTAURANT<br/>[NGAM WONG WAN 47]</a>
+          </li>
+          <li>
+            <span class="em-key">COST</span>
+            <span class="em-val">FREE · BYO COFFEE MONEY</span>
+          </li>
+          <li>
+            <span class="em-key">PARTY</span>
+            <span class="em-val"><span id="total-count" class="live-count">0</span> ADVENTURERS SO FAR</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="qr-stack">
+        <a class="qr-block" id="qr-block-page" href="index.html" data-label="qr-page">
+          <div class="qr-frame">
+            <img id="qr-page" class="qr-img" alt="QR code to the main quest page" />
+          </div>
+          <span class="qr-sub">QUEST PAGE</span>
+        </a>
+        <a class="qr-block" id="qr-block-cv" href="cv.html" data-label="qr-cv">
+          <div class="qr-frame">
+            <img id="qr-cv" class="qr-img" alt="QR code to player profile" />
+          </div>
+          <span class="qr-sub">PARTY LEADER STATUS</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <section class="cv-footer screen register-footer" data-section="register-footer">
+    <p class="cv-footer-tag">★ SEE YOU ON 17 MAY ★</p>
+    <p class="cv-footer-text">Questions? Scan the QR or DM this AI bro on Facebook.</p>
+  </section>
+
+  <!-- ============ JOURNEY POPUP ============ -->
+  <div id="journey-popup" class="journey-popup" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="jp-headline">
+    <div class="journey-popup-flash" aria-hidden="true"></div>
+    <div class="journey-popup-card">
+      <button type="button" class="jp-close" id="jp-close" aria-label="Close" data-label="close-popup">✕</button>
+      <p class="jp-banner">★ ★ ★&nbsp;&nbsp;J O U R N E Y&nbsp;&nbsp;B E G I N S !&nbsp;&nbsp;★ ★ ★</p>
+      <svg class="jp-portrait" viewBox="0 0 12 16"><use id="jp-sprite-use" href="#spr-hero-drafter"/></svg>
+      <h2 id="jp-headline" class="jp-headline">YOUR JOURNEY<br/>HAS BEGUN!</h2>
+      <p class="jp-flavor">Welcome to the party, <span id="jp-name">adventurer</span>.</p>
+      <p class="jp-stats"><strong id="jp-class-count">1</strong> <span id="jp-class-name">drafters</span> have joined the party so far.</p>
+
+      <div class="jp-instructions nes-container is-dark">
+        <p class="jp-inst-title">▸ ONE MORE STEP — CONFIRM YOUR SEAT</p>
+        <p class="jp-inst-body">DM this AI bro on Facebook with your adventurer name to lock in your seat at the cafe.</p>
+        <p class="jp-inst-quote">Suggested message:<br/><em>"Hi! I'm <span id="jp-name-echo">[name]</span>, registered as <span id="jp-class-echo">[CLASS]</span>. Saving my seat for 17 May."</em></p>
+      </div>
+
+      <div class="jp-actions">
+        <button type="button" id="jp-copy-msg" class="cta-btn cta-btn-secondary" data-label="copy-fb-msg">📋 COPY THE MESSAGE</button>
+        <a href="[FB_PAGE_URL]" target="_blank" rel="noopener" class="cta-btn jp-fb-btn" id="jp-fb-link" data-label="message-ai-bro">▶ MESSAGE THIS AI BRO</a>
+      </div>
+    </div>
+    <div class="journey-popup-sparkles" aria-hidden="true">
+      <svg class="jp-spark jp-spark-1"><use href="#spr-sparkle"/></svg>
+      <svg class="jp-spark jp-spark-2"><use href="#spr-sparkle"/></svg>
+      <svg class="jp-spark jp-spark-3"><use href="#spr-sparkle"/></svg>
+      <svg class="jp-spark jp-spark-4"><use href="#spr-sparkle"/></svg>
+      <svg class="jp-spark jp-spark-5"><use href="#spr-sparkle"/></svg>
+      <svg class="jp-spark jp-spark-6"><use href="#spr-sparkle"/></svg>
+      <svg class="jp-spark jp-spark-7"><use href="#spr-sparkle"/></svg>
+      <svg class="jp-spark jp-spark-8"><use href="#spr-sparkle"/></svg>
+    </div>
+  </div>
+
+  <!-- ============ PAGE SCRIPT ============ -->
+  <script>
+  (function () {
+    'use strict';
+
+    // ====== CONFIG ======
+    // Paste the deployed Apps Script /exec URL here (see plan, Step 1).
+    const APPS_SCRIPT_URL = 'PASTE_DEPLOYED_EXEC_URL_HERE';
+    // Used for the popup's "MESSAGE THE GUILDMASTER" button.
+    const FB_PAGE_URL    = 'https://www.facebook.com/korkeng.tanaphosai';
+
+    const VALID_CHARACTERS = ['drafter', 'designer', 'communicator', 'researcher'];
+    const FB_CONFIGURED = !!FB_PAGE_URL && FB_PAGE_URL.indexOf('[FB_') === -1;
+    const APPS_CONFIGURED = !!APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('PASTE_') === -1;
+
+    if (!APPS_CONFIGURED) {
+      console.warn('[register.html] APPS_SCRIPT_URL is still the placeholder — submissions will NOT be saved. Demo mode active. See plan Step 1.');
+    }
+    if (!FB_CONFIGURED) {
+      console.warn('[register.html] FB_PAGE_URL is still the placeholder — the popup\'s "MESSAGE THE GUILDMASTER" button is hidden until you set it.');
+    }
+
+    // ====== ELEMENT REFS ======
+    const cards          = document.querySelectorAll('.character-pick-card');
+    const nameInput      = document.getElementById('name-input');
+    const submitBtn      = document.getElementById('submit-btn');
+    const statusEl       = document.getElementById('submit-status');
+    const form           = document.getElementById('register-form');
+    const popup          = document.getElementById('journey-popup');
+    const popupClose     = document.getElementById('jp-close');
+    const popupSprite    = document.getElementById('jp-sprite-use');
+    const popupName      = document.getElementById('jp-name');
+    const popupNameEcho  = document.getElementById('jp-name-echo');
+    const popupClassEcho = document.getElementById('jp-class-echo');
+    const popupCount     = document.getElementById('jp-class-count');
+    const popupClassName = document.getElementById('jp-class-name');
+    const popupFbLink    = document.getElementById('jp-fb-link');
+    const popupCopy      = document.getElementById('jp-copy-msg');
+    const totalCount     = document.getElementById('total-count');
+
+    let selectedCharacter = null;
+
+    // Wire up the popup's "MESSAGE THE GUILDMASTER" link, or hide it if
+    // no FB URL is set (otherwise it would point at the literal "[FB_PAGE_URL]").
+    if (popupFbLink) {
+      if (FB_CONFIGURED) popupFbLink.href = FB_PAGE_URL;
+      else popupFbLink.hidden = true;
+    }
+
+    // ====== AUDIO CHIME ======
+    let audioCtx = null, audioReady = false;
+    function ensureAudio() {
+      if (audioCtx) return;
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        audioReady = true;
+      } catch (e) { audioReady = false; }
+    }
+    function chime(freq, dur) {
+      if (!audioReady || !audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+        osc.type = 'square';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (dur || 0.12));
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + (dur || 0.12));
+      } catch (e) {}
+    }
+    ['click', 'keydown'].forEach(evt => {
+      window.addEventListener(evt, ensureAudio, { once: true, passive: true });
+    });
+
+    // ====== QR CODES ======
+    // Use the qrserver.com free API for crisp themed QR PNGs without a JS bundle.
+    function qrSrc(url) {
+      return 'https://api.qrserver.com/v1/create-qr-code/?size=180x180' +
+             '&data=' + encodeURIComponent(url) +
+             '&color=0f0e2a&bgcolor=f4e4bc&margin=4&qzone=1';
+    }
+    (function setupQr() {
+      const baseUrl = location.origin + location.pathname.replace(/[^/]*$/, '');
+      const qrPage = document.getElementById('qr-page');
+      const qrCv   = document.getElementById('qr-cv');
+
+      // MY PAGE — always points at index.html (the main quest site).
+      if (qrPage) qrPage.src = qrSrc(baseUrl + 'index.html');
+      // MY CV — always available.
+      if (qrCv)   qrCv.src   = qrSrc(baseUrl + 'cv.html');
+    })();
+
+    // ====== CHARACTER SELECT ======
+    function selectCharacter(id) {
+      if (!VALID_CHARACTERS.includes(id)) return;
+      selectedCharacter = id;
+      cards.forEach(c => {
+        const active = c.dataset.character === id;
+        c.classList.toggle('is-selected', active);
+        c.setAttribute('aria-pressed', active ? 'true' : 'false');
+        // Also mark the wrapper column for badge styling AND the hand pointer.
+        const col = c.closest('.character-pick-col');
+        if (col) {
+          col.classList.toggle('is-selected', active);
+          col.classList.toggle('has-hand', active);
+        }
+      });
+      if (audioReady) chime(660, 0.06);
+      updateSubmitEnabled();
+    }
+    cards.forEach(c => c.addEventListener('click', () => selectCharacter(c.dataset.character)));
+
+    // ====== INPUT ======
+    function sanitizeName(v) {
+      return (v || '').replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, 60);
+    }
+    function updateSubmitEnabled() {
+      submitBtn.disabled = !(selectedCharacter && sanitizeName(nameInput.value).length >= 1);
+    }
+    nameInput.addEventListener('input', updateSubmitEnabled);
+
+    // ====== COUNTS ======
+    function renderCounts(counts) {
+      if (!counts) return;
+      let total = 0;
+      VALID_CHARACTERS.forEach(k => {
+        const n = Math.max(0, Number(counts[k]) || 0);
+        total += n;
+        // Match any element with data-count="<character>" — works for the
+        // member-count box below each card AND for any future placement.
+        document.querySelectorAll('[data-count="' + k + '"]').forEach(el => {
+          const numEl = el.querySelector('.mc-num');
+          if (numEl) numEl.textContent = String(n);
+          else el.textContent = n + ' MEMBERS';
+        });
+      });
+      if (totalCount) totalCount.textContent = String(total);
+    }
+
+    async function loadCounts() {
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('PASTE_') !== -1) return;
+      try {
+        const resp = await fetch(APPS_SCRIPT_URL, { method: 'GET' });
+        if (!resp.ok) return;
+        const data = await resp.json();
+        renderCounts(data.counts);
+      } catch (e) {}
+    }
+    loadCounts();
+
+    // ====== POPUP ======
+    function showPopup(opts) {
+      const name = opts.name, character = opts.character, counts = opts.counts;
+      const cnt = (counts && Number(counts[character])) || 1;
+      popupName.textContent      = name;
+      popupNameEcho.textContent  = name;
+      popupClassEcho.textContent = character.toUpperCase();
+      popupCount.textContent     = String(cnt);
+      popupClassName.textContent = cnt === 1 ? character : (character + 's');
+      popupSprite.setAttribute('href', '#spr-hero-' + character);
+      if (FB_CONFIGURED) popupFbLink.href = FB_PAGE_URL;
+
+      popup.classList.add('is-visible');
+      popup.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      try { popupClose.focus({ preventScroll: true }); } catch (e) {}
+
+      if (audioReady) {
+        chime(660, 0.14);
+        setTimeout(function () { chime(880, 0.14); }, 140);
+        setTimeout(function () { chime(1100, 0.22); }, 280);
+      }
+    }
+    function hidePopup() {
+      popup.classList.remove('is-visible');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    popupClose.addEventListener('click', hidePopup);
+    popup.addEventListener('click', function (e) {
+      if (e.target === popup) hidePopup();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!popup.classList.contains('is-visible')) return;
+      if (e.key === 'Escape') { hidePopup(); return; }
+      // Focus trap: cycle Tab between the popup's interactive elements.
+      if (e.key === 'Tab') {
+        const focusables = [popupClose, popupCopy, popupFbLink].filter(function (el) {
+          return el && !el.hidden && el.offsetParent !== null;
+        });
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last  = focusables[focusables.length - 1];
+        const active = document.activeElement;
+        if (e.shiftKey && active === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && active === last) {
+          e.preventDefault();
+          first.focus();
+        } else if (!focusables.includes(active)) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    // ====== COPY FB MESSAGE ======
+    popupCopy.addEventListener('click', async function () {
+      const msg = "Hi! I'm " + popupNameEcho.textContent +
+                  ", registered as " + popupClassEcho.textContent +
+                  ". Saving my seat for 17 May.";
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(msg);
+        ok = true;
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = msg;
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand('copy'); } catch (e2) {}
+        document.body.removeChild(ta);
+      }
+      if (ok) {
+        const orig = popupCopy.innerHTML;
+        popupCopy.innerHTML = '✓ COPIED!';
+        setTimeout(function () { popupCopy.innerHTML = orig; }, 1500);
+      }
+    });
+
+    // ====== SUBMIT ======
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const name = sanitizeName(nameInput.value);
+      if (!selectedCharacter || !name) return;
+
+      submitBtn.disabled = true;
+      statusEl.className = 'submit-status is-loading';
+      statusEl.textContent = '▸ Saving your name to the guildbook…';
+
+      let result = null;
+      let networkFailed = false;
+      if (APPS_CONFIGURED) {
+        try {
+          const resp = await fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ name: name, character: selectedCharacter }),
+          });
+          result = await resp.json();
+        } catch (err) {
+          networkFailed = true;
+        }
+      }
+
+      showPopup({
+        name: name,
+        character: selectedCharacter,
+        counts: (result && result.counts) || null,
+      });
+
+      if (result && result.ok && result.counts) {
+        renderCounts(result.counts);
+        statusEl.className = 'submit-status';
+        statusEl.textContent = '✓ Saved! See you on 17 May.';
+      } else if (networkFailed) {
+        statusEl.className = 'submit-status is-error';
+        statusEl.textContent = '⚠ Couldn’t reach the guildbook server, but your seat is still safe via FB DM.';
+      } else if (!APPS_CONFIGURED) {
+        statusEl.className = 'submit-status is-error';
+        statusEl.textContent = '⚠ Demo mode — your name is not being saved yet.';
+      } else {
+        statusEl.className = 'submit-status';
+        statusEl.textContent = '';
+      }
+      submitBtn.disabled = false;
+
+      if (typeof window.gtag === 'function') {
+        try {
+          window.gtag('event', 'register_submit', {
+            page: 'register.html',
+            character: selectedCharacter,
+            success: !!(result && result.ok),
+          });
+        } catch (e) {}
+      }
+    });
+  })();
+  </script>
+
+  <script src="script.js?v=25" defer></script>
+</body>
+</html>
