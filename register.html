@@ -628,6 +628,14 @@
       const name = sanitizeName(nameInput.value);
       if (!selectedCharacter || !name) return;
 
+      // Show popup IMMEDIATELY — Apps Script can be slow on cold start (5-15s),
+      // so we don't wait for the network. Save runs in the background.
+      showPopup({
+        name: name,
+        character: selectedCharacter,
+        counts: null,
+      });
+
       submitBtn.disabled = true;
       statusEl.className = 'submit-status is-loading';
       statusEl.textContent = '▸ Saving your name to the guildbook…';
@@ -647,14 +655,12 @@
         }
       }
 
-      showPopup({
-        name: name,
-        character: selectedCharacter,
-        counts: (result && result.counts) || null,
-      });
-
+      // After save resolves, refresh the on-page counts AND the popup count
       if (result && result.ok && result.counts) {
         renderCounts(result.counts);
+        const newCnt = Math.max(1, Number(result.counts[selectedCharacter]) || 1);
+        popupCount.textContent = String(newCnt);
+        popupClassName.textContent = newCnt === 1 ? selectedCharacter : (selectedCharacter + 's');
         statusEl.className = 'submit-status';
         statusEl.textContent = '✓ Saved! See you on 17 May.';
       } else if (networkFailed) {
