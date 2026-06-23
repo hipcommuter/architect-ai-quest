@@ -26,3 +26,8 @@ yarn-error.log*
 
 # Private project path map for launcher buttons
 quest-paths.local.json
+
+# clasp (Apps Script) — local script ID, per-user
+.clasp.json
+.clasprc.json
+tools/drive-scheduler/github-actions/node_modules/

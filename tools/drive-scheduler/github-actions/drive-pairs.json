@@ -1,0 +1,11 @@
+{
+  "mode": "incremental-append",
+  "pairs": [
+    {
+      "name": "Example pair — replace me",
+      "sourceFolderId": "PUT_PERSONAL_DRIVE_FOLDER_ID_HERE",
+      "destFolderId": "PUT_WORK_DRIVE_FOLDER_ID_HERE",
+      "frequency": "daily"
+    }
+  ]
+}
